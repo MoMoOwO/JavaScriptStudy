@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 4.可以将JS文件写在外部JS文件中，然后在网页中通过script标签引入
+    写在外部文件中的js可以在不同的玩也中同时引用，也可以利用到浏览器的缓存机制
+    script边检一旦用于引入外部文件了，就不能再在内部编写代码了，浏览器会忽略
+    如果需要则可以再创建一个新的script标签用于编写其他js代码 -->
+    <script src="./js/out.js"></script>
+    <!-- 3.JS代码可以写在script标签中 -->
+    <!-- <script>
+        alert("script标签：警告！");
+    </script> -->
+</head>
+<body>
+    <!-- 1.JS代码可以编写到标签的事件响应属性中如下面按钮的点击事件 -->
+    <button onclick="alert('点击了按钮！');">点我一下</button>
+
+    <!-- 2.JS代码可以写在超链接的href属性中，这样当点击超链接是，会执行js代码 -->
+    <a href="javascript:alert('点击了超链接！');"></a>
+    <a href="javascript:;"></a>
+
+    <!-- 虽然写在标签的属性中，但是他们属于结构与行为的耦合，不方便维护 -->
+</body>
+</html>
