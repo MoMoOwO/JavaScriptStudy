@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        Number数值型：在JS中所有的数值都是Number类型，包括证书和浮点数(小数)
+        */
+        var a = 123;
+        var b = 123.456;
+        // 数字123
+        console.log(typeof a);
+        console.log(a);
+        // 字符串123
+        console.log(typeof "123");
+        console.log("123");
+        console.log(b);
+
+        // JS中可以表示的数字的最大值：Number.MAX_VALUE
+        // 1.7976931348623157e+308
+        console.log(Number.MAX_VALUE);
+        // 如果使用Number表示的数据超过了最大值，则会返回Infinity表示正无穷
+        var i = Number.MAX_VALUE * Number.MAX_VALUE;
+        console.log(i);
+        // Infinity是一个字面量
+        var j = Infinity;
+        console.log(typeof j);
+
+        // NaN是一个特殊的数值，表示Not a Number
+        var d = "abc" * "def";
+        console.log(d);
+
+        var e = NaN;
+        console.log(typeof e);
+
+        // Number.MIN_VALUE大于0的最小值；
+        console.log(Number.MIN_VALUE);
+
+        // 在Js中整数运算基本可以保证精确
+        // 加法 +
+        var f = 123 + 456;
+        console.log(f);
+        // 但是进行浮点数计算可能得到一个不精确的结果
+        // 最好不要进行精确度要求高的运算
+        var g = 0.1 + 0.2;
+        console.log(g);
+
+    </script>
+</body>
+</html>
