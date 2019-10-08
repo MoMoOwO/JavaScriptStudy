@@ -37,7 +37,17 @@
     + JS底层保存标识符时实际上是采用Unicode编码，所以理论上，所有的utf-8中含有的内容都可以zuo'w作为标识符，甚至中文，但是不要使用...
 6. 数据类型
     + 数据类型指的就是字面量类型
-    + 在JS中一共由六种数据类型：String字符串，Number数值，Boolean布尔值，Null空值，Undefined未定义，Object对象；其中String、Number、Boolean、Null、Undefined属于基本数据类型，而Object属于引用类型。
+    + 在JS中一共由六种数据类型：String字符串，Number数值，Boolean布尔值，Null空值，Undefined未定义，Object对象  
+    其中String、Number、Boolean、Null、Undefined属于基本数据类型，而Object属于引用类型。
     + 运算发typeof来检查一个变量的类型： typeof a;
-    + String字符串：在JS中使用字符串需要使用引号引起来，使用双引号单引号都可以，但是不要混着用，同种类型的引号不能嵌套使用；如果在字符串中需要输出引号等一些特殊符号，可以使用转义字符\，\"表示", \'表示'，\n表示换行，\t表示制表符，双斜杠表示\，打印斜杠的时候也需要转义。
-    + Number数值型：在JS中所有的数值都是Number类型，包括证书和浮点数(小数)；JS中可以表示的数字的最大值：Number.MAX_VALUE 1.7976931348623157e+308，如果使用Number表示的数据超过了最大值，则会返回Infinity表示正无穷；Number.MIN_VALUE大于0的最小值；NaN是一个特殊的数值，表示Not a Number；在JS中整数运算基本可以保证精确，但是进行浮点数计算可能得到一个不精确的结果。
+    + String字符串：在JS中使用字符串需要使用引号引起来，使用双引号单引号都可以，但是不要混着用，同种类型的引号不能嵌套使用；  
+    如果在字符串中需要输出引号等一些特殊符号，可以使用转义字符\，\"表示", \'表示'，\n表示换行，\t表示制表符，双斜杠表示\，打印斜杠的时候也需要转义。
+    + Number数值型：在JS中所有的数值都是Number类型，包括整数和浮点数(小数)；  
+    JS中可以表示的数字的最大值：Number.MAX_VALUE 1.7976931348623157e+308，如果使用Number表示的数据超过了最大值，则会返回Infinity表示正无穷；Number.MIN_VALUE大于0的最小值；  
+    NaN是一个特殊的数值，表示Not a Number；在JS中整数运算基本可以保证精确，但是进行浮点数计算可能得到一个不精确的结果。
+    + Boolean布尔类型：只有两个值：true(真)、false(假)，用于逻辑判断。
+    + Null与Undefined：Null类型的值只有一个，就是null，Null这个值专门用来表示一个为空的对象，null是一个对象，表示一个空对象。Undefined类型的值只有一个，就是undefined，当声明一个变量，但并不给空对象赋值就使用是它的值就是undefined。
+
+6. 强制类型转换，将其他数据类型转换为String、Number、Boolean类型。
+    + 将其他数据类型转换为String：1.调用被转换数据类型的toString()方法，null与undefined没有toString()方法，如果调用则报错；2.调用String()函数，并将被转换的数据作为参数传入，对于Number和Boolean实际上就是调用toString()方法，但是对于Null和undefined就不会调用toSring()，它会将null直接转换为"null"，将undefined直接转换为"undefined"。
+    + 将其他数据类型转换为Number：1。使用Number()函数，将要转换的数据作为参数传入，
