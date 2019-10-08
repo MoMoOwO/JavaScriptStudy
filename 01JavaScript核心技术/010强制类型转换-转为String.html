@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            强制类型转换:
+            将一个数据类型强制转换为其他的数据类型
+            类型转换主要指将其他的数据类型,转换为String、Number、Boolean
+
+            将其他类型数据转换为String：
+                1. 调用被转换数据类型的toString()方法，该方法不会影响原变量，它会将转换的结果返回
+                2，调用String()函数，并将被转换的数据作为参数传入，
+                对于Number和Boolean实际上就是调用toString()方法，但是对于Null和undefined就不会调用toSring()，
+                它会将null直接转换为"null"，将undefined直接转换为"undefined"
+
+        */
+        var a = 123;
+        console.log(typeof a);
+        console.log(a);
+        // 调用a的toString()方法
+        //var b = a.toString();
+        // Number => String
+        a = a.toString();
+        console.log(typeof a);
+        console.log(a);
+
+        a = true;
+        console.log(typeof a);
+        console.log(a);
+        // Boolean => String
+        a = a.toString();
+        console.log(typeof a);
+        console.log(a);
+
+        // null与undefined没有toString()方法，如果调用则报错
+        // a = null;
+        // a = a.toString();
+        // console.log(typeof a);
+        // console.log(a);
+
+        // a = undefined;
+        // a = a.toString();
+        // console.log(typeof a);
+        // console.log(a);
+
+
+        a = 123;
+        console.log(typeof a);
+        console.log(a);
+        // 调用String()函数，来将a转换为字符串
+        // Number => String
+        a = String(a);
+        console.log(typeof a);
+        console.log(a);
+
+        a = true;
+        console.log(typeof a);
+        console.log(a);
+        // Boolean => String
+        a = String(a);
+        console.log(typeof a);
+        console.log(a);
+
+        // Null => String
+        a = null;
+        a = String(a);
+        console.log(typeof a);
+        console.log(a);
+
+        // Undefined => String
+        a = undefined;
+        a = String(a);
+        console.log(typeof a);
+        console.log(a);
+    </script>
+</body>
+</html>
