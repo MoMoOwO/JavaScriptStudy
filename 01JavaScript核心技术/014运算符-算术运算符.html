@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            运算符也叫操作符
+            通过运算发可以对一个或多个值进行运算，并获取运算结果
+            比如：typeof 就是运算符，可以来获得一个值的类型，它会将该值的类型以字符串的形式返回。
+
+            算数运算符:
+            +：对两个值进行加法运算，并将结果返回，对于非数值型的变量进行加法运算，都会先将其转换为Number再进行加法运算；
+                所有的值与NaN相加结果都是NaN；如果对两个字符串进行加法运算，则会将两个字符串进行拼接操作；
+                任何值跟字符串进行加法运算都会将起转换为字符串在进行拼串操作，可以利用该方法将任意类型的变量转换为String，
+                即使用+''，这是一种隐式的类型转换，由浏览器自动完成，实际上是调用String()函数
+            -：对两个值进行减法运算，并返回结果；
+            *: 对两个值进行乘法运算
+            /: 对两个值进行除法运算
+            任何值做- * /运算时都会自动转换为Number，可以利用这一点做隐式的类型转换,
+            可以通过对一个值进行-0、*1、/1来将其转换为Number，原理跟Number()函数一样，使用起来更方便
+            %：取模运算(取余数)
+        */
+        let a = 123;
+        let result = typeof a;
+        console.log(result);
+        console.log(typeof result)
+
+        // + 加法运算
+        let b = a + 1;
+        console.log(b);
+
+        result = 456 + 789;
+        console.log(result);
+
+        // 对于非数值型的变量进行加法运算，都会先将其转换为Number再进行加法运算
+        result = true + 1;
+        console.log(result);
+        result = true + false;
+        console.log(result);
+
+        result = 1 + null;
+        console.log(result);
+
+        // 所有的值与NaN相加结果都是NaN
+        result = 2 + NaN;
+        console.log(result);
+
+        // 如果对两个字符串进行加法运算，则会将两个字符串进行拼接操作
+        result = '123' + '456';
+        console.log(result);
+        console.log(typeof result);
+
+        result = '锄禾日当午，' + 
+                 '汗滴禾下土。' + 
+                 '谁知盘中餐，' + 
+                 '粒粒皆辛苦。';
+        console.log(result);
+
+        // 任何值跟字符串进行加法运算都会将起转换为字符串在进行拼串操作
+        result = 123 + '1';
+        console.log(result);
+
+        result = true + 'hello';
+        console.log(result);
+
+        // 采用+''来将其他类型转换为字符串
+        let c = 123;
+        c = c + '';
+        console.log(c);
+        console.log(typeof c);
+
+        console.log('c = ' + c);
+
+        result = 1 + 2 + '3';
+        console.log(result);
+        result = '1' + 2 + 3;
+        console.log(result);
+        
+
+        // -:减法运算
+        result = 100 - 5;
+        console.log(result);
+
+        result = 100 - true;
+        console.log(result);
+
+        result = 100 - '1';
+        console.log(result);
+
+        // * 乘法运算
+        result = 2 * 2;
+        console.log(result);
+
+        result = 2 * '8';
+        console.log(result);
+
+        result = 2 * undefined;
+        console.log(result);
+
+        result = 2 * null;
+        console.log(result);
+
+        // / 除法运算
+        result = 4 / 2;
+        console.log(result);
+
+        result = 3 / 2;
+        console.log(result);
+
+        // 任何值做- * /运算时都会自动转换为Number
+        // 可以利用这一点做隐式的类型转换,可以通过对一个值进行-0、*1、/1来将其转换为Number，原理跟Number()函数一样，使用起来更方便
+        result = '3' - 0;
+        console.log(result)
+        console.log(typeof result)
+        result = '3' / 1;
+        console.log(result)
+        console.log(typeof result)
+        result = '3' * 1;
+        console.log(result)
+        console.log(typeof result)
+
+
+        // % 取模运算
+        result = 9 % 3;
+        console.log(result);
+
+        result = 9 % 4;
+        console.log(result);
+        
+    </script>
+</body>
+</html>
