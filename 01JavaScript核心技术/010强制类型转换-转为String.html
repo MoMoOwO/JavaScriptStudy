@@ -18,12 +18,13 @@
                 2，调用String()函数，并将被转换的数据作为参数传入，
                 对于Number和Boolean实际上就是调用toString()方法，但是对于Null和undefined就不会调用toSring()，
                 它会将null直接转换为"null"，将undefined直接转换为"undefined"
+                3. 使用+'',即在加法运算时强制转换类型
 
         */
         var a = 123;
         console.log(typeof a);
         console.log(a);
-        // 调用a的toString()方法
+        // 1.调用a的toString()方法
         //var b = a.toString();
         // Number => String
         a = a.toString();
@@ -53,7 +54,7 @@
         a = 123;
         console.log(typeof a);
         console.log(a);
-        // 调用String()函数，来将a转换为字符串
+        // 2.调用String()函数，来将a转换为字符串
         // Number => String
         a = String(a);
         console.log(typeof a);
@@ -78,6 +79,36 @@
         a = String(a);
         console.log(typeof a);
         console.log(a);
+
+        a = 123;
+        console.log(typeof a);
+        console.log(a);
+        // 3.使用+''转换数据类型
+        // Number => String
+        a = a + '';
+        console.log(typeof a);
+        console.log(a);
+
+        a = true;
+        console.log(typeof a);
+        console.log(a);
+        // Boolean => String
+        a = a + '';
+        console.log(typeof a);
+        console.log(a);
+
+         // Null => String
+        a = null;
+        a = a + '';
+        console.log(typeof a);
+        console.log(a);
+
+        // Undefined => String
+        a = undefined;
+        a = a + '';
+        console.log(typeof a);
+        console.log(a);
+
     </script>
 </body>
 </html>
