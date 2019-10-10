@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            在JS中，如果需要表示十六进制的数字，则需要以0x开头；
+            如果需要表示八进制的数字，则需要以0开头；
+            如果要表示二进制数字，则需要以0b开头，但不是所有的浏览器都支持
+        */
+
+        // 十六进制
+        let HEX = 0x10;
+        console.log(`十六进制0x10=${HEX}`);
+
+        // 八进制
+        let OCT = 010;
+        console.log(`八进制010=${OCT}`);
+
+        // 二进制
+        let BIN = 0b10;
+        console.log(`二进制0b10=${BIN}`);
+
+        // 十进制
+        let DEC = 100;
+        console.log(`十进制100=${DEC}`);
+
+        // 像'070'这样的字符串，有些浏览器会当成八进制解析(如IE8)，有些会当成十进制解析
+        let a = '070';
+        a = parseInt(a);
+        console.log(typeof a);
+        console.log(a)
+
+        a = '080';
+        // 在使用parseInt解析的时候传递第二个参数来指定进制
+        a = parseInt(a, 10);
+        console.log(typeof a);
+        console.log(a)
+    </script>
+</body>
+</html>
