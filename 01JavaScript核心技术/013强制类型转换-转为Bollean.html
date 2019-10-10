@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            将其他数据类型转换为Boolean
+            使用Boolean()函数
+            数值型转布尔型，除了0和NaN是false，其余的都是true，
+            字符串转布尔型，只有空串''是false，其余都是true，
+            null和undefined转为布尔值，都转换为false
+        */
+
+        let a = 123;
+        console.log(typeof a);
+        console.log(a);
+        // 使用Boolean()转换为Boolean类型
+        // Number => Booolean
+        a = Boolean(a);
+        console.log(typeof a);
+        console.log(a);
+
+        a = -123;
+        console.log(Boolean(a));
+        a = Infinity;
+        console.log(Boolean(a));
+        a = 0;
+        console.log(Boolean(a));
+        a = NaN;
+        console.log(Boolean(a));
+
+        // String => Boolean
+        a = 'hello';
+        console.log(Boolean(a));
+        a = 'true';
+        console.log(Boolean(a));
+        a = 'false';
+        console.log(Boolean(a));
+        a = '   ';
+        console.log(Boolean(a));
+        a = '';
+        console.log(Boolean(a));
+
+        // Null => Boolean
+        a = null;
+        console.log(Boolean(a));
+        // Undefined => Boolean
+        a = undefined;
+        console.log(Boolean(a));
+    </script>
+</body>
+</html>
