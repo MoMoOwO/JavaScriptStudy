@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            将其他数据类型转换为Number
+            转换方式：
+                1.使用Number()函数，将要转换的数据作为参数传入，
+                字符串->数值:如果是纯数字字符串则直接转换为数字，只要字符串中含有非数字就转为NaN，如果字符串是空串或者全是空格的字符串则转换为0,
+                布尔值->数值：true:1,false:0
+                Null->数字：0
+                Undefined->数值：NaN
+                2.此方法专门用于应对字符串转数值，将字符串中有效的数字解析出来，parseInt()将字符串解析为整数、PaseFloat()将字符串解析为浮点数
+                parseFloat()作用和parseInt()类似，不同的是它可以获得有效的小数；
+                如果对非String类型使用parseInt()或parseFloat()，它会先将其转换为String然后再操作
+                可以间接使用parseInt()取整
+                3.使用+来进行转换，效果跟Number()函数一样
+        */
+        var a = "123";
+        console.log(typeof a);
+        console.log(a);
+        // 1.调用Number函数将a转换为Number类型
+        // String => Number
+        a = Number(a);
+        console.log(typeof a);
+        console.log(a);
+        a = "123abc";
+        a = Number(a);
+        console.log(typeof a);
+        console.log(a);
+        a = "";
+        a = Number(a);
+        console.log(typeof a);
+        console.log(a);
+        a = "    ";
+        a = Number(a);
+        console.log(typeof a);
+        console.log(a);
+
+        a = true;
+        console.log(typeof a);
+        console.log(a);
+        // Boolean => Number
+        a = Number(a);
+        console.log(typeof a);
+        console.log(a);
+        a = false;
+        a = Number(a);
+        console.log(typeof a);
+        console.log(a);
+
+        a = null;
+        a = Number(a);
+        console.log(typeof a);
+        console.log(a);
+
+        a = undefined;
+        a = Number(a);
+        console.log(typeof a);
+        console.log(a);
+
+        // 2.parseInt(),parseFloat()
+        a = "123px";
+        a = parseInt(a);
+        console.log(typeof a);
+        console.log(a);
+
+        a = '123bb33';
+        console.log(parseInt(a));
+        a = 'bc123';
+        console.log(parseInt(a));
+
+        // parseFloat()作用和parseInt()类似，不同的是它可以获得有效的小数
+        a = '123.456abc';
+        console.log(parseFloat(a))
+
+        a = '123.456.789abc';
+        console.log(parseFloat(a))
+
+        // 如果对非String类型使用parseInt()或parseFloat()，它会先将其转换为String然后再操作
+        a = true;
+        console.log(parseFloat(a))
+
+        // 可以间接使用parseInt()取整
+        a = 123.456;
+        console.log(parseInt(a));
+
+        // 3.使用+转换为Number类型
+        a = '123';
+        a = +a;
+        console.log(typeof a);
+        console.log(a);
+
+        a = '-123';
+        a = +a;
+        console.log(typeof a);
+        console.log(a);
+
+        a = '12ab';
+        a = +a;
+        console.log(a);
+
+        a = true;
+        a = +a;
+        console.log(a);
+
+        a = null;
+        a = +a;
+        console.log(a);
+
+        a = undefined;
+        a = +a;
+        console.log(a);
+    </script>
+</body>
+</html>
