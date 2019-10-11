@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            一元运算符，只需要一个操作数的运算符
+            typeof：返回数据类型
+            +：正号，不对数字产生任何影响
+            -：负号，对数字进行取反
+                对于非Number类型的值,会先将他转换为Number,然后在运算;
+                从而可以对一个其他的数据类型使用+来将其转换为number,原理跟Number()函数一样.
+        */
+
+        // +：正号，不对数字产生任何影响
+        let a= +123;
+        console.log(typeof a)
+        console.log(a)
+
+        //  -：负号，对数字进行取反
+        let b = -a;
+        console.log(b);
+
+        // 对于非Number类型的值,会先将他转换为Number,然后在运算;
+        let c = true;
+        c = -c;
+        console.log(c);
+        console.log(typeof a)
+
+        // 对一个其他的数据类型使用+来将其转换为number,原理跟Number()函数一样.
+        c = '18';
+        c = +c;
+        console.log(c)    ;
+        console.log(typeof c);
+
+        let d = 1 + '2' + 3;
+        console.log(d);
+        console.log(typeof d);
+        d = 1 + +'2' + 3;
+        console.log(d);
+        console.log(typeof d);
+    </script>
+</body>
+</html>
