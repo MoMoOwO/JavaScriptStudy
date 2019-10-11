@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ++: 自增，通过自增可以使变量在自身的基础上加1，对于一个变量自增以后变量的值会立即自增1；
+                自增分为两种；a++与++a，++在后先执行语句再自增,++在前先自增再执行语句.
+            --: 自减，通过自减可以使变量在自身的基础上减1,同样存在a--与--a的差异,与自增类似.
+        */
+
+        let a = 1;
+        // 使a自增
+        // ++在后先执行语句再自增,下句先讲a的值1赋值给b,再进行自增
+        let b = a++;
+        console.log('b=' + b);
+        console.log('a=' + a);
+
+        // ++在前先自增再执行语句，下句a先自增，再将a的值赋值给b
+        a = 1;
+        b = ++a;
+        console.log('b=' + b);
+        console.log('a=' + a);
+
+        let c = 20;
+        let result = c+ c++ + ++c + c;
+        console.log(result);
+
+        c = 20;
+        c = c++;
+        console.log(c);
+
+        // 自减
+        let d = 2;
+        let e = d--;
+        console.log('d=' + d);
+        console.log('e=' + e);
+
+        d = 2;
+        e = --d;
+        console.log('d=' + d);
+        console.log('e=' + e);
+
+
+        // test
+        console.log('-----test-----')
+        let n1 = 10, n2 = 20;
+        let n = n1++;
+        // n=10
+        console.log('n=' + n);
+        // n1=11
+        console.log('n1=' + n1);
+
+        n = ++n1;
+        // n=12
+        console.log('n=' + n);
+        // n1=12
+        console.log('n1=' + n1);
+
+        n = n2--;
+        // n=20
+        console.log('n=' + n);
+        // n2=19
+        console.log('n2=' + n2);
+
+        n= --n2;
+        // n=18
+        console.log('n=' + n);
+        // n2=18
+        console.log('n2=' + n2);
+
+    </script>
+</body>
+</html>
