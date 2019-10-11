@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            JS提供了三种逻辑运算符:
+            !: 非,非运算就是对一个布尔值进行取反操作,!true=false,!false=true;
+                对非布尔值进行运算,会先将其转换为布尔值然后进行运算;
+                任意数据类型可以通过取两次反来转换为布尔值，类似于Boolean
+            &&: 与，可以对运算符两侧的值进行与运算并返回结果;
+                两个值中,只要有一个为false就返回false,只有两个值都为true时才返回true;
+                JS中的与属于短路与,即如果第一个值为false则不会再看第二个值
+
+            ||: 或,对运算符两侧的值进行或运算并返回结果;
+                两个值中只要有一个为true就返回true,只有两个值都为false时才返回false;
+                JS中的或属于短路或,即如果第一个值为true则不会再看第二个值
+        */
+
+        // !非运算
+        let a = true;
+        console.log('a=' + a);
+        // 对a进行非运算
+        console.log('!a=' + !a);
+
+        let b = 20;
+        console.log('b=' + b);
+        console.log(typeof b);
+        console.log('!b=' + !b);
+        console.log(typeof !b);
+        // 任意数据类型可以通过取两次反来转换为布尔值，类似于Boolean
+        b = 10;
+        b = !!b;
+        console.log('b=' + b);
+        console.log(typeof b);
+
+        // &&与运算
+        // 两个值中,只要有一个为false就返回false,只有两个值都为true时才返回true;
+        let result = true && true;
+        console.log('result=' + result);
+        result = true && false;
+        console.log('result=' + result);
+        result = false && true;
+        console.log('result=' + result);
+        result = false && false;
+        console.log('result=' + result);
+        // JS中的与属于短路与,即如果第一个值为false则不会再看第二个值
+        true && console.log('第一个值为true,会检查第二个值');
+        false && console.log('第一个值为false,不会检查第二个值');
+
+        // ||或运算
+        // 两个值中只要有一个为true就返回true,只有两个值都为false时才返回false;
+        result = true || true;
+        console.log('result=' + result);
+        result = true || false;
+        console.log('result=' + result);
+        result = false || true;
+        console.log('result=' + result);
+        result = false || false;
+        console.log('result=' + result);
+        // JS中的或属于短路或,即如果第一个值为true则不会再看第二个值
+        true || console.log('第一个值为true,不会检查第二个值');
+        false || console.log('第一个值为false,会检查第二个值');
+    </script>
+</body>
+</html>
