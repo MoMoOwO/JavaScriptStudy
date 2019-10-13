@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            关系运算符
+            通过关系运算符可以比较两个值之间的大小关系
+            如果关系成立返回true否则返回false
+            >: 大于号
+            >=: 大于等于
+            <: 小于号
+            <=: 小于等于
+
+            非数值的情况
+            非数值型与数值的变量进行比较，会先将其转变为数值型再进行比较；任何值和NaN做任何比较都是false；
+            如果关系运算符两侧都是字符串时，则不会将其转换为数字进行比较，而是分别比较字符串中字符的Unicode编码，
+            Unicode编码https://baike.baidu.com/item/Unicode%E7%A0%81/7704811
+            比较字符串时是一位一位两两进行比较,一样则比较下一位，比较两个字符串型的数字可能会得到不可预期的结果，
+            可以选择将其中任意一个转为数值型
+        */
+
+        // >
+        let result = 5 > 10; // false
+        //result = 5 > 4; // true
+        //result = 5 > 5; // false
+        console.log('result = ' + result);
+
+        // >=
+        result = 5 >= 5; // true
+        //result = 5 >= 4; // true
+        console.log('result = ' + result);
+
+        // < 
+        result = 5 < 4; // false
+        //result = 4 < 5; // true
+        console.log('result = ' + result);
+
+        // <= 
+        //result = 5 <= 4; // false
+        result = 4 <= 4; // true
+        console.log('result = ' + result);
+
+        // 非数值的变量进行比较
+        console.log(1 > true); // false
+        console.log(1 >= true); // true
+
+        console.log(1 > '0'); // true
+        console.log(10 > null); // true
+
+        // 任何值和NaN做任何比较都是false
+        console.log(10 > 'hello'); // false
+        console.log(10 < undefined); // false
+
+        console.log(true > false); // 1 > 0 true
+
+        // 如果关系运算符两侧都是字符串时，则不会将其转换为数字进行比较，而是分别比较字符串中字符的Unicode编码
+        // Unicode编码https://baike.baidu.com/item/Unicode%E7%A0%81/7704811
+        console.log('1' < '5'); // true
+        console.log('11' < '5'); // true
+        console.log('a' < 'b'); // true
+        // 比较字符串时是一位一位两两进行比较,一样则比较下一位
+        console.log('abc' < 'b'); // true
+        console.log('abc' < 'bcd'); // true
+
+        console.log('你' > '我'); // false
+
+        // 比较两个字符串型的数字可能会得到不可预期的结果
+        console.log('123123123' > '5');
+        // 可以选择将其中任意一个转为数值型
+        console.log('123123123' > +'5');
+
+    </script>
+</body>
+</html>
