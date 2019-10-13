@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            && || 非布尔值的情况
+            对于非布尔值进行与或运算时,会先将其转换为布尔值,然后再运算,并返回原来的值
+
+            与运算：如果两个值都为true则返回后边的；如果两个值都为true则返回后边的值。
+            找false,如果第一个值为true则返回第二个值，如果第一个值为false则返回第一个值。
+
+            或运算；找true如果第一个值为true则直接返回第一个值，如果第一个值为false则直接返回第二个值
+        */
+        // 对于非布尔值进行与或运算时,会先将其转换为布尔值,然后再运算,并返回原来的值
+
+        // &&
+        // true && true
+        // 如果两个值都为true则返回后边的
+        let result = 5 && 6;
+        console.log('result=' + result);
+
+        // 如果两个值中有false,则赶回靠前的false
+        // false && true
+        result = 0 && 2;
+        console.log('result=' + result);
+        result = 2 && 0;
+        console.log('result=' + result);
+        result = NaN && 0;
+        console.log('result=' + result);
+        result = 0 && NaN;
+        console.log('result=' + result);
+
+        // ||
+        // true || true
+        // 如果第一个值为true则直接返回第一个值
+        result = 2 || 0;
+        console.log('result=' + result);
+        result = 2 || 1;
+        console.log('result=' + result);
+        result = 1 || 2;
+        console.log('result=' + result);
+
+        // 如果第一个值为false则直接返回第二个值
+        result = 0 || 0;
+        console.log('result=' + result);
+        result = 0 || 1;
+        console.log('result=' + result);
+
+        result = '' || 'Hello!';
+        console.log('result=' + result);
+        result = -1 || '你好！';
+        console.log('result=' + result);
+    </script>
+</body>
+</html>
