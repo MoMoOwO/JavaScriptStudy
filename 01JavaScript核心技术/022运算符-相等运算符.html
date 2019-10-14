@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            相等运算符，用来比较两个值是否相等，如果相等返回true，否则返回false
+
+            使用==做相等比较运算，当使用==来进行比较两个值时，如果两个值类型不同，那么会先将他们转换为相同类型再进行比较;
+            Undefined衍生自null,所以两者做相等判断时,返回true;
+            NaN不和任何值相等,包括它本身，判断一个变量值是否时NaN需要使用isNaN()函数来进行判断,变量作为参数传入
+
+            不相等：用来判断两个值不相等
+            使用!=来做不相等运算，不相等也会对变量进行自动类型转换，如果转换后相等它也会返回false
+
+            全等===，用来判断两个值是否全等，与==类似，但是不会做类型转换，如果两个变量类型不同，直接返回false
+
+            !==，用来判断两个值是否不全等，与!=类似，但是不会做类型转换，如果两个变量类型不同，直接返回false
+
+        */
+        // ==等于
+        let a = 10;
+        console.log(a == 10); // true
+        console.log(a == 4); // false
+
+        // 当使用==来进行比较两个值时，如果两个值类型不同，那么会先将他们转换为相同类型再进行比较
+        console.log('1' == 1); // true
+
+        console.log(true == '1'); // true
+
+        console.log(null == '0'); // false
+
+        //  Undefined衍生自null,所以两者做相等判断时,返回true
+        console.log(undefined == null); // true
+
+        // NaN不和任何值相等,包括它本身
+        console.log(NaN == 1);
+        console.log(NaN == undefined);
+        console.log(NaN == NaN);
+
+        // 判断一个变量值是否时NaN需要使用isNaN()函数来进行判断,变量作为参数传入
+        let b = NaN;
+        console.log(b == NaN); // false
+        console.log(isNaN(b)); // true
+
+        // !=不等于
+        console.log(10 != 5); // true
+        console.log(10 != 10); // false
+        console.log(10 != '10'); // false
+        console.log('abc' != 'abc'); // false
+
+        // ===全等
+        console.log('123' == 123); // true
+        console.log('123' === 123); // false
+        console.log(undefined === null); // false
+
+        // 不全等
+        console.log(1 != 1); // false
+        console.log(1 != '1'); // true
+
+    </script>
+</body>
+</html>
