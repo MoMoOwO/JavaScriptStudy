@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ,逗号运算符
+            使用逗号运算符可以分割多个语句,一般可以在声明多个变量时使用
+        */
+        // 使用逗号运算符同时声明多个变量
+        // let a;
+        // let b;
+        // let c;
+        let a, b, c;
+        a = 1, b = 2, c = 3;
+        let d = 4, e = 5;
+
+        /*
+            运算符的优先级
+            和数学中的运算符优先级类似，如先乘除，后加减
+            在JS中有一个运算发优先级的表，在表中位置月考上优先级越高，优先级越高越先计算，优先级一样则从左往右进行计算
+        */
+        let result = 1 + 2 * 3; // 7
+
+        // 如果||优先级高，或者两个一样高，则应该返回3
+        // 如果&&优先级高，则应该返回1
+        result = 1 || 2 && 3;
+        console.log("result = " + result);
+    </script>
+</body>
+</html>
