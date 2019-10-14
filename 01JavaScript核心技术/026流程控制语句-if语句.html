@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            流程控制语句
+                js中的程序是从上到下一行一行执行的
+                通过使用流程控制语句可以控制程序执行流程,使程序可以根据一定的条件来选择执行
+            控制语句的分类:
+                1.条件判断语句
+                2.条件分支语句
+                3.循环语句
+
+            条件判断(选择)语句
+                使用条件判断语句可以在执行某条语句之前进行判断,如果条件成立才会执行语句,条件不成立则语句不执行
+
+            if语句
+                语法一: 
+                    if(条件表达式)
+                        语句
+                    if语句在执行时会先对条件表达式进行求值判断,如果条件表达式的值为true,则执行if后的语句,
+                    如果条件表达式的值为false则不会执行if后的语句
+                    if语句只能控制紧随其后的那一条语句，要想控制多条语句则需要将多条语句放到代码块
+                    if语句后的代码块不是必须的，但是在开发中尽量写上
+                
+                语法二:
+                    if(条件表达式){
+                        语句...
+                    }else{
+                        语句...
+                    }
+                    if...else...语句,
+                    当该语句执行时,会先对if后的条件表达式进行求值判断,如果该值为true,则执行if后的语句,
+                    如果该值为false则执行else后的语句
+
+                语法三：
+                    if(条件表达式){
+                        语句...
+                    }else if(条件表达式){
+                        语句...
+                    }else if(条件表达式){
+                        语句...
+                    }else{
+                        语句...
+                    }
+                    if...else if...else语句
+                    当该语句执行时,会从上到下一次对条件表但是进行求值判断,如果职位true则执行当前语句,
+                    如果值为false,则继续向下判断,如果所有条件都不满足,则执行最后的一个else语句;
+                    该语句中,只会有一个代码块被执行,一旦代码块执行了,则直接结束语句
+
+        */
+
+        // 语法一:
+        // if语句在执行时会先对条件表达式进行求值判断,如果条件表达式的值为true,则执行if后的语句,
+        // 如果条件表达式的值为false则不会执行if后的语句,
+        // if语句只能控制紧随其后的那一条语句，要想控制多条语句则需要将多条语句放到代码块
+        // if语句后的代码块不是必须的，但是在开发中尽量写上
+        if(true){
+            console.log('哈哈!');
+        }
+
+        let a = 18;
+        if(a > 9){
+            console.log('a大于9');
+            console.log('if控制的代码块中的数据');
+        }
+
+        if(a > 9 && a < 15){
+            console.log('a大于9，而且小于15');
+        }
+
+        if(a > 9 && a <= 20){
+            console.log('a大于9，而且小于等于20');
+        }
+
+
+        // 语法二:
+        // if...else...语句,
+        // 当该语句执行时,会先对if后的条件表达式进行求职判断,如果该值为true,则执行if后的语句,
+        // 如果该值为false则执行else后的语句
+        let age = 70;
+        //age = 40;
+        if(age >= 60){
+            console.log('你已经退休了!');
+        }else{
+            console.log('你还没有退休!');
+        }
+
+        // 语法三:
+        // if...else if...else语句
+        // 当该语句执行时,会从上到下一次对条件表但是进行求值判断,如果职位true则执行当前语句,
+        // 如果值为false,则继续向下判断,如果所有条件都不满足,则执行最后的一个else语句;
+        let score = 90;
+        // score = 80;
+        // score = 65;
+        // score = 55;
+        // score = 40;
+        if(score > 85){
+            console.log('成绩优秀!');
+        }else if(score > 70){
+            console.log('成绩良好!');
+        }else if(score >= 60){
+            console.log('成绩一般!');
+        }else if(score > 50){
+            console.log('成绩较差!');
+        }else{
+            console.log('成绩很差!');
+        }
+
+        // 该语句中,只会有一哥代码块被执行,一旦代码块执行了,则直接结束语句
+        age = 30;
+        if(age > 17){
+            console.log('你成年了!');
+        }else if(age > 50){
+            console.log('你已经半百了!');
+        }else if(age > 80){
+            console.log('你已经达到平均年龄水平!');
+        }else{
+            console.log('你归西了吗?');
+        }
+
+    </script>
+</body>
+</html>
