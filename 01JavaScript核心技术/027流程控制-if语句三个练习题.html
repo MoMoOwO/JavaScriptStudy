@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>练习题1</h1>
+    <h5>从键盘输入小明的期末成绩：当成绩为100时，奖励一辆BMW，当成绩为[80-99]时，奖励一台iPhone 11 pro，当成绩为[60-80]时，奖励一本辅导书，其他什么奖励也没有。</h5>
+    请输入小明的期末成绩<input type="number" id="score" max="100" min="0">
+    <!-- <input type="submit" onclick="getPrice"> -->
+    <button onclick="getPrice()">提交</button>
+
+    <script>
+        function getPrice(){
+            // 或者使用prompt()函数来弹出一个输入框让用户输入内容
+            // let score = parseFloat(prompt('请输入小明的成绩'));
+            
+            // 获取成绩
+            let score = parseFloat(document.getElementById("score").value);
+
+            if(score == 100){
+                alert('恭喜小明，获得一辆BMW！');
+            }else if(score >= 80){
+                alert('恭喜小明，获得一台iPhone 11 pro！');
+            }
+            else if(score >= 60){
+                alert('恭喜小明，获得一本辅导书！');
+            }else{
+                alert('很遗憾，小明什么奖励也没能得到！');
+            }
+        }
+    
+    </script>
+</body>
+</html>
