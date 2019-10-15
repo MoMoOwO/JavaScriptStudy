@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            循环语句
+            通过循环语句可以反复的执行一段代码多次
+
+            while循环
+                语法：
+                while(条件表达式){
+                    语句...
+                }
+                
+                执行过程：
+                先对条件表达式进行求值判断，如果值为true则执行循环体，循环体执行完毕后，继续对表达式进行判断，
+                如果为true，则继续执行循环体，依次类推，知道值为false则终止循环
+
+            do...while循环
+                语法:
+                do{
+                    语句...
+                }while(条件表达式)
+                执行过程;
+                限制性循环体，循环体执行完毕之后，才对while后的条件表达式进行判断，
+                如果结果为true，则会继续执行循环体，执行完毕继续判断依次类瑞，
+                如果结果为false，则终止循环
+            
+            实际上这两个语句功能类似，不同的十while实现判断后执行，do...while是先执行后判断。
+            所以do...while可以保证循环体至少执行一次
+
+         */
+
+        // 向页面中输出连续的数字
+        let n = 1;
+        // document.write(n++ + '<br />');
+        // document.write(n++ + '<br />');
+        // document.write(n++ + '<br />');
+        // document.write(n++ + '<br />');
+        // document.write(n++ + '<br />');
+        // document.write(n++ + '<br />');
+        // document.write(n++ + '<br />');
+
+        // 像这种将条件表达式写死为true的循环，叫做死循环
+        // 这种循环不会停止，除非关闭浏览器，在开发中慎用
+        // 可以在循环体内使用break来终止循环
+
+        // while
+        while(true){
+            console.log(n++);
+            if(n == 10){
+                break;
+            }
+        }
+
+        console.log('---------------')
+
+        // 创建一个循环，往往需要三步
+        // 1. 创建初始化一个变量
+        let a = 1;
+
+        //2. 在循环中设置一个条件表达式
+        while(a <= 10){
+            // 3.定义一哥更新表达式，每次更新初始化变量
+            document.write(a++ );
+            a++;
+        }
+
+
+        // do...while
+        a = 1;
+        do{
+            document.write(a++);
+        }while(a <= 10)
+        
+        a = 11;
+        do{
+            document.write(a++);
+        }while(a <= 10)
+
+    </script>
+</body>
+</html>
