@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            条件选择语句 switch语句
+            语法：
+                switch(条件表达式){
+                    case 表达式:
+                        语句...
+                        break;
+                    case 表达式:
+                        语句...
+                        break;
+                    case 表达式:
+                        语句...
+                        break;
+                    ...
+                    default:
+                        语句...
+                        break;
+                }
+            执行流程：
+            在执行时会依次将case后的表达式的值和switch后的条件表达式的值进行全等比较，
+            如果比较结果为true，则当前的case处开始执行代码(之后的所有代码，需要使用break;来退出switch语句)，
+            如果比较结果为false则继续向下比较，如果所有的条件都不满足则会执行最后的default中的语句。
+
+            switch语句与if语句功能上实际上有重复,使用switch实现的功能可以通过if来实现,同样使用if实现的功能也能通过switch来实现
+
+        */
+        // 根据num的值输出对应的中文
+        let num = 1;
+        // if(num == 1){
+        //     console.log('一');
+        // }else if(num == 2){
+        //     console.log('二');
+        // }else if(num == 3){
+        //     console.log('三');
+        // }
+        
+        switch(num){
+            case 1:
+                console.log('一');
+                break;
+            case 2:
+                console.log('二');
+                break;
+            case 3:
+                console.log('三');
+                break;
+            case 3:
+                console.log('三');
+                break;
+            case 4:
+                console.log('四');
+                break;
+            case 5:
+                console.log('五');
+                break;
+            case 6:
+                console.log('六');
+                break;
+            case 7:
+                console.log('七');
+                break;
+            case 8:
+                console.log('八');
+                break;
+            case 9:
+                console.log('九');
+                break;
+            case 10:
+                console.log('十');
+                break;
+            default:
+                console.log('非法！');
+                break;
+        }
+        
+    </script>
+</body>
+</html>
