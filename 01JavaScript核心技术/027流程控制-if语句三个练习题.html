@@ -13,10 +13,36 @@
     <!-- <input type="submit" onclick="getPrice"> -->
     <button onclick="getPrice()">提交</button>
 
+    <hr>
+
+    <h1>练习题1</h1>
+    <h5>大家都知道,男大当婚,女大当嫁,那么女方家长要嫁女儿,当然要提出一定的条件:高:180cm以上;富:1000万以上;帅:500以上;如果这三个条件同时满足,则:'我一定要嫁给他!',如果三个条件有为真的情况,则:'嫁吧,比上不足,比下有余.',如果三个条件都不满足,则:'不嫁!'.</h5>
+    请输入身高(单位160cm-200cm)<input type="number" id="height" max="200" min="160">
+    请输入资产(单位万元)<input type="number" id="asset">
+    请输入帅气值(0-700)<input type="number" id="cool" max="500" min="0">
+    <button onclick="getResult()">提交</button>
+
+    <hr>
+
+    <h1>练习题3</h1>
+    <h5>编写程序，由键盘输入三个整数，分别存入变量num1、num2、num3，对他们进行排序，并且从小到大输出。</h5>
+    请输入三个整数<input type="number" id="num1">
+    <input type="number" id="num2">
+    <input type="number" id="num3">
+    <button onclick="getRank()">提交</button>
+
     <script>
+        // 练习一:
         function getPrice(){
             // 或者使用prompt()函数来弹出一个输入框让用户输入内容
-            // let score = parseFloat(prompt('请输入小明的成绩'));
+            // prompt的返回类型为string类型
+            // let score = parseFloat(prompt('请输入小明的成绩(0-100)'));  
+            // 判断输入是否合法
+            // if(score > 100 || score < 0 || isNaN(score)){
+            //     alert('输入不合法!!');
+            // }else{
+            //     // 成绩判断的内容
+            // }
             
             // 获取成绩
             let score = parseFloat(document.getElementById("score").value);
@@ -32,7 +58,54 @@
                 alert('很遗憾，小明什么奖励也没能得到！');
             }
         }
+
+        // 练习二:
+        function getResult(){
+            // 获取三个属性值
+            let height = parseFloat(document.querySelector('#height').value);
+            let asset = parseFloat(document.querySelector('#asset').value);
+            let cool = parseFloat(document.querySelector('#cool').value);
+
+            if(height >= 180 && asset >= 1000 && cool >= 500){ // 三个条件都满足
+                alert('我一定要嫁他!');
+            }else if(height < 180 && asset < 1000 && cool < 500){ // 三个条件都满足
+                alert('不嫁!');
+            }else{ // 至少有一个条件满足
+                alert('嫁吧!比上不足,比下有余!');
+            }
+        }
     
+        // 练习三
+        function getRank(){
+            // 三个整数
+            let num1 = +document.querySelector('#num1').value;
+            let num2 = +document.querySelector('#num2').value;
+            let num3 = +document.querySelector('#num3').value;
+
+            // 先找出三个书中的最小值或最大值
+            if(num1 < num2 && num1 < num3){
+                // num1最小,再比较num2和num3
+                if(num2 < num3){
+                    alert(`从小到大：${num1} < ${num2} < ${num3}`);
+                }else{
+                    alert(`从小到大：${num1} < ${num3} < ${num2}`);
+                }
+            }else if(num2 < num1 && num2 < num3){
+                // num2最小,再比较num1和num3
+                if(num1 < num3){
+                    alert(`从小到大：${num2} < ${num1} < ${num3}`);
+                }else{
+                    alert(`从小到大：${num2} < ${num3} < ${num1}`);
+                }
+            }else{
+                // num3最小,再比较num1和num2
+                if(num1 < num2){
+                    alert(`从小到大：${num3} < ${num1} < ${num2}`);
+                }else{
+                    alert(`从小到大：${num3} < ${num2} < ${num1}`);
+                }
+            }
+        }
     </script>
 </body>
 </html>
