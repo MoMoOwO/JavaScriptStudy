@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            for语句也是一个循环语句,也称为for循环
+            在for循环中为我们提供了专门的位置用来方三个表达式：初始化表达式，条件表达式，更新表达式
+            语法：
+                for(初始化表达式; 条件表达式; 更新表达式){
+                    语句...
+                }
+            执行流程：
+            先执行初始化表达式，初始化变量；执行条件表达式，判断是否执行循环，如果为true则执行循环，如果为false则终止循环；
+            循环体执行完后执行更新表达式；重复判断条件表达式和执行循环。初始化表达式只在开始执行了一次.
+        */
+        // 使用while循环创建一个执行10次的循环
+        // 初始化一个变量
+        let i = 0;
+        // 创建一个循环,定义条件表达式
+        while(i < 10){
+            console.log(i);
+            // 设置更新表达式
+            i++;
+        }
+
+        // 使用for循环创建以恶执行10次的循环
+        for(let a = 0; a < 10; a++){
+            console.log(a);
+        }
+
+        // for循环中三个部分都可以省略,也可以写在外部
+        let b = 0;
+        for(; b < 10;){
+            console.log(b++);
+        }
+        // 如果在for循环中不写任何表达式,只写两个分号,则是一个死循环
+        // for(;;){
+        //     console.log('hello');
+        // }
+    </script>
+</body>
+</html>
