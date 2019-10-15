@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            while练习题
+            假设投资的年利率为5%,试求从1000块涨到5000块,需要花费多少年
+        */
+        let rate = 0.05; // 年利率
+        let principal = 1000; // 本金
+        let year = 0; // 年数
+        let aim = 5000; // 目标总金额
+
+        // 通过while循环来判断合适达到目标总金额
+        while(principal < aim){
+            year++;
+            principal *= (1 + rate);
+        }
+
+        console.log('需要' + year + '年');
+
+
+        // 使用while为小明成绩判断增加验证
+
+        while(true){
+            let score = prompt('请输入小明的期末成绩(0-100):');
+            if(score >= 0 && score <= 100){ // 输入合法
+                if(score >= 60){
+                    console.log('合格');
+                }else{
+                    console.log('不合格!');
+                }
+                break; // 跳出循环
+            }
+        }
+
+    </script>
+</body>
+</html>
