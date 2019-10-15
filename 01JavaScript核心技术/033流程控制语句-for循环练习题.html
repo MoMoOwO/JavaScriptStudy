@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            练习一:
+            打印1-100之间的所有奇数之和
+        */
+        let sum = 0;
+        for(let i = 1; i <= 100; i++){ // 在1-100之间循环
+            if(i % 2 != 0){ // 奇数
+                sum += i;
+            }
+        }
+        console.log('1-100之间所有奇数和为：' + sum);
+
+        /*
+            练习二:
+            打印1-100之间所有7的背书的个数及总和
+        */
+        sum = 0;
+        let count = 0;
+        for(let i = 1; i <= 100; i++){
+            if(i % 7 == 0){
+                count++;
+                sum += i;
+            }
+        }
+        console.log(`1-100之间7的倍数有${count}个，它们的和为：${sum}`);
+
+        /*
+            练习三：
+            水仙花数：水仙花数是指一个三位数，它的每个位值上的数字的3次幂之和等于它本身。
+        */
+        for(let i = 100; i < 1000; i++){
+            let hundreds = parseInt(i / 100); // 百位数
+            let decade = parseInt((i - 100 * hundreds) / 10); // 十位数
+            // let single = i % 10; // 个位数
+            let single = i - hundreds * 100 - decade * 10; // 个位数
+
+            if(single ** 3 + decade ** 3 + hundreds ** 3 == i){
+                console.log('水仙花数：' + i);
+            }
+        }
+
+    </script>
+</body>
+</html>
