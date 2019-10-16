@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            break关键字可以用来退出switch或循环语句，不能单独在if语句中中使用break和continue关键字。
+            break默认只能终止当前循环，可以为循环语句创建一个label，来表示当前的循环，label：循环语句，
+            使用break语句是，可以在break后跟一个label，这样break将会结束指定的循环，而不是当前循环。
+            continue关键字可以用来跳过当次循环。
+        */
+        // break;
+        for(let i = 0; i < 5; i++){
+            console.log(i);
+            if(i == 2){
+                break;
+            }
+        }
+
+        // break默认只能终止当前循环
+        for(let i = 0; i < 5; i++){
+            console.log('+外部循环' + i);
+            for(let j = 0; j < 5; j++){
+                break;
+                console.log('-内部循环' + j);
+            }
+        }
+
+        // 可以为循环语句创建一个label，来表示当前的循环，label：循环语句
+        // 使用break语句是，可以在break后跟一个label，这样break将会结束指定的循环，而不是当前循环。
+        // outer:
+        // for(let i = 0; i < 5; i++){
+        //     console.log('+外部循环' + i);
+        //     for(let j = 0; j < 5; j++){
+        //         break outer;
+        //         console.log('-内部循环' + j);
+        //     }
+        // }
+
+
+        // continue
+        for(let i = 0; i < 5; i++){
+            if(i == 2){
+                continue;
+            }
+            console.log(i);
+        }
+
+        for(let i = 0; i < 5; i++){
+            if(i == 1){
+                continue;
+            }
+            console.log('+外部循环' + i);
+            for(let j = 0; j < 5; j++){                
+                console.log('-内部循环' + j);
+            }
+        }
+    </script>
+</body>
+</html>
