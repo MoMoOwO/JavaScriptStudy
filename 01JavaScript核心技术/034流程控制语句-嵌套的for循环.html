@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         /*
+        通过程序在页面中输出如下的图形:
+        *
+        **
+        ***
+        ****
+        *****
+        */
+        // 先通过for循环输出一个5*5的*形矩阵
+        // 这个for循环执行几次，图形的高度就是多少，循环次数可以控制图形的高度
+        for(let i = 0; i < 5; i++){
+            document.write('*****<br />');
+        }
+
+        document.write('-----------<br />');
+
+        // 希望在循环内部在创建一个循环来控制图像的宽度
+        // 外部的for循环每执行一次，内部的for循环就执行5次
+        // 内层循环可以控制输出图形的宽度
+        for(let i = 0; i < 5; i++){
+            for(let j = 0; j < 5; j++){
+                document.write('&nbsp;*&nbsp;');
+            }
+            document.write('<br />');
+        }
+
+        document.write('-----------<br />');
+
+        // 三角形实现一
+        for(let i = 0; i < 5; i++){
+            for(let j = 0; j < 5; j++){
+                document.write('*&nbsp;&nbsp;');
+                if(i == j){
+                    document.write('<br />');
+                    break;
+                }
+            }
+        }
+
+        document.write('-----------<br />');
+
+        // 三角形实现二
+        for(let i = 0; i < 5; i++){
+            for(let j = 0; j < i + 1; j++){
+                document.write('*&nbsp;&nbsp;');
+            }
+            document.write('<br />');
+        }
+
+        document.write('-----------<br />');
+
+        // 倒三角形
+        for(let i = 0; i < 5; i++){
+            for(let j = 0; j < 5-i; j++){
+                document.write('*&nbsp;&nbsp;');
+            }
+            document.write('<br />');
+        }
+
+    </script>
+</body>
+</html>
