@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span{
+            display: inline-block;
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        /*
+            练习一: 打印九九乘法表
+                1*1=1
+                1*2=2 2*2=4
+                1*3=3 2*3=6 3*3=9
+                ...                 9*9=81
+        */    
+
+        // 练习一
+        for(let i = 1; i < 10; i++){ // 总高度9---i为乘数
+            for(let j = 1; j <= i; j++){ // 宽度--j为被乘数
+                document.write(`<span>${j}*${i}=${j * i}</span>`);
+            }
+            document.write('<br />');
+        }
+
+        document.write('---------------------------------------<br />');
+
+        /*
+            练习二:打印1-100之前所有的质数，1既不是质数也不是合数
+        */
+        // 测试如下程序的性能，在程序执行前，开启计时器，console.time('计时器名称')可以用来开启一个计时器，
+        // 在程序终止时关闭该计时器，console.timeEnd('计时器名称')可以用来终止对应的计时器
+        console.time('test');
+
+        for(let i = 2; i <= 100; i++){ // i为当前要判断的是否为质数的数字
+            let flag = true; // 质数表示
+            for(let j = 2; j < i; j++){ // j为遍历判断2-(i-1)之间是否有i能整除的数
+                if(i % j == 0){ // 存在能够整除的整数
+                    flag = !flag;
+                    // 有能整除的可以直接跳出当前循环了，没必要接着向下比较了
+                    break;
+                }
+            }
+            if(flag){
+                document.write(i + '<br />');
+            }
+        }
+
+        // 终止计时器
+        console.timeEnd('test');
+
+        document.write('---------------------------------------<br />');
+        // break优化质数判断之后再优化
+
+        for(let i = 2; i <= 100; i++){ // i为当前要判断的是否为质数的数字
+            let flag = true; // 质数表示
+            for(let j = 2; j <= Math.sqrt(i); j++){ // j为遍历判断2-(i-1)之间是否有i能整除的数 --> 判断到√i就可以了,使用开根号函数Math.sqrt()
+                if(i % j == 0){ // 存在能够整除的整数
+                    flag = !flag;
+                    // 有能整除的可以直接跳出当前循环了，没必要接着向下比较了
+                    break;
+                }
+            }
+            if(flag){
+                document.write(i + '<br />');
+            }
+        }
+    </script>
+</body>
+</html>
