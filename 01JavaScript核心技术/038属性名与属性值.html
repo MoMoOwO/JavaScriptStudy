@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            向对象中添加属性
+            属性名:
+                对象的属性名不强制要求遵守标识符的规范，但是使用的时候尽量还是遵循标志符的规范。
+                如果要使用特殊的属性名不能采用'.'的方式来操作，需要使用另一种方式,语法:对象["属性名"] = 属性值;
+                读取的时候也需要采用这种方式。
+                使用[]这种i形式去操作属性，更加的灵活，在[]中可以直接传递一个变量，这样变量值是多少就会读取那个属性名对应的属性值。
+            属性值：
+                JS对象的属性值，可以是任意的数据类型，甚至也可以是一个对象。
+            in运算符:
+                通过in运算符可以检查一个对象中是否含有指定的属性,如果有则返回true,没有则返回false
+        */
+
+        let obj = new Object();
+
+        // 属性名
+        obj.name = '孙悟空';
+        obj.var = 'hey';
+        console.log(obj);
+
+        // 如果要使用特殊的属性名不能采用'.'的方式来操作
+        // 需要使用另一种方式,语法:对象["属性名"] = 属性值;
+        // 读取的时候也需要采用这种方式
+        // obj.123 = 789;
+        obj['123'] = 789;
+        console.log(obj['123']);
+
+        let n = '123';
+        console.log(obj[n]);
+
+        // 属性值
+        obj.test = "hello";
+        console.log(obj.test);
+        obj.test1 = 123;
+        console.log(obj.test1);
+        obj.test2 = true;
+        console.log(obj.test2);
+        obj.test3 = null;
+        console.log(obj.test3);
+        obj.test4 = undefined;
+        console.log(obj.test4);
+
+        let obj2 = new Object();
+        obj2.name = '猪八戒';
+        obj2.age = '199';
+
+        // 将对象obj2设置为obj的属性
+        obj.friend = obj2;
+        console.log(obj);
+        console.log(obj.friend);
+        console.log(obj.friend.name);
+
+        // in运算符
+        // 检查对象中是否含有某个属性
+        console.log('name' in obj);
+        console.log('gender' in obj);
+    </script>
+</body>
+</html>
