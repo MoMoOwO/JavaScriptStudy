@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            可以使用return关键字设置函数的返回值
+            语法：return 值;
+            return后的值将会作为函数的执行结果返回
+            在函数中return之后的语句都不会执行了
+            如果return之后不跟任何值就相当于返回一个undefined，如果函数中不屑return，也会返回undefined
+            return可以返回任意类型的值
+        */
+
+        // 定义一个求三个数和的函数
+        function sum(a, b ,c){
+            //console.log(`${a} + ${b} + ${c} = ${a + b + c}`);
+            let d = a + b + c;
+            return d;
+        }
+        
+        // 调用函数
+        // 变量result的值,就是函数的执行结果
+        // 函数返回什么result的值就是什么
+        let result = sum(1, 2, 3);
+        console.log('result = ' + result);
+    </script>
+</body>
+</html>
