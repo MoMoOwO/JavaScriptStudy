@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            基本数据类型：String、Number、Boolean、Null、Undefined
+            引用数据类型：Object
+
+            JS中的变量都是保存到栈内存中的，
+            基本数据类型的值直接在栈内存中进行存储，值与值之间都是独立存在，修改一个变量不会影响其他的变量。
+            引用数据类型(对象)是保存到堆内存中的，每创建一个新的对象，就会在堆内存中开辟出一个新的空间，而变量保存的是对象的内存地址(对象的引用)。
+            如果两个变量保存的是同一个对象的引用，那么当一个变量修改属性时，另一个也会受到影响。
+            修改对象的值不会对对象产生影响，
+            当比较两个基本数据类型的值的时候就是比较的这两个值；而比较两个引用数据类型时，它是比较的对象的内存地址
+            ，两个对象即使一摸一样但是也不一定相等，因为实际上是比较两个地址，地址不同则不相等。
+        */
+
+        let a = 123;
+        let b = a;
+        console.log('a = ' + a);
+        console.log('b = ' + b);
+
+        a++;
+        console.log('a++;之后...');
+        console.log('a = ' + a);
+        console.log('b = ' + b);
+
+        // 
+        let obj1 = new Object();
+        obj1.name = '孙悟空';
+        let obj2 = obj1;
+        console.log(obj1.name);
+        console.log(obj2.name);
+
+        obj1.name = "猪八戒";
+        console.log('obj1.name = "猪八戒"; 之后...');
+        console.log(obj1.name);
+        console.log(obj2.name);
+
+        // 设置obj2为null
+        // 修改对象的值不会对对象产生影响.
+        boj2 = null;
+        console.log(obj1);
+        console.log(obj2);
+
+        // 当比较两个基本数据类型的值的时候就是比较的这两个值
+        let c = 10;
+        let d = 10;
+        console.log(c == d);
+
+        // 而比较两个引用数据类型时，它是比较的对象的内存地址。
+        // 两个对象即使一摸一样但是也不一定相等，因为实际上是比较两个地址，地址不同则不相等。
+        let obj3 = new Object();
+        let obj4 = new Object();
+        obj3.name = '沙和尚';
+        obj4.name = '沙和尚';
+        console.log(obj3);
+        console.log(obj3);
+        console.log(obj3 == obj4);
+
+    </script>
+</body>
+</html>
