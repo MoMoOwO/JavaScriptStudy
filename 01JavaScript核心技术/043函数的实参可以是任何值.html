@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            函数的参数可以是任何值
+            
+            练习1:定义一个函数,判断一个数字是否是偶数,如果是返回true,否则返回false
+        */
+        function isEvenNum(num){
+            // if(num % 2 == 0){
+            //     return true;
+            // }else{
+            //     return false;
+            // }
+            return (num % 2 == 0);
+        }
+
+        console.log('1532是偶数?' +　isEvenNum(1532));
+        console.log('1423是偶数?' + isEvenNum(1423));
+
+        /*
+            练习2:定义一个函数,可以根据半径计算元的面积,并返回结果
+        */
+        function getArea(r){
+            return Math.PI * r * r;
+        }
+        
+        console.log('半径为2的圆的面积为：' + getArea(2));
+        console.log('半径为7的圆的面积为：' + getArea(7));
+
+        /*
+            创建一个函数，可以在控制提中输出一个人的信息
+            可以输出人的name age gender address
+        */
+        function getInfo(name, age, gender, address){
+            console.log(`我是${name}，今年${age}岁，我是一个${gender}生，我住在${address}`);
+        }
+        getInfo('小明', 18, '男', '北京');
+        // 创建一个对象
+        let people = {
+            name: '小明',
+            age: 18,
+            gender: '男',
+            address: '北京'
+        }
+        // 当函数传递变量过多时可以考虑使用对象按组传入
+        function sayHello(obj){
+            console.log(`我是${obj.name}，今年${obj.age}岁，我是一个${obj.gender}生，我住在${obj.address}`);
+        }
+        // 用对象作为实参传入
+        sayHello(people);
+
+        // 用函数作为参数传输
+        function fun(a){
+            console.log('a = ' + a);
+            a(people);
+        }
+        fun(sayHello);
+        // 将匿名函数作为实参传递给另一个函数
+        fun(function(){alert('Hello');});
+
+        /*
+            当谁用函数作为参数传入时
+            调用函数:getArea(),相当于使用函数的返回值
+            函数对象:getArea,相当于直接使用函数对象
+        */
+        fun(getArea(10));
+    </script>
+</body>
+</html>
