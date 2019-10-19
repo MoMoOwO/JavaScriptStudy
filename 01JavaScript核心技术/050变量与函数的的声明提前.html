@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        /*
+            变量的声明提前
+                使用var关键字生命的变量，会在所有的代码执行之前被声明(但是要执行到当前行才会赋值)；
+                但是如果声明变量时不使用var关键字，则变量不会被声明提前。
+
+            函数的声明提前
+                使用函数声名形式创建的函数，它会在所有代码执行之前就被创建，所以可以在函数声明之前调用函数；
+                使用函数表达式创建的函数，不会被声明提前，所以不能再函数赋值之前调用。
+
+
+        */
+
+        b = 12; // window.b = 12;
+
+        console.log("a = " + a);
+        var a = 11;
+
+        test();
+        test2();
+
+        // 函数声明会被提前创建
+        function test(){
+            console.log('This is test function1');
+        }
+
+        // 函数表达式不会被提前创建
+        var test2 = function test2(){
+            console.log('This is test function2');
+        }
+
+        test2()
+    </script>
+</body>
+</html>
