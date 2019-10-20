@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            创建一个对象
+        */
+
+        var people1 = {
+            name: "小刚",
+            age: 19,
+            gender: "男",
+            getName: function(){
+                console.log(this.name);
+            }
+        };
+        var people2 = {
+            name: "小明",
+            age: 18,
+            gender: "男",
+            getName: function(){
+                console.log(this.name);
+            }
+        };
+        var people3 = {
+            name: "小红",
+            age: 19,
+            gender: "女",
+            getName: function(){
+                console.log(this.name);
+            }
+        };
+
+        /*
+            使用工厂方法创建对象
+        */
+        function createPersonObj(name, age, gender){
+            // 创建一个新对象
+            var personObj = new Object();
+
+            // 向对象中添加属性
+            personObj.name = name;
+            personObj.age = age;
+            personObj.gender = gender;
+            personObj.getName = function(){
+                console.log(this.name);
+            }
+
+            // 返回对象
+            return personObj;
+        }
+
+        // 使用工厂方法可以快速批量创建对象
+        var person1 = createPersonObj("孙悟空", 199, "男");
+        var person2 = createPersonObj("猪八戒", 279, "男");
+        var person3 = createPersonObj("唐曾", 79, "男");
+        var person4 = createPersonObj("沙和尚", 259, "男");
+
+    </script>
+</body>
+</html>

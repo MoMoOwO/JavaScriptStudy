@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 练习一
+        var a = 123;
+        function fun1(){
+            console.log(a);
+        }
+        fun1(); // 123
+
+        // 练习二
+        var b = 123;
+        function fun2(){
+            console.log(b);
+            var b = 456;
+        }
+        fun2(); // undefined
+        console.log(b); // 123
+
+        // 练习三
+        var c = 123;
+        function fun3(){
+            console.log(c);
+            c = 456;
+        }
+        fun3(); // 123
+        console.log(c); // 456
+
+        // 练习四
+        var d = 123;
+        function fun4(d){
+            console.log(d);
+            d = 456;
+        }
+        fun4(); // undefined
+        console.log(d); // 456
+
+        // 练习五
+        var d = 123;
+        function fun4(d){
+            console.log(d);
+            d = 456;
+        }
+        fun4(123); // 123
+        console.log(d); // 123
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            函数作用域
+                调用函数时创建函数作用域，函数执行完毕之后，函数作用域销毁；
+                没调用一次函数就会创建一个新的函数作用域,它们之间相互独立；
+                在函数作用域中可以访问到全局作用域的变量，在全局作用域中无法访问到函数作用域中的变量；
+                当在函数作用域操作一个变量时，它会先在自身作用域中寻找，如果有就直接使用如果没有则向上一级作用域中寻找，
+                直到找到全局作用域，如果依然没有找到，则会保存ReferenceError；
+                在函数作用域中要访问全局作用域中的变量，可以使用window对象
+                在函数作用域中也有声明提前的特征，使用var关键字声明的变量，会在函数中所有的代码执行之前被声明，
+                函数声明也会在所有的代码执行之前执行;
+                定义形参就相当于在函数作用域中声明了变量
+        */
+
+        // 创建一个变量
+        var a = 10;
+
+        function test(){
+            // 在函数作用域中定义同名变量会覆盖上一级的同名变量
+            var a = "我是test函数中得变量a";
+            // 在函数作用域中生命的变量
+            var b = 20;
+            // 在函数作用域中可以访问到全局作用域的变量
+            console.log("a = " + a);
+
+            function test2(){
+                console.log("a = " + a);
+                console.log("全局a，a = " + window.a);
+            }
+            test2();
+        }
+        // 调用函数时创建函数作用域
+        test();
+        test();
+
+        console.log("a = " + a);
+        //console.log("b = b" + b);
+
+        // 在函数作用域中也有声明提前的特征，使用var关键字声明的变量，会在函数中所有的代码执行之前被声明，
+        // 函数声明也会在所有的代码执行之前执行
+        function test3(){
+            console.log("a = " + a);
+            test4();
+
+            var a = 30;
+
+            function test4(){
+                console.log("测试函数中的函数声明提前");
+            }
+        }
+
+        test3();
+
+        // 在函数中未使用var关键字声明的变量都会成为全局变量
+        var c = 40;
+        function test5(){
+            console.log("c = " + c);
+            c = 50;
+
+            // 没有使用var关键字,则会设置为全局变量
+            d = 60;
+        }
+        test5();
+        console.log("c = " + c);
+        console.log("d = " + d);
+        
+        // 定义形参就相当于在函数作用域中声明了变量
+        var e = 70;
+        function test6(e){
+            console.log("e = " + e);
+        }
+        test6();
+        var f = 80;
+        function test7(f){
+            console.log("f = " + f);
+            f = 90; // 定义形参就相当于在函数作用域中声明了变量，这里时为局部变量赋值
+        } 
+        test7(); // f = undefined
+    </script>
+</body>
+</html>

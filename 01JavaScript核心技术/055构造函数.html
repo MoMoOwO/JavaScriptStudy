@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>    
+        /*
+            使用构造函数创建对象，构造函数就是一个普通函数，创建方式和普通函数没有区别，
+            不同的是构造函数习惯上首字母大写。
+
+            构造函数和普通函数的区别就是调用方式的不同
+            普通函数是直接调用，而构造函数需要使用new关键字调用
+
+            构造函数执行流程：
+                立刻创建一个新的对象，将新建的对象设置为函数中的this在构造函数中可以使用this来逐行创建对象，
+                逐行执行函数中的代码，将新建的对象作为返回值返回
+            使用同一个构造函数创建的对象，我们称为一类对象，也将一个构造函数成为一个类，
+            我们将通过一个构造函数创建的对象称为时该构造对象的实例或者该类的实例。
+            使用instanceof关键字可以检查一个对象是否是一个类的实例，
+            是则返回true，否则返回false；所有的对象都是Object的后代，所以任何对象和Object做instanceof检查时都会返回true
+        */
+
+        // 创建一个对象，专门来创建Person对象
+        function Person(name, age, gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.getName = function(){
+                console.log(this.name);
+            }
+        }
+        var person1 = new Person("孙悟空", 199, "男");
+        console.log(person1);
+        var person2 = new Person("猪八戒", 279, "男");
+        console.log(person2);
+        var person3 = new Person("唐曾", 79, "男");
+        console.log(person3);
+        var person4 = new Person("沙和尚", 259, "男");
+        console.log(person4);
+
+        function Dog(name, age){
+            this.name = name;
+            this.age = age;
+            this.shout = function(){
+                console.log("汪汪!");
+            }
+        }
+        var dog1 = new Dog("旺财", 19);
+        dog1.shout();
+
+        // 使用instanceof关键字可以检查一个对象是否是一个类的实例
+        console.log(person1 instanceof Person);
+        console.log(dog1 instanceof Person);
+        // 所有的对象都是Object的后代，所以任何对象和Object做instanceof检查时都会返回true
+        console.log(person1 instanceof Object);
+        console.log(dog1 instanceof Object);
+    </script>
+</body>
+</html>

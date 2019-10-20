@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            解析器在调用函数时，每次都会向函数内部传递一个隐含的参数
+            这个隐含参数就是this，this指向的是一个对象，这个对象我们称为函数执行的上下文对象；
+            根据函数调用的方式不同，this会指向不同的对象：
+                以函数的形式调用时this永远都是window，以方法的形式调用时this就是调用该方法的那个对象
+
+        */
+
+        function test(a, b){
+            console.log("a = " + a + ",b = " + b);
+            console.log(this);
+        }
+        test(123, 456);
+
+        function getName(){
+            console.log(this);
+            console.log(this.name);
+        }
+
+        var people = {
+            name: "孙悟空",
+            age: 18,
+            getName: getName
+        };
+        console.log(people.getName == getName);
+        people.getName(); // 以方法形式调用，this:object -> people
+        var name = "全局的name属于window";
+        getName(); // 以函数形式调用，this:window
+
+
+        // 补充
+        var weapon = "全局的武器";
+
+        function getWeapon(){
+            console.log(this.weapon);
+        }
+
+        var play1 = {
+            name: "小刚",
+            age: "19",
+            weapon: "斩魂斧",
+            getWeaponName: getWeapon
+        };
+        var play2 = {
+            name: "小明",
+            阿哥: "18",
+            weapon: "弑神剑",
+            getWeaponName: getWeapon
+        }
+        play1.getWeaponName();
+        play2.getWeaponName();
+        console.log(this.weapon);
+        // this指针有效解决不同对象的相同属性问题
+
+
+    </script>
+</body>
+</html>
