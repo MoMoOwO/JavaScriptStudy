@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建一个构造函数
+        function Class(){
+
+        }
+
+        // 向Class的原型中添加一个name属性
+        Class.prototype.name = "我是原型中的名字";
+
+        // 初始化一个对象
+        var class1 = new Class();
+        console.log(class1.name);
+
+        // 使用in检查对象中是否含有某个属性时，如果对象中没有但是原型中有，也会返回true
+        console.log("name" in class1);
+
+        // 可以使用对象的hasOwnProperty()来检查对象自身中是否含有该属性
+        // 使用该方法只有当对象自身中含有属性时，才会返回true
+        console.log(class1.hasOwnProperty("name"));
+        class1.id = "2017-01";
+        console.log(class1.hasOwnProperty("id"));
+
+        /*
+            原型链:
+            原型对象也是对象，所以它也有原型，当我们使用一个对象的属性或方法时，会先在自身中寻找，自身中如果有则直接使用，
+            如果没有则取原型中找如果有则直接使用，如果没有则去原型的中寻找，指导找到Object对象的原型，Object原型对象没有原型，
+            如果在Object中依然没有找到，则返回undefined。
+        */
+        console.log(class1.hasOwnProperty("hasOwnProperty"));
+        console.log(Class.hasOwnProperty("hasOwnProperty"));
+        console.log(class1.__proto__.hasOwnProperty("hasOwnProperty"));
+        console.log(class1.__proto__.__proto__.hasOwnProperty("hasOwnProperty"));
+        console.log(class1.__proto__.__proto__.hasOwnProperty("hasOwnProperty"));
+        console.log(class1.__proto__.__proto__.__proto__);
+    </script>
+</body>
+</html>
