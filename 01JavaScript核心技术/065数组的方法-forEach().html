@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            JS中提供了forEach()方法来遍历数组
+        */
+        var arr = ["小红", "小明", "小刚", "小强"];
+
+        /*
+            forEach()方法需要一个函数作为参数,这个方法需要IE8以上浏览器才支持，其他浏览器基本都支持。
+            像这种函数,由我们创建但是不由我们调用的,我们称为回调函数;
+            数组中有几个元素函数就会执行几次，每次执行的时候浏览器会将遍历到的元素以实参的形式传递过来，
+            我们可以定义形参，来读取这些内容;
+            浏览器会在回调函数中传递三个参数，
+                第一个参数就是当前遍历到的元素，
+                第二个参数就是当前遍历到的元素的索引，
+                第三个参数就是i正在便利的数组
+        */
+        arr.forEach(function(value, index, c){
+            console.log("value = " + value);
+            console.log("b = " + b);
+            console.log("c = " + c);
+        });
+    </script>
+</body>
+</html>
