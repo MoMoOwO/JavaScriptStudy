@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        
+        */
+        // 创建与一个Person构造函数
+        // 在Person构造函数中，为每一个对象都添加了一个getName方法，
+        // 目前我们的方法是在构造函数内创建的，也就是构造函数每执行一次就会创建一个新的getName方法，也就是所有的实例的getName都是唯一的
+        // 这样就导致构造函数每执行一次就会创建一个新方法，然而这样完全没有必要，完全可以使所有的对象共享同一个方法。
+        // 解决方法,将函数定义到外部全局作用域
+        function Person(name, age, gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.getName = getNameFunc;
+        }
+
+        // 将函数定义到外部全局变量即可多个对象共用该方法
+        // 将函数定义在全局作用域中，污染了全局作用域的命名空间，而且定义在全局作用域中也很不安全。
+        function getNameFunc(){
+            console.log("大家好，我叫" + this.name);
+        }
+
+        // 创建Person实例
+        var person1 = new Person("小明", 19, "男");
+        person1.getName();
+        var person2 = new Person("小刚", 18, "男");
+        person2.getName();
+        console.log(person1.getName == person2.getName);
+    </script>
+</body>
+</html>
