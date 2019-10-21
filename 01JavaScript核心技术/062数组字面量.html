@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            使用字面量来创建数组
+            语法：var 数组名 = [];
+        */
+        // 使用字面量创建数组
+        var arr = [];
+        console.log(arr);
+        console.log(typeof arr);
+
+        // 使用字面量创建数组时，可以同时指定数组中的元素，元素之间使用英文逗号隔开
+        var arr2 = [1, 2, 3, 4, 5, 6];
+        console.log(arr2);
+        console.log(arr2[3]);
+
+        // 其实使用构造函数创建数组时也可以指定数组中的元素
+        var arr3 = new Array(1, 2, 3);
+        console.log(arr3);
+
+        // 创建一个数组只有一个元素10
+        arr2 = [10];
+        console.log(arr2);
+        // 创建一个长度为10的数组
+        arr3 = new Array(10);
+        console.log(arr3);
+
+        // 数组中的元素可以是任意的数据类型，甚至是对象、函数和数组
+        arr = ["hello", 1, true, null, undefined, NaN];
+        // 往数组中添加一个对象
+        var people = {
+            name: '小明',
+            age: 19
+        };
+        arr[arr.length] = people;
+        console.log(arr);
+        // 对象数组
+        arr = [{name: "孙悟空"}, {name: "猪八戒"}, {name: "唐曾"}, {name: "沙和尚"}];
+        console.log(arr);
+
+        // 函数数组
+        arr = [function(){console.log("func1"); }, function(){ console.log("func2"); }];
+        console.log(arr);
+        arr[1]();
+
+        // 数组中还可以放数组,如下是二维数组
+        arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+    </script>
+</body>
+</html>
