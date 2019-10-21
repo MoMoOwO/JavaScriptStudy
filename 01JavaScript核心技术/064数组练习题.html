@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 创建一个Person构造函数
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        // 初始化几个Person对象
+        var per1 = new Person("小明", 19);
+        var per2 = new Person("小刚", 18);
+        var per3 = new Person("小红", 17);
+        var per4 = new Person("小兰", 20);
+        var per5 = new Person("小王", 16);
+
+        // 将这些对象放到一个数组中
+        var perArr = [per1, per2, per3, per4, per5];
+
+        /*
+            创建一个函数,可以将perArr中的满18随的Person提取出来,然后封装到一个新的数组中并返回
+            arr形参,要提取信息的数组
+        */
+        function getAdult(arr){
+            var newArr = [];
+            for(let i = 0; i < arr.length; i++){ // 遍历arr数组
+                if(arr[i].age >= 18){ // 满18周岁
+                    newArr.push(arr[i]); // 添加到adultArr
+                }
+            }
+            return newArr;
+        }
+
+        var adultArr = getAdult(perArr);
+        console.log(adultArr);
+    </script>
+</body>
+</html>
