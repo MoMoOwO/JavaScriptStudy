@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            原型prototype
+            我们所创建的每一个函数，解析器都会想函数中添加一个属性prototype，
+            这个属性对应着一个对象，这个对象就是我们所谓的原型对象
+            如果函数作为普通函数调用prototype没有任何作用，当函数以构造函数调用时他所创建的对象中都会有一个隐含的属性，
+            指向构造函数的原型对象，我们可以通过“__proto__”来访问该属性。
+            当访问对象的一个属性或方法的时候现在对象自身中寻找，如果有则直接使用，如果没有则去原型对象中寻找，如果找到则直接使用
+            以后创建构造函数时，可以将这些对象共有的属性和方法，同意添加到构造函数的原型对象中，这样不用分别为每一个对象添加，
+            也不会影响到全局作用域，就可以使每个对象都具有这些属性和方法了。
+        */
+
+        function Person(){
+            
+        }
+        console.log(Person.prototype);
+
+        var person1 = new Person();
+        console.log(person1.__proto__);
+        var person2 = new Person();
+
+        // 向Person的原型中添加属性a
+        Person.prototype.a = 123;
+        // 向原型中添加一个方法
+        Person.prototype.sayHello = function(){
+            console.log("hello");
+        };
+
+        console.log(person1.a);
+        
+        person1.a = 456;
+        // 对象有该属性则直接使用该属性
+        console.log(person1.a);
+        // 没有该属性则向原型中去寻找
+        console.log(person2.a);
+
+        person1.sayHello();
+
+
+
+        // 使用原型对象来改进方法的局限性
+        function Class(id, name, num){
+            this.id = id;
+            this.name = name;
+            this.num = num;
+        }
+
+        Class.prototype.getNum = function(){
+            console.log("班级" + this.name + "有" + this.num + "人");
+        }
+
+        var class1 = new Class("2017-1", "冲天班", 45);
+        var class2 = new Class("2017-2", "牛气班", 46);
+
+        class1.getNum();
+        console.log(class1.getNum == class2.getNum);
+    </script>
+</body>
+</html>
