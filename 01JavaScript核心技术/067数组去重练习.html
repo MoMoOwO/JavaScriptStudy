@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建一个数组
+        var arr = [1, 2, 3, 2, 1, 3, 4, 2, 5];
+        // 去除数组中重复的数字
+        arr.forEach(function(value, index){
+            arr.forEach(function(val, ind){
+                if(val == value){
+                    arr.splice(ind, 1)
+                }
+            })
+        })
+    </script>
+</body>
+</html>
