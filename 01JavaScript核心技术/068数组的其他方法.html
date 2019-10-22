@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            concat()该方法可以链接两个或多个数组，并将新的数组返回
+            该方法不会对原数组产生影响
+        */
+        var person1 = ["小明", "小刚", "小强", "小红"];
+        var person2 = ["小王", "小李", "小张"];
+        var person3 = ["小赵", "小尼", "小珂"];
+
+        let resultArr = person1.concat(person2);
+        console.log(person1);
+        console.log(person2);
+        console.log(resultArr);
+        resultArr = person1.concat(person2, person3, "小孙");
+        console.log(resultArr);
+
+        /*
+            join()该方法可以将数组转换为一个字符串,并将转换的字符串返回,
+            在join()方法中可以指定一个字符串作为参数，这个字符串将会成为数组中元素的连接符，默认为逗号
+            该方法不会对原数组产生影响
+        */
+        var person1Str = person1.join("---");
+        console.log(person1);
+        console.log(person1Str);
+        console.log(typeof person1Str);
+
+        /*
+            reverse()该方法用来反转数组
+            该方法会直接修改原数组
+        */
+        console.log(person1);
+        person1.reverse();
+        console.log(person1);
+
+        /*
+            sort()该方法会对数组中的元素进行排序,默认会按照Unicode编码进行排序,
+            即使是对数字进行排序也是使用Unicode编码进行排序,所以可能会得到错误的数组排序;
+            我们可以在sort()方法中添加一个回调函数,来指定排序规则,回调函数中需要定义两个形参,浏览器将会分别使用数组中的元素来作比较
+            实参去调用回调函数,使用哪个元素不确定,但是肯定是在数组中第一个参数(a)一定在第二个参数(b)前面;
+            浏览器会根据回调函数的返回值来决定元素的顺序，如果返回一个大于0的值则元素会将换位置，如果返回一个小于0的值则元素位置不变，
+            如果返回一个0则认为两个元素相等，也不交换位置;如果需要升序则返回(a - b),如故宫需要降序则返回(b - a);
+
+            该方法也会直接修改原数组
+        */
+        var arr = ["b", "d", "c", "a", "e"];
+        console.log(arr);
+        arr.sort();
+        console.log(arr);
+        arr = [2, 4, 5, 11, 8, 7];
+        console.log(arr);
+        console.log(arr.sort());
+        arr.sort(function(a, b){
+            // 升序
+            return a - b;
+            // 降序
+            //return b - a;
+        });
+        console.log(arr);
+
+    </script>
+</body>
+</html>

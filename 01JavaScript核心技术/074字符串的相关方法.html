@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            字符串的相关方法：主要指字符串对象中的方法
+            在底层字符串是以字符数组的形保存的
+        */
+        var str = "Hello String!";
+        
+        /*
+            在底层字符串是以字符数组的形保存的
+            length可以用来获取字符串的长度
+        */
+        console.log(str.length);
+        console.log(str[1]);
+
+        /*
+            方法:
+            charAt()：可以返回字符串中指定位置的字符，根据索引获取指定的字符
+            charCodeAt()：获取指定位置的字符的编码Unicode编码
+            fromCharCode()：可以根据字符编码去获取字符
+            concat()：可以用来链接两个或多个字符串
+            indexOf()：可以检索一个字符串中是否含有指定内容，如果字符串中含有改内容，则会返回其第一次出现的索引，
+            如果没有找到指定的内容，则返回-1；可以指定第二个参数，指定开始查找的位置。
+            lastIndexOf()：该方法用法跟indexOf()类似，不同的是indexOf()从前往后找，lastIndexOf()从后往前找。
+            slice()：可以从字符串中截取指定的内容,不会影响原数组,而是将截取的内容返回
+        */
+        var result = str.charAt(1);
+        console.log(str);
+        console.log(result);
+
+        result = str.charCodeAt(0);
+        console.log(result);
+
+        result = String.fromCharCode(72);
+        console.log(result);
+
+        result = str.concat("你好", "再见");
+        console.log(result);
+
+        result = str.indexOf("h");
+        console.log(result);
+        result = str.indexOf("l", 2);
+        console.log(result);
+        result = str.indexOf("p");
+        console.log(result);
+        
+        result = str.lastIndexOf("l");
+        console.log(result);
+        result = str.lastIndexOf("l", 2);
+        console.log(result);
+        result = str.lastIndexOf("p");
+        console.log(result);
+
+
+    </script>
+</body>
+</html>

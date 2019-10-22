@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Math
+                Math和其他对象不同，他不是一个构造函数，它属于一个工具类，不用创建对象，它里面封装了数学运算相关的属性和方法；
+                比如Math.PI表示圆周率
+        */
+        console.log(Math.PI);
+
+        /*
+            方法:
+            abs()：可以用来计算一个数的绝对值
+            ceil()：对数值进行上舍，即向上取整，小数位只要有值就自动进1
+            floor()：对数值进行下舍，即向下取整，小数位会被舍掉
+            round()：对数值进行四舍五入
+
+            random()：可以生成一个0-1之间的随机数
+            max()：可以获取多个数中的最大值
+            min()：可以获取多个数中的最小值
+            pow(x, y)：返回x的y次幂
+            sqrt(x)：返回x的开方后的值
+
+        */
+        console.log(Math.abs(-1));
+        console.log(Math.ceil(1.01));
+        console.log(Math.floor(1.99));
+        console.log(Math.round(1.99));
+        console.log(Math.round(1.01));
+
+        for(let i = 0; i < 10; i++){
+            console.log(Math.random());
+        }
+
+
+        // 生成0-x之间的随机数：Math.round(Math.random() * x)
+        // 生成x-y之间的随机数：Math.round(Math.random() * (y - x)) + x
+        for(let i = 0; i < 10; i++){
+            // 生成0-10的随机整数数
+            //console.log(Math.round(Math.random() * 10));
+            // 生成1-10的随机数
+            //console.log(Math.round(Math.random() * 9) + 1);
+            // 生成1-6之间的随机数
+            console.log(Math.round(Math.random() * 5) + 1);
+        }
+
+        // 
+        var max = Math.max(1, 2, 5, 3, 6, 4);
+        var min = Math.min(1, 2, 5, 3, 6, 4);
+        console.log("max = " + max);
+        console.log("min = " + min);
+
+        var result = Math.pow(4, 2);
+        console.log("result = " + result);
+
+        console.log(Math.sqrt(9));
+    </script>
+</body>
+</html>
