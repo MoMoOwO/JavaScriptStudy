@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            使用字面量创建正则表达式
+            语法：var 变量名 = /正则表达式/匹配模式;
+            使用字面量的方式创建更加简单，使用构造函数创建更加灵活。
+            使用"|"表示“或”的意思，使用"[]"里面的内容也是“或”的关系，[ab] == a | b，
+            [a-z]：任意的小写字母，[A-Z]：任意的大写字母，[A-z]：任意的字母，[0-9]：任意数字；
+            [^ ab]：检查一个字符串除了ab是否含有其他内容；
+
+        */
+
+        //var reg = new RegExp("a", "i");
+        var reg = /a/i; // 与上面一样
+        console.log(typeof reg);
+        console.log(reg.test("abc"));
+
+        // 使用"|"表示“或”的意思，使用"[]"里面的内容也是“或”的关系，[ab] == a | b
+        // 创建一个正则表达式检查一个字符串中是否有a或b
+        reg = /a|b/;
+        console.log(reg.test("bcd")); // true
+        console.log(reg.test("a")); // true
+        console.log(reg.test("cbda")); // true
+        console.log(reg.test("de")); // false
+
+        // 使用"[]"里面的内容也是“或”的关系，[ab] == a | b
+        // [a-z]：任意的小写字母，[A-Z]：任意的大写字母，[A-z]：任意的字母
+        // 创建一个正则表达式检查一个字符串中是否有字母
+        reg = /[A-z]/;
+        console.log(reg.test("你好")); // false
+        console.log(reg.test("F和")); // true
+        console.log(reg.test("xx带")); // true
+
+        // 检查一个字符串中是否还有数字
+        reg = /[0-9]/;
+        console.log(reg.test("abc")); // false
+        console.log(reg.test("ab6c")); // true
+
+        // 检查一个字符串中是否含有abc或adc或aec
+        reg = /a[bde]c/;
+        console.log(reg.test("22adc")); // true
+        console.log(reg.test("11aecee")); // true
+        console.log(reg.test("eeabcdd")); // true
+        console.log(reg.test("a dc")); // false
+        console.log(reg.test("acc")); // false
+
+        // 检查一个字符串中是否含有除了...以外的内容 [^ 除去的内容]除了
+        // 检查一个字符串除了ab是否含有其他内容
+        reg = /[^ab]/;
+        console.log(reg.test("a")); // false
+        console.log(reg.test("ba")); // false
+        console.log(reg.test("abc")); // true
+        console.log(reg.test("bac")); // true
+
+        // 检查一个字符串是否还有除了数字之外的其他内容
+        reg = /[^0-9]/;
+        console.log(reg.test("dddddaaa")); // true
+        console.log(reg.test("1234"));  // false
+        console.log(reg.test("adf342dfg")); // true
+
+    </script>
+</body>
+</html>
