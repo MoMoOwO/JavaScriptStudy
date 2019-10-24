@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*
+            元字符，
+            . 表示任意字符
+            \w 匹配任意字母、数字和下划线_，相当于[A-za-z0-9_]
+            \W 匹配除了字母、数字和下划线_，相当于[^A-za-z0-9_]
+            \d 匹配任意数字，相当于[0-9]
+            \D 匹配除了数字，相当于[^0-9]
+            \s 匹配空格
+            \S 匹配非空格
+            \b 匹配单词边界
+            \B 匹配除了单词边界
+
+            在正则表达式中如果要匹配某些有其他用处的字符(如/、.等)需要使用“\”来进行转义，“\.”表示“.”，“\\”表示“\”；
+            注意使用构造函数时，由于它的参数是字符串，而\是字符串中的转义字符，所以需要使用\时则需要\\来代替。
+        */
+        
+        // 查找一个字符串中是否含有"."
+        var reg = /\./;
+        console.log(reg.test("sdfs.sdfsd")); // true
+        console.log(reg.test("sdfssdfsd")); // false
+
+        var reg = /\\/;
+        console.log(reg.test("sdfs\\sdfsd")); // true 注意\在字符串中表示转义需要写两个
+        console.log(reg.test("sdfssdfsd")); // false
+
+        reg = /\w/;
+        console.log(reg.test("asdf")); // true
+        console.log(reg.test("234")); // true
+        console.log(reg.test("__")); // true
+        reg = /\W/;
+        console.log(reg.test("asdf")); // false
+        console.log(reg.test("!@##")); // true
+
+        reg = /\d/;
+        console.log(reg.test("asdf")); // false
+        console.log(reg.test("asd234")); // true
+        reg = /\D/;
+        console.log(reg.test("asdf")); // true
+        console.log(reg.test("123")); // false 
+
+        reg = /\s/;
+        console.log(reg.test("a sdf")); // true
+        console.log(reg.test("asd234")); // false
+        reg = /\S/;
+        console.log(reg.test("as df")); // true
+        console.log(reg.test("  ")); // false
+
+        // 创建一个正则表达式检查一个字符串中是否含有单词child
+        reg = /child/; // 只查找这几个连续单词
+        console.log(reg.test("child")); // true
+        console.log(reg.test("hello child")); // true
+        console.log(reg.test("hello children")); // true
+        reg = /\bchild\b/; // 使用\b来划定单词边界
+        console.log(reg.test("child")); // true
+        console.log(reg.test("hello child")); // true
+        console.log(reg.test("hello children")); // false
+
+        // 去除掉字符串中的空格
+        // 使用replace方法将空格替换为""
+        str = "       hello           ";
+        console.log(str);
+        str = str.replace(/\s/g, "");
+        console.log(str);
+
+        str = "    he  llo  ";
+        // 去除开头空格
+        //str = str.replace(/^\s*/, "");
+        // 去除结尾空格
+        //str = str.replace(/\s*$/, "");
+        // 去除开头和结尾的空格
+        str = str.replace(/^\s*|\s*$/g, "");
+        console.log(str);
+
+    </script>
+</body>
+</html>
