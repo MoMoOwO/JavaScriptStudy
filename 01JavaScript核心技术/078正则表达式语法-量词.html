@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            量词：
+                通过量词可以设置一个内容出现的次数，量词只对它前边的一个内容起作用，若要对一组起作用可使用()括起一组元素
+                {n} 正好出现n次，
+                {m,n} 出现m-n次，
+                {m, } 出现m次以上，
+                + 至少一个，相当于{1,}
+                * 0个或0个以上，相当于{0,}
+                ? 0个或1个，相当于{0,1}
+                ^n 匹配以n开头的字符串
+                n$ 匹配以n结尾的字符串
+                ?=n 匹配任何其后紧接指定字符串n的字符串
+                ?!n 匹配任何其后没有紧接指定字符串n的字符串
+        */
+        // 创建一个正则表达式检查一个字符串中是否含有"aaa"
+        var reg = /a{3}/;
+        console.log(reg.test("aaxaaa")); // true
+
+        reg = /ab{3}/;
+        console.log(reg.test("ababab")); // false
+        console.log(reg.test("abababbb")); // true
+        // 若要对一组起作用可使用()括起一组元素
+        reg = /(ab){3}/;
+        console.log(reg.test("ababab")); // true
+
+        reg = /ab{3}c/;
+        console.log(reg.test("abbbc")); // true
+        console.log(reg.test("abbbbc")); // false
+
+        reg = /ab{1,3}c/;
+        console.log(reg.test("abbc")); // true
+        console.log(reg.test("adc")); // false
+
+        reg = /ab{1,}c/;
+        console.log(reg.test("abbc")); // true
+        console.log(reg.test("abc")); // true
+
+        reg = /ab+c/;
+        console.log(reg.test("abbc")); // true
+        console.log(reg.test("adc")); // false
+
+        reg = /ab*c/;
+        console.log(reg.test("abbc")); // true
+        console.log(reg.test("adcac")); // true
+        console.log(reg.test("adc")); // false
+
+        reg = /ab?c/;
+        console.log(reg.test("abbc")); // false
+        console.log(reg.test("ac")); // true
+        console.log(reg.test("abc")); // true
+
+        // 检查一个字符串是否以a开头
+        reg = /^a/;
+        console.log(reg.test("bcas")); // false
+        console.log(reg.test("abcas")); // true
+
+        reg = /a$/;
+        console.log(reg.test("bcas")); // false
+        console.log(reg.test("abcasa")); // true
+
+        // 如果在正则表达式中同时使用^ $则要求字符串必须完全符合正则表达式
+        reg = /^a$/; // 只有a
+        console.log(reg.test("aba")); // false
+        console.log(reg.test("a")); // true
+        reg = /^a|a$/; // 以a开头或以a结尾
+        console.log(reg.test("aba")); // true
+        console.log(reg.test("a")); // true
+        console.log(reg.test("ca")); // true
+
+        // 练习：创建一个正则表达式用来检查一个字符串是否是一个合法手机号
+        /*
+            手机号规则
+                1. 以1开头
+                2. 第二位是3-9任意数字
+                3. 第三位以后任意数字，长度限制为9位
+        */
+        var phoneStr = "13567890123";
+        reg = /^1[3-9][0-9]{9}$/;
+        console.log(reg.test(phoneStr)); // true
+        phoneStr = "12345678910";
+        console.log(reg.test(phoneStr)); // false
+        phoneStr = "123456789a0";
+        console.log(reg.test(phoneStr)); // false
+        phoneStr = "17345678910adafsd"; // $的必要性
+        console.log(reg.test(phoneStr)); // false
+        reg = /^1[3-9][0-9]{9}/;
+        console.log(reg.test(phoneStr)); // true
+
+    </script>
+</body>
+</html>
