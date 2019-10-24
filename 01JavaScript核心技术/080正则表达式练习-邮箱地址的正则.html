@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            邮箱地址的格式规则：
+            hello@abc.com.cn 
+            任意字母数字下划线(.任意字母数字下划线 可选)@任意字母数字.任意字母(2-5位).任意字母(2-5位,可选)
+            /w{3,}(\.\w)*@[A-Za-z0-9]+(\.[A-Za-z]{2,5}){1,2}/
+        */
+        var emailReg = /^\w{3,}(\.\w)*@[A-Za-z0-9]+(\.[A-Za-z]{2,5}){1,2}$/;
+        var email = "abc@abc.com";
+        console.log(emailReg.test(email)); // true
+        email = "abc@abc.com.123";
+        console.log(emailReg.test(email)); // false
+        email = "123_abc@abc.com";
+        console.log(emailReg.test(email)); // true
+    </script>
+</body>
+</html>
