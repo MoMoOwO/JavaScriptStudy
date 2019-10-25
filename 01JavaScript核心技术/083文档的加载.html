@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // 设置代码在整个代码加载完成之后再执行
+        // onload事件会在整个页面加载完毕之后执行，支持该事件的对象有image、layer、window
+        window.onload = function(){
+            // 该事件对应的响应函数将会在页面加载完成之后执行，这样可以确保我们的代码执行时所有的DOM对象已经加载完毕了
+            alert("页面加载完成！");
+            console.log("页面加载完成！");
+        }
+    </script>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <script>
+        /*
+            浏览器在加载一个页面时，是从上往下开始加载的，
+            读取到一行就运行一行，如果将script标签写到页面的上边，
+            在代码执行时，页面还没有加载，DOM对象也没有加载，则获取不到DOM元素。
+            所以将js代码编写到页面的下部，就是在页面加载完毕以后再执行js代码
+        */
+
+        // 获取btn对象
+        var btnObj = document.getElementById("btn");
+
+        btn.onclick = function(){
+            console.log("hello!");
+        };
+
+    </script>
+</body>
+</html>
