@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="btn">我是一个按钮</button>
+
+    <script>
+        /*
+            DOM（Document Object Model）
+            JS中通过DOM来对HTML文档进行操作，只要理解了DOM就可以随内心所余的操作Web页面。
+            文档：文档表示的就是整个HTML网页文档。
+            对象：对象表示将网页中的每一个部分转换为了一个对象。
+            模型：使用模型来表示对象之间的关系，这样方便我们获取对象。
+
+            节点：
+            节点Node，是构成我们网页的最进本的组成部分网页中的每一个部分都可以称为是一个节点，
+            比如html标签、属性、文本、注释、整个文档等都是一个节点。虽然都是节点，但是实际上他们的具体类型是不同的。
+            比如：标签我们称为元素节点、属性我们称为属性节点、文本我们称为文本节点、文档我们称为文档节点。
+            节点的类型不同，属性和方法也都不尽相同。
+            常用节点分为四类:
+            文档节点；整个HTML文档，元素节点：HTML文档中的HTML标签，属性节点：元素的属性，文本节点：HTML标签中的文本内容。
+        */
+
+        /*
+            浏览器已经为我们提供文档节点对象整个对象是window对象的属性，可以在页面中直接使用，文档节点代表的是整个网页
+        */
+
+        console.log(document);
+        // 获取button对象
+        var btnObj = document.getElementById("btn");
+        console.log(btnObj);
+        // 修改按钮的文字
+        console.log(btnObj.innerHTML);
+        btnObj.innerHTML = "修改的按钮显示文本";
+    </script>
+</body>
+</html>
