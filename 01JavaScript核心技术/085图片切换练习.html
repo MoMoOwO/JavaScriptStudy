@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #picbox{
+            width: 960px;
+            height: 600px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #ccc;
+            /* 设指文本居中 */
+            text-align: center;
+        }
+        #picbox > img{
+            width: 960px;
+            height: 540px;
+        }
+    </style>
+</head>
+<body>
+    <div id="picbox">
+        <p id="info">一共6张图片，当前第1张。</p>
+        <img src="img/1.jpg" alt="">
+        <button id="prev">上一张</button>
+        <button id="next">下一张</button>
+    </div>
+
+    <script>
+        // 点击按钮切换图片
+        // 要切换图片就是要修改img标签的src属性
+        // 获取两个按钮
+        var prev = document.getElementById("prev");
+        var next = document.getElementById("next");
+        // 获取img标签元素
+        var img = document.getElementsByTagName("img")[0];
+        
+        // 创建数组用于保存图片的路径
+        var imgArr = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg", "img/5.jpg", "img/6.jpg"];
+        // 创建一个变量用来保存当前显示图片的索引
+        var imgIndex = 0;
+
+        // 获取提示文本p元素
+        var info = document.getElementById("info");
+        // 设置提示文字
+        info.innerHTML = `一共${imgArr.length}张图片，当前第${imgIndex + 1}张图片。`;
+
+        // 为按钮绑定单机响应函数
+        prev.onclick = function(){
+            // 修改img标签的src属性
+            // 切换到上一张,索引自减
+            imgIndex--;
+            if(imgIndex < 0){
+                // imgIndex = 0;
+                // alert("已经是第一张了!");
+                // img.src = imgArr[imgIndex];
+
+                // 循环到最后一张
+                imgIndex = imgArr.length - 1;
+            }
+            img.src = imgArr[imgIndex];
+            info.innerHTML = `一共${imgArr.length}张图片，当前第${imgIndex + 1}张图片。`;
+        };
+        next.onclick= function(){
+            imgIndex++;
+            if(imgIndex > imgArr.length - 1){
+                // imgIndex = imgArr.length - 1;
+                // alert("已经是最后一张了!");
+                // img.src = imgArr[imgIndex];
+
+                // 循环到第一张
+                imgIndex = 0;
+            }
+            img.src = imgArr[imgIndex];
+            info.innerHTML = `一共${imgArr.length}张图片，当前第${imgIndex + 1}张图片。`;
+        };
+    </script>
+</body>
+</html>
