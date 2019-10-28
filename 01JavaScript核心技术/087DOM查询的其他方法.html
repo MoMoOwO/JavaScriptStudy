@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box1">第一个.box1</div>
+    <div class="box1">第二个.box1</div>
+    <div class="box1">第三个.box1</div>
+
+    <div class="box2">
+        <div>box2中的div</div>
+    </div>
+    <div></div>
+    
+    <script>
+        /*
+            其他的几个DOM查询的属性和方法，通过document对象调用以下方法：
+            body，属性，用来保存的是body的引用，类似与document.getElementByTagName("body")
+            documentElement，属性，保存的是html根标签，类似与document.getElementByTagName("html")
+            all，属性，保存页面中所有所有元素，类似与document.getElementByTagName("*")
+            getElementsByClassName()方法可以根据class属性值获取一组元素节点对象，不兼容IE8以下
+            querySelector()方法需要一个选择器的字符串作为参数,可以根据一个CSS选择器来查询一个元素的节点对象，
+            虽然IE8中没有getElementsByClassName()但是可以使用querySelect()方法，
+            使用该方法总会返回唯一的一个元素，如果满足条件的元素有多个，那么只会返回第一个。
+            querySelectAll()该方法和querySelect()类似，不同的是它会将符合条件的元素封装到一个数组返回，
+            即使只有一个元素也会以数组的形式返回。
+        */
+
+
+
+        // 获取body标签
+        var body = document.getElementsByTagName("body");
+        console.log(body[0]);
+        // 在document中有一个属性body，他保存的是body的引用
+        body = document.body;
+        console.log(body);
+
+        // document.documentElement保存的是html根标签
+        var html = document.documentElement;
+        console.log(html);
+
+        // document.all代表页面中所有元素
+        var all = document.all;
+        console.log(all);
+        all = document.getElementsByTagName("*");
+        console.log(all);
+
+        // 根据元素的class属性值查询一组元素节点对象
+        // getElementsByClassName()方法可以根据class属性值获取一组元素节点对象，不兼容IE8以下。
+        var box1s = document.getElementsByClassName("box1");
+        console.log(box1s);
+        console.log(box1s.length);
+
+        // 获取页面中的所有div
+        var divs = document.getElementsByTagName("div");
+        console.log(divs);
+        // 获取.box2中的div
+        /* document.querySelector()方法需要一个选择器的字符串作为参数,可以根据一个CSS选择器来查询一个元素的节点对象
+            虽然IE8中没有getElementsByClassName()但是可以使用querySelect()方法，
+            使用该方法总会返回唯一的一个元素，如果满足条件的元素有多个，那么只会返回第一个。
+        */
+        divs = document.querySelector(".box2 div"); // ".box2 > div"
+        console.log(divs);
+        var box1 = document.querySelector(".box1");
+        console.log(box1);
+
+        /* querySelectAll()该方法和querySelect()类似，不同的是它会将符合条件的元素封装到一个数组返回
+        即使只有一个元素也会以数组的形式返回。
+        */
+        box1s = document.querySelectorAll(".box1");
+        console.log(box1s);
+    </script>
+</body>
+</html>
