@@ -539,7 +539,7 @@
       | getElementsByTagName() | 通过标签名获取一组元素节点对象 |
       | getElementsByName() | 通过name属性获取一组元素节点对象 |  
       (2) 获取元素节点子节点(后代节点)，通过具体的元素节点调用以下方法或属性：
-      | 方法名 |  说明 |
+      | 方法或属性名 |  说明 |
       | :--: | :--: |
       | getElementsByTagName() | 方法，返回当前节点的指定标签名后代节点 |
       | childNodes | 属性，表示当前节点的所有子节点 |
@@ -548,8 +548,26 @@
       | firstElementChild | 属性,获取当前元素的第一个子元素，不兼容IE8以下 |
       | lastChild | 属性，表示当前节点的最后一个子节点 |  
       (3) 获取父节点或兄弟节点，通过具体的节点调用以下属性：
-      | 方法名 |  说明 |
+      | 属性名 |  说明 |
       | :--: | :--: |
       | parentNode | 表示当前节点的父节点 |
       | previousSibling | 表示当前节点的前一个兄弟节点 |
       | nextSibling | 表示当前系欸但的后一个兄弟节点 |
+      (4) 其他的几个DOM查询的属性和方法，通过document对象调用以下方法：
+      | 方法或属性名 |  说明 |
+      | :--: | :--: |
+      | body | 属性，用来保存的是body的引用，类似与document.getElementByTagName("body") |
+      | documentElement | 属性，保存的是html根标签，类似与document.getElementByTagName("html") |
+      | all | 属性，保存页面中所有所有元素，类似与document.getElementByTagName("*") |
+      | getElementsByClassName()| 方法，可以根据class属性值获取一组元素节点对象，不兼容IE8以下 |
+      | querySelector() | 方法需要一个选择器的字符串作为参数,可以根据一个CSS选择器来查询一个元素的节点对象，虽然IE8中没有getElementsByClassName()但是可以使用querySelect()方法，使用该方法总会返回唯一的一个元素，如果满足条件的元素有多个，那么只会返回第一个 |
+      | querySelectAll() | 该方法和querySelect()类似，不同的是它会将符合条件的元素封装到一个数组返回，即使只有一个元素也会以数组的形式返回 |
+    + DOM元素增删改
+      | 方法名 | 说明 |
+      | :--: | :--: |
+      | appendChild() | 把新的子节点添加到指定节点，父节点.appendChild(子节点); |
+      | removeChild() | 删除子节点，父节点.removeChild(子节点); |
+      | replaceChild() | 替换子节点，父节点.replaceChild(新节点, 旧节点); |
+      | insertBefore() | 在指定的子节点前面插入新的子节点，父节点.insertBefore(新节点, 旧节点); |
+      | createElement() | 创建元素节点，需要一个标签名作为参数，将会根据标签名创建元素节点对象，并将创建好的对象作为返回值返回，document.createElement("li"); |
+      | createTextNode() | 创建文本节点，需要文本内容作为参数，将会根据内容创建文本节点，并将新的节点返回，document.createElement("你好！"); |
