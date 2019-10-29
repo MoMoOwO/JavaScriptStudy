@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <table id="employeeTable">
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Salary</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th>Tom</th>
+            <th>tom@tom.com</th>
+            <th>5000</th>
+            <th><a href="deleteEmp?id=001">Delete</a></th>
+        </tr>
+        <tr>
+            <th>Jerry</th>
+            <th>jerry@jerry.com</th>
+            <th>8000</th>
+            <th><a href="deleteEmp?id=002">Delete</a></th>
+        </tr>
+        <tr>
+            <th>Bob</th>
+            <th>bob@163.com</th>
+            <th>10000</th>
+            <th><a href="deleteEmp?id=003">Delete</a></th>
+        </tr>
+        <tr>
+            <th>Jack</th>
+            <th>jack@qq.com</th>
+            <th>7000</th>
+            <th><a href="deleteEmp?id=004">Delete</a></th>
+        </tr>
+    </table>
+
+    <div id="formDiv">
+        <h4>添加新员工</h4>
+        <table>
+            <tr>
+                <td class="word">name：</td>
+                <td class="inp">
+                    <input type="text" name="empName" id="empName" />
+                </td>
+            </tr>
+            <tr>
+                <td class="word">email：</td>
+                <td class="inp">
+                    <input type="text" name="email" id="email" />
+                </td>
+            </tr>
+            <tr>
+                <td class="word">salary：</td>
+                <td class="inp">
+                    <input type="text" name="salary" id="salary" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button id="addEmpButton" value="abc">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        // 1.点击删除超链接后删除员工的信息
+        // 获取所有超链接
+        var allA = document.getElementsByTagName("a");
+        for(let i = 0; i < allA.length; i++){
+            allA[i].onclick = function(){
+                /* 点击超链接以后超链接会跳转页面，这是超链接的默认行为
+                但是我们此时不希望出现默认行为，可以荣国在响应函数的最后return false;来取消默认行为
+                */                
+                // 点击超链接之后删除超链接所在的那一行
+                // 获取当前行tr
+                let tr = this.parentNode.parentNode;
+                
+                // 删除之前弹出一个提示框来进行确认和取消
+                /*
+                    confirm()用于显示一个确认取消提示框，接收一个字符串作为参数用于在提示框中显示文本
+                */
+                // 获取要删除的员工的名字 tr.children[0].innerHTML
+                let name = tr.getElementsByTagName("td")[0].innerHTML;
+                let result = confirm("是否确认删除" + name + "？");
+                if(result){
+                    tr.parentNode.removeChild(tr);
+                }
+
+                return false;
+            };
+        }
+    </script>
+</body>
+</html>
