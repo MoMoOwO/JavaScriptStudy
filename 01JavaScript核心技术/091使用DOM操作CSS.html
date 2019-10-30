@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btn01">修改样式</button>
+    <button id="btn02">读取样式</button>
+
+    <div id="box1">
+
+    </div>
+
+    <script>
+        // 点击按钮以后修改#box1的大小和颜色
+        var btn01 = document.querySelector("#btn01");
+        var box1 = document.querySelector("#box1");
+
+        btn01.onclick = function(){
+            /*
+                通过JS修改元素的样式，语法：元素.style.样式名 = 样式值;
+                注意如果CSS的样式命中含有“-”，这种名字再JS中是不合法的，如“background-color”，
+                需要将其修改为驼峰命名法，即去掉“-”后面的单词首字母大写。
+
+                通过style属性设置的样式都是内联样式，内联样式有较高优先级，所以通过修改的样式往往会立即显示
+                但是如果在样式中写了!important，则此时样式会有最高的优先级，及时通过JS也不能覆盖改样式，
+                此时将会导致JS修改的样式失效，所以尽量不要喂养是添加!important。
+            */
+            box1.style.width = "400px";
+            box1.style.height = "400px";
+            box1.style.backgroundColor = "yellow";
+
+        };
+
+        // 读取样式
+        var btn02 = document.querySelector("#btn02");
+        btn02.onclick = function(){
+            /*
+                读取元素样式
+                语法：元素.style.样式名
+                通过style属性读取和设置的属性都是内联属性，无法读取样式表中的属性。
+            */
+            console.log("width:" + box1.style.width);
+            console.log("height:" + box1.style.height);
+            console.log("backgroundColor:" + box1.style.backgroundColor);
+        };
+    </script>
+</body>
+</html>
