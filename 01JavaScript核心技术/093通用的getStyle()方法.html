@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn01">读取样式</button>
+    <div id="box1" style="height: 200px;">
+
+    </div>
+
+    <script>
+        // 点击按钮之后读取#box1的样式
+        var btn01 = document.querySelector("#btn01");
+        var box1 = document.querySelector("#box1");
+
+        btn01.onclick = function(){
+            console.log("width:" + getStyle(box1, "width"));
+            console.log("height:" + getStyle(box1, "height"));
+            console.log("backgroundColor:" + getStyle(box1, "backgroundColor"));
+        };
+
+        // 定义一个函数，用来获取指定元素的当前的样式
+        // obj要获取样式的元素,name要获取的样式名
+        function getStyle(obj, name){
+            if(window.getComputedStyle){
+                // 不加window.则作为变量去寻找
+                // 常规浏览器-具有getComputedStyle()方法
+                return getComputedStyle(obj, null)[name];
+            }else{
+                // IE8以下
+                return obj.currentStyle[name];
+            }
+
+            // if(obj.currentStyle){
+            //     // IE8以下,不推荐先判断此属性，因为IE9以上也有此属性，这样会优先调用此属性，不能与现代浏览器相容
+            //     return obj.currentStyle[name];
+            // }else{
+            //     // 不加window.则作为变量去寻找
+            //     // 常规浏览器-具有getComputedStyle()方法
+            //     return getComputedStyle(obj, null)[name];
+            // }
+        }
+    </script>
+</body>
+</html>
