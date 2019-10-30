@@ -571,3 +571,11 @@
       | insertBefore() | 在指定的子节点前面插入新的子节点，父节点.insertBefore(新节点, 旧节点); |
       | createElement() | 创建元素节点，需要一个标签名作为参数，将会根据标签名创建元素节点对象，并将创建好的对象作为返回值返回，document.createElement("li"); |
       | createTextNode() | 创建文本节点，需要文本内容作为参数，将会根据内容创建文本节点，并将新的节点返回，document.createElement("你好！"); |
+23. style样式获取与修改等
+    + [使用DOM操作内联样式](https://www.w3school.com.cn/js/js_htmldom_css.asp)：  
+      (1) 通过JS修改元素的样式，语法：元素.style.样式名 = 样式值;注意如果CSS的样式命中含有“-”，这种名字再JS中是不合法的，如“background-color”，需要将其修改为驼峰命名法，即去掉“-”后面的单词首字母大写，[JS方式操作style属性名参考](https://www.w3school.com.cn/jsref/dom_obj_style.asp)。  
+      (2) 通过style属性设置的样式都是内联样式，内联样式有较高优先级，所以通过修改的样式往往会立即显示，但是如果在样式中写了!important，则此时样式会有最高的优先级，及时通过JS也不能覆盖改样式，此时将会导致JS修改的样式失效，所以尽量不要喂养是添加!important。  
+      (3) 读取元素样式，语法：元素.style.样式名；通过style属性读取和设置的属性都是内联属性，无法读取样式表中的属性。
+    + 通过currentStyle属性它可以用来读取当前元素正在显示(优先级高的样式优先显示)的样式，语法：元素.currentStyle.样式名;如果元素没有设置改样式，则获取它的默认样式。注意该属性只能在IE浏览器中使用并生效。
+    + getComputedStyle()方法可以获取元素当前的样式，这个方法是window对象的方法，可以直接使用。需要两个参数：第一个，需要获取的样式的元素；第二个，可以传递一个为元素(before、after)，一般都传null。该方法返回一个对象，对象中封装了当前元素对应的样式。读取样式规则与currentStyle类似，可以通过“对象.样式名”来获取样式值，如果获取的样式没有设置，则会获取到真实的值，而不是默认值，比如没有设置width它不会获取到auto，而是实际长度。但是该方法不支持IE8及以下的浏览器。
+    + 通过currentStyle属性和getComputedStyle()方法获取到的style属性值都是只读的，即不能通过此方式设置style属性值。
