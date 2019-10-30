@@ -10,34 +10,34 @@
 <body>
     <table id="employeeTable">
         <tr>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Salary</td>
-            <td>&nbsp;</td>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>&nbsp;</th>
         </tr>
         <tr>
-            <th>Tom</th>
-            <th>tom@tom.com</th>
-            <th>5000</th>
-            <th><a href="deleteEmp?id=001">Delete</a></th>
+            <td>Tom</td>
+            <td>tom@tom.com</td>
+            <td>5000</td>
+            <td><a href="deleteEmp?id=001">Delete</a></td>
         </tr>
         <tr>
-            <th>Jerry</th>
-            <th>jerry@jerry.com</th>
-            <th>8000</th>
-            <th><a href="deleteEmp?id=002">Delete</a></th>
+            <td>Jerry</td>
+            <td>jerry@jerry.com</td>
+            <td>8000</td>
+            <td><a href="deleteEmp?id=002">Delete</a></td>
         </tr>
         <tr>
-            <th>Bob</th>
-            <th>bob@163.com</th>
-            <th>10000</th>
-            <th><a href="deleteEmp?id=003">Delete</a></th>
+            <td>Bob</td>
+            <td>bob@163.com</td>
+            <td>10000</td>
+            <td><a href="deleteEmp?id=003">Delete</a></td>
         </tr>
         <tr>
-            <th>Jack</th>
-            <th>jack@qq.com</th>
-            <th>7000</th>
-            <th><a href="deleteEmp?id=004">Delete</a></th>
+            <td>Jack</td>
+            <td>jack@qq.com</td>
+            <td>7000</td>
+            <td><a href="deleteEmp?id=004">Delete</a></td>
         </tr>
     </table>
 
@@ -64,7 +64,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <button id="addEmpButton" value="abc">Submit</button>
+                    <button id="addEmpButton">Submit</button>
                 </td>
             </tr>
         </table>
@@ -72,11 +72,9 @@
 
     <script>
         // 1.点击删除超链接后删除员工的信息
-        // 获取所有超链接
-        var allA = document.getElementsByTagName("a");
-        for(let i = 0; i < allA.length; i++){
-            allA[i].onclick = function(){
-                /* 点击超链接以后超链接会跳转页面，这是超链接的默认行为
+        // 删除按钮的响应函数
+        function deleteEmp(){
+            /* 点击超链接以后超链接会跳转页面，这是超链接的默认行为
                 但是我们此时不希望出现默认行为，可以荣国在响应函数的最后return false;来取消默认行为
                 */                
                 // 点击超链接之后删除超链接所在的那一行
@@ -95,8 +93,91 @@
                 }
 
                 return false;
-            };
         }
+        // 获取所有超链接
+        var allA = document.getElementsByTagName("a");
+        for(let i = 0; i < allA.length; i++){
+            /*
+                for循环会在页面加载完成之后立即执行，而响应函数会在超链接被点击时才执行，
+                当响应函数执行时，for循环早已执行完毕
+            */
+            allA[i].onclick = deleteEmp;
+        }
+
+        // 2.添加新员工
+        /*
+            点击添加按钮之后将员工的信息添加到表格中
+        */
+        // 为提交按钮绑定点击事件
+        var addBtn = document.querySelector("#addEmpButton");
+        addBtn.onclick = function(){
+            // 单纯input标签，没有表单，不会出现表单提交，则不必考虑阻止默认行为
+            // 获取用户填写信息
+            // let name = document.querySelector("#empName").value;
+            // let email = document.querySelector("#email").value;
+            // let salary = document.querySelector("#salary").value;
+
+            // // 创建节点元素
+            // let tr = document.createElement("tr");
+            // let nametd = document.createElement("td");
+            // let emailtd = document.createElement("td");
+            // let salarytd = document.createElement("td");
+            // let atd = document.createElement("td");
+            // let a = document.createElement("a");
+            // // 向a标签中添加href属性
+            // a.href = "javascript:;";
+
+            // // 微信添加的a标签再绑定一次单击响应函数
+            // a.onclick = deleteEmp;
+
+            // // 创建文本节点
+            // let nameText = document.createTextNode(name);
+            // let emailText = document.createTextNode(email);
+            // let salaryText = document.createTextNode(salary);
+            // let deleteText = document.createTextNode("Delete");
+
+            // // 将文本节点添加到td元素中
+            // nametd.appendChild(nameText);
+            // emailtd.appendChild(emailText);
+            // salarytd.appendChild(salaryText);
+            // a.appendChild(deleteText);
+            // atd.appendChild(a);
+
+            // // 将td添加到tr中
+            // tr.appendChild(nametd);
+            // tr.appendChild(emailtd);
+            // tr.appendChild(salarytd);
+            // tr.appendChild(atd);
+
+            // // 获取employeeTable
+            // let employeeTable = document.querySelector("#employeeTable");
+            // // 获取employeeTable中的tbody
+            // let empTBody = employeeTable.getElementsByTagName("tbody")[0];
+            // // 将tr添加到table中
+            // empTBody.appendChild(tr);
+
+
+
+            // 简化修改版
+            let tr = document.createElement("tr");
+            // 获取输入数据
+            let name = document.querySelector("#empName").value;
+            let email = document.querySelector("#email").value;
+            let salary = document.querySelector("#salary").value;
+            // 使用修改tr的innerHTML属性,来修改tr中的内容
+            tr.innerHTML += `<td>${name}</td>
+                            <td>${email}</td>
+                            <td>${salary}</td>
+                            <td><a href="javascript:;">Delete</a></td>`;
+
+            // 获取刚添加的a标签,并为其绑定单击响应函数
+            let a = tr.getElementsByTagName("a")[0];
+            a.onclick = deleteEmp;
+            
+            let employeeTable = document.querySelector("#employeeTable");
+            let empTBody = employeeTable.getElementsByTagName("tbody")[0];
+            empTBody.appendChild(tr);
+        };
     </script>
 </body>
 </html>
