@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* 设置子元素相对定位，从而使得左右边距生效 */
+            position: absolute;
+        }
+    </style>
+</head>
+<body style="height: 2000px; width: 2000px;">
+    <div id="box1"></div>
+
+    <script>
+        /*
+            使Div跟随鼠标移动
+        */
+        // 获取box1
+        var box1 = document.querySelector("#box1");
+        // 为整个文档绑定鼠标移动事件响应函数
+        document.onmousemove = function(event){
+            // event兼容性处理
+            event = event || window.event;
+
+            // 获取滚动条的距离
+            /*
+                Chrome认为浏览器的滚动条时body的，可以通过body来获取，
+                火狐等浏览器认为滚动条时html的
+            */
+            let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            let scrollLeft =  document.body.scrollLeft || document.documentElement.scrollLeft;
+
+            // 获取鼠标xy坐标
+            /*
+                clientX、clientY指的是鼠标在当前可视窗口的坐标
+                pageX、PageY指鼠标相当于当前页面的位置坐标，
+                虽然浏览器都支持pageX、pageY属性，但是在下面使用style设置样式的时候IE8及以下不支持，
+                所以需要通过偏移值加上滚动条滚动距离的方式来设置
+            */
+            // let x = event.pageX;
+            // let y = event.pageY;
+            let x = event.clientX;
+            let y = event.clientY;
+
+            // 修改#box1的左边距和上边距，进而使得#box1位置变换到鼠标位置
+            box1.style.left = x + scrollLeft + "px";
+            box1.style.top = y + scrollTop + "px";
+
+        };
+    </script>
+</body>
+</html>
