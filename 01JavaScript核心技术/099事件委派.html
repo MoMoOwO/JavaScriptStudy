@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">添加超链接</button>
+    <ul id="ul">
+        <li><a href="javascript:;" class="link">超链接1</a></li>
+        <li><a href="javascript:;" class="link">超链接2</a></li>
+        <li><a href="javascript:;" class="link">超链接3</a></li>
+    </ul>
+
+    <script>
+        /*
+            事件委派
+            指将事件统一绑定给元素的共同的祖先元素，这样当后代元素上的事件被触发时，
+            会一直冒泡到祖先元素从而通过祖先元素的响应函数来处理事件；事件委派利用了事件冒泡，
+            通过委派可以减少事件绑定的次数，提高程序性能。
+        */
+        /*
+            为每一个超链接都绑定一个单击响应函数
+            这里我们为每一个超链接都绑定了一个单击响应函数，这些操作比较麻烦，
+            而且这样操作只能为已有的超链接设置事件，而新添加的超链接必须重新绑定
+        */ 
+        var hyperlinks = document.getElementsByTagName("a");
+        // 遍历超链接
+        // for(let i = 0; i < hyperlinks.length; i++){
+        //     hyperlinks[i].onclick = function(){
+        //         console.log(1111);
+        //     };
+        // }
+
+        /*
+            我们希望，只绑定一次时间，即可应用到多个元素上，即使元素时候添加的
+            我们可以尝试将其绑定给元素的共同的祖先元素
+        */
+
+        var ul = document.querySelector("#ul");
+        ul.onclick = function(event){
+            event = event || window.event;
+            /*
+                事件对象的target属性表示触发事件的对象
+            */
+            //console.log(event.target);
+            // 如果触发时间的对象是我们期望的元素，则执行，否则不执行
+            if(event.target.className == "link"){
+                console.log(event.target.innerHTML);
+            }
+        };
+
+        var btn1 = document.querySelector("#btn1");
+        btn1.onclick = function(){
+            let li = document.createElement("li");
+            li.innerHTML = "<a href='javascript:;' class='link'>新添加的超链接</a>";
+
+            ul.appendChild(li);
+        };
+    </script>
+</body>
+</html>
