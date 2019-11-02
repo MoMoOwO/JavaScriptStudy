@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">按钮1</button>
+    <button id="btn2">按钮2</button>
+
+    <script>
+        // 分别为两个按钮绑定响应函数
+        var btn1 = document.querySelector("#btn1");
+        var btn2 = document.querySelector("#btn2");
+
+        btn1.onclick = function(){
+            console.log("按钮1");
+        };
+        btn2.onclick = function(){
+            console.log("按钮2");
+        };
+
+        // IE8：设置btn01对鼠标按下相关的事件进行捕获
+        // 当调用一个元素的setCapture()方法以后，这个元素将会把下一次所有的鼠标按下相关的事件捕获到自身上
+        btn1.setCapture();
+    </script>
+</body>
+</html>
