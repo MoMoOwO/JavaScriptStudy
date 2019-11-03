@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body style="height: 3000px;">
+    <div id="box1"></div>
+    <script>
+
+        /*
+            鼠标滚轮事件
+            onmousewheel鼠标滚轮滚动事件，会在鼠标滚轮滚动时触发，
+            但是在火狐中不支持该属性，在火狐中需要使用DOMMouseScroll来绑定滚动事件，
+            注意该事件需要通过addEventListener()函数来绑定。
+
+            判断鼠标滚轮滚动的方向
+                event.wheelDelta可以获取鼠标滚轮滚动的方向
+                向上滚时120向下滚是-120不看大小，只看正负来判断上滚下滚
+                但是event.wheelDelta在火狐中不支持，需要使用event.delta来获取滚动的方向，
+                想上滚-3向下滚3
+
+            当鼠标滚轮滚动时，如果浏览器有滚动条，滚动条会随之滚动，
+            这是浏览器的默认行为，如果不希望发生则需要return false;来取消默认行为，
+            使用addEventListener()绑定的事件响应还能输，取消默认行为时，不能使用return false;
+            需要使用event.preventDefault()来取消默认行为，但是IE8不支持该方法。
+
+        */
+
+        /*
+            当鼠标滚轮在#box1上上滚时#box1放大，下滚时#box1缩小
+        */
+        // 获#box1
+        var box1 = document.querySelector("#box1");
+
+        // 为#box1绑定鼠标滚轮事件
+        /*
+            onmousewheel鼠标滚轮滚动事件，会在鼠标滚轮滚动时触发，
+            但是在火狐中不支持该属性，在火狐中需要使用DOMMouseScroll来绑定滚动事件
+            注意该事件需要通过addEventListener()函数来绑定
+        */
+        box1.onmousewheel = function(event){
+            event = event || window.event;
+
+            // 判断鼠标滚轮滚动的方向
+            /* event.wheelDelta可以获取鼠标滚轮滚动的方向
+                向上滚时120向下滚是-120不看大小，只看正负来判断上滚下滚
+                但是event.wheelDelta在火狐中不支持，需要使用event.delta来获取滚动的方向，
+                想上滚-3向下滚3
+            */
+            if(event.wheelDelta > 0 || event.delta < 0){
+                // 上滚，#box1放大
+                box1.style.height = box1.clientHeight + 10 + "px";
+                box1.style.width = box1.clientWidth + 10 + "px";
+            }else{
+                // 下滚，#box1缩小
+                box1.style.height = box1.clientHeight - 10 + "px";
+                box1.style.width = box1.clientWidth - 10 + "px";
+            }
+
+            // 取消浏览器滚动默认行为
+            if(event.preventDefault()){
+                event.preventDefault(); // 火狐
+            }
+            return false; // 其他
+        };
+
+        // 适配火狐
+        bind(box1, "DOMMouseScroll", box1.onmousewheel);
+
+        function bind(obj, eventStr, callback){
+            if(obj.addEventListener){
+                // 大部分浏览器兼通的方式
+                obj.addEventListener(eventStr, callback, false);
+            }else{
+                /*
+                    this是谁是由调用方式决定的
+                    callback.call(obj)
+                */
+                // IE8及以下
+                obj.attachEvent("on" + eventStr, function(){
+                    // 在匿名函数中条用回调函数
+                    callback.call(obj);
+                });
+            }
+        }
+
+    </script>
+</body>
+</html>
