@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+
+    <script>
+        /*
+            用键盘方向键控制#box1上下左右移动
+        */
+        document.onkeydown = function(event){
+            event = event || window.event;
+            // Unicode编码：←37↑38→39↓40
+            // console.log(event.keyCode);
+            let box1 = document.querySelector("#box1");
+            // 移动速度
+            let speed = 10;
+            // 当用户安乐ctrl按键的时候速度加快
+            if(event.ctrlKey){
+                speed = 20;
+            }
+
+            // if(event.keyCode === 37){
+            //     // 左移
+            //     box1.style.left = box1.offsetLeft - 10 + "px" ;
+            // } else if(event.keyCode === 38){
+            //     // 上移
+            //     box1.style.top = box1.offsetTop - 10 + "px";
+            // } else if(event.keyCode === 39){
+            //     // 右移
+            //     box1.style.left = box1.offsetLeft + 10 + "px" ;
+            // } else if(event.keyCode === 40){
+            //     // 下移
+            //     box1.style.top = box1.offsetTop + 10 + "px";
+            // }
+            switch(event.keyCode){
+                case 37:
+                    box1.style.left = box1.offsetLeft - speed + "px" ;
+                    break;
+                case 38:
+                    box1.style.top = box1.offsetTop - speed + "px";
+                    break;
+                case 39:
+                    box1.style.left = box1.offsetLeft + speed + "px" ;
+                    break;
+                case 40:
+                    box1.style.top = box1.offsetTop + speed + "px";
+                    break;
+            }
+        };
+    </script>
+</body>
+</html>
