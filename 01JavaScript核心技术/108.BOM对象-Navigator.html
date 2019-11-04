@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            BOM
+            浏览器对象模型（Browser Object Model (BOM)）
+            通过BOM我们可以通过JS来操作浏览器，
+            在BOM中为我们提供了一组对象，用来完成对浏览器的擦做
+            BOM对象：
+                window：代表整个浏览器窗口，同时window也是网页中的全局对象；
+                Navigator：代表当前浏览器的信息，通过该对象可以用来识别不同的浏览器；
+                Location：代表当前浏览器的地址栏信息，通过Location可以获取地址栏信息，或者操作浏览器的跳转页面；
+                History：代表浏览器的历史记录，可以通过该对象来操作浏览器的历史记录，由于隐私原因，该对象不能获取
+                        具体的历史记录，只能操作浏览器向前和向后翻页
+                Screen：代表用户的屏幕信息，通过该对象可以获取到用户的显示器的相关信息。
+
+            以上这些BOM对象在浏览器中都是作为window对象的属性宝座的，可以通过window对象来使用，也可以直接使用
+        */
+        // 以上这些BOM对象在浏览器中都是作为window对象的属性宝座的，可以通过window对象来使用，也可以直接使用
+        // console.log(window.navigator);
+        // console.log(location);
+        // console.log(history);
+        // console.log(screen);
+
+        /*
+            Navigator对象
+            由于历史原因，Navigator中的大部分属性都已经不能帮助我们识别浏览器了
+            一般我们只会使用userAgent属性来判断浏览器信息，userAgent是一个字符串，这个字符串包含有用来描述浏览器信息的内容，
+            不同的浏览器会有不同的userAgent；
+            在IE11中已经将微软和IE相关的表示都已经去除了，所以我们基本已经不能通过userAgent来识别一个浏览器是否是IE
+        */
+        console.log("appName = " + navigator.appName);
+        console.log("userAgent = " + navigator.userAgent);
+        
+        var browserUA = navigator.userAgent;
+        if(/firefox/.test(browserUA)){
+            console.log("火狐内核浏览器！");
+        }else if(/chrome/i.test(browserUA)){
+            console.log("Chrome内核浏览器！");
+        }
+        /*else if(/msie/i.test(browserUA)){  // IE10以下，经测试IE7-11都有Chrome
+            console.log("IE浏览器！");
+        }*/
+
+        /*
+            如果无法通过userAgent来进行判断，还可以通过一些浏览器中特有的对象判断浏览器的信息
+            如果ActiveXObject就是IE独有的一个构造函数。
+        */
+        if("ActiveXObject" in window){
+            console.log("IE浏览器！");
+        }
+    </script>
+</body>
+</html>
