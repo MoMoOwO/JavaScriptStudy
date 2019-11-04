@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">去百度</button>
+    <button id="btn2">跳转test01</button>
+    <input type="text">
+    <button id="btn3">刷新</button>
+    <button id="btn4">用test02替换</button>
+    <script>
+        /*
+            Location对象：
+            该对象封装了浏览器的地址栏的信息
+            如果直接打印location可以获取到地址栏的信息(当前页面完整路径)
+            如果直接将location属性修改为一个完成的路径或相对路径则我们页面会自动跳转到该路径，并且生成相应的历史记录
+
+            assign()用来跳转到其他的页面，作用和直接修改location一样
+            reload()重新加载该网页，作用和刷新按钮一样，测试是否传递true都会强制清空缓存刷新
+            replace()使用心得页面替换当前页面，调用完毕也会跳转页面，但是不会生成历史记录，不可回退
+        */
+        // 如果直接打印location可以获取到地址栏的信息(当前页面完整路径)
+        console.log(location);
+
+        var btn = document.querySelector("#btn");
+        // 如果直接将location属性修改为一个完成的路径或相对路径则我们页面会自动跳转到该路径，并且生成相应的历史记录
+        // assign()用来跳转到其他的页面，作用和直接修改location一样
+        btn.onclick = function(){
+            // 完整网页地址
+            // location = "http://www.baidu.com";
+            location.assign("http://www.baidu.com");
+        };
+
+        document.querySelector("#btn2").onclick = function(){
+            // 相对路径
+            location = "110.test01.html";
+        };
+
+        // reload()重新加载该网页，作用和刷新按钮一样，测试是否传递true都会强制清空缓存刷新
+        document.querySelector("#btn3").onclick = function(){
+            location.reload();
+        };
+
+        // replace()使用心得页面替换当前页面，调用完毕也会跳转页面，但是不会生成历史记录，不可回退
+        document.querySelector("#btn3").onclick = function(){
+            location.replace("111.test02.html");
+        };
+    </script>
+</body>
+</html>
