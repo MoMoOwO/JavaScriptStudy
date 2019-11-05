@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #imgSwitch{
+            width: 960px;
+            height: 540px;
+            left: 50%;
+            top: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+        #btn{
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnStart">开始</button>
+    <button id="btnStop">暂定</button>
+    <img id="imgSwitch" src="img/1.jpg">
+
+    <script>
+        /*
+            使图片自动切换
+        */
+        var imgSwitch = document.querySelector("#imgSwitch");
+
+        // 创建一个数组保存图片路径
+        var imgArr = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg", "img/5.jpg", "img/6.jpg"];
+
+        // 创建一个变量保存当前图片的索引
+        var index = 0;
+        // 保存定时器标志变量
+        var timer = null;
+
+        // 开始播放
+        var btnStart = document.querySelector("#btnStart");
+        btnStart.onclick = function(){
+            /* 
+                这种方式每点击一次按钮，就会开启一个定时器，点击多次就会开启多个定时器，
+                这就导致图片切换越来越快，并且只能关闭最后一次开启的定时器
+                在开启定时器之前，需要关闭上一个定时器
+            */
+            clearInterval(timer);
+            
+            // 开启一个定时器，自动切换图片
+            timer = setInterval(function(){
+                index++;
+                // 如果超出数组边界
+                // if(index > imgArr.length){
+                //     index = 0;
+                // }
+                index = index % imgArr.length;
+
+                // 修改图片路径
+                imgSwitch.src = imgArr[index];
+            }, 1000);
+        };
+
+        // 暂停播放
+        var btnStop = document.querySelector("#btnStop");
+        btnStop.onclick = function(){
+            /*
+                clearInterval()可以接收任意参数，如果参数是一个有效的定时器的标识则定制对应的定时器，
+                如果不是一个有效的表示，则什么也不做。
+            */
+            clearInterval(timer);
+        };
+    </script>
+</body>
+</html>
