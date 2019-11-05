@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            延时调用
+            延时调用一个函数不马上执行，而是隔一段时间以后再执行，而且只会执行一次
+
+            延时调用与定时调用的区别就是：定时调用会执行多次，而演示调用只会执行一次
+
+            使用clearTimeout()可以关闭一个延时调用
+
+            演示调用和定时第哦啊用实际上是可以互相带贴，在开发中根据自己需要进行选择
+        */
+
+        var num = 1;
+        // // 开启一个定时器
+        // setInterval(() => {
+        //     console.log(num++);
+        // }, 3000);
+
+        // 延时调用、
+        var timer = setTimeout(() => {
+            console.log(num++);
+        }, 1000);
+
+        // 使用clearTimeout()可以关闭一个延时调用
+        clearTimeout(timer);
+
+
+    </script>
+</body>
+</html>
