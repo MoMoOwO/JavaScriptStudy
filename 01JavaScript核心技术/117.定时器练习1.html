@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            position: absolute;
+            left: 0;
+        }
+
+        #end{
+            width: 0;
+            height: 1000px;
+            border: 1px solid black;
+
+            position: absolute;
+            top: 0;
+            left: 800px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 点击按钮以后#box1向右移动 -->
+    <button id="btn01">向右移动</button>
+    <br><br>
+    <div id="box1"></div>
+
+    <div id="end"></div>
+
+    <script>
+        var box1 = document.querySelector("#box1");
+        var btn01 = document.querySelector("#btn01");
+        // 定时器
+        var timer = null;
+
+        // 点击按钮之后使#box1向右移动，left值增大
+        btn01.onclick = function(){
+            // 关闭上一个定时器，避免多次点击叠加定时器使移速加快
+            clearInterval(timer);
+
+            // 使用定时器来实现持续修改left值实现持续右移
+            timer = setInterval(() => {
+                // 获取#box1原始left值
+                let oldLeftVal = parseInt(getStyle(box1, "left"));
+
+                // 在旧值的基础上增加
+                let newLeftVal = oldLeftVal + 15;
+                // 保证left正好在800px停止
+                if(newLeftVal > 800){
+                    newLeftVal = 800;
+                }
+
+                // 设置#box1 left样式
+                box1.style.left = newLeftVal + "px";
+
+                // 当移动到800px时停止
+                if(newLeftVal === 800){
+                    clearInterval(timer);
+                }
+
+            }, 30);
+        };
+
+        // 定义一个函数，用来获取指定元素的当前的样式
+        // obj要获取样式的元素,name要获取的样式名
+        function getStyle(obj, name){
+            if(window.getComputedStyle){
+                // 不加window.则作为变量去寻找
+                // 常规浏览器-具有getComputedStyle()方法
+                return getComputedStyle(obj, null)[name];
+            }else{
+                // IE8以下
+                return obj.currentStyle[name];
+            }
+        }
+    </script>
+</body>
+</html>
