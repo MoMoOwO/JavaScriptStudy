@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+
+            position: absolute;
+            left: 0;
+        }
+
+        #end{
+            width: 0;
+            height: 1000px;
+            border: 1px solid black;
+
+            position: absolute;
+            top: 0;
+            left: 800px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 点击按钮以后#box1向右移动 -->
+    <button id="btn01">向右移动</button>
+    <!-- 点击按钮向左移动 -->
+    <button id="btn02">向左移动</button>
+    <br><br>
+    <div id="box1"></div>
+
+    <div id="end"></div>
+
+    <script>
+        // 定义一个函数，用来获取指定元素的当前的样式
+        // obj要获取样式的元素,name要获取的样式名
+        function getStyle(obj, name){
+            if(window.getComputedStyle){
+                // 不加window.则作为变量去寻找
+                // 常规浏览器-具有getComputedStyle()方法
+                return getComputedStyle(obj, null)[name];
+            }else{
+                // IE8以下
+                return obj.currentStyle[name];
+            }
+        }
+
+        var box1 = document.querySelector("#box1");
+        var btn01 = document.querySelector("#btn01");
+        var btn02 = document.querySelector("#btn02");
+        // 定时器
+        var timer = null;
+
+        // 尝试创建一个左移简单移动的函数，参数：obj要执行移动的DOM元素对象，target：执行移动目标位置，speed移动速度
+        function move(obj, target, speed){
+            // 关闭上一个定时器，避免多次点击叠加定时器使移速加快
+            clearInterval(timer);
+
+            // 获取#box1当前left值
+            let currentLeftVal = parseInt(getStyle(obj, "left"));
+            // 如果left是从0->target方向增加，则是向右移动speed为正
+            // 如果left是从target->0方向减小，则是向做移动speed为负
+            if(currentLeftVal > target){
+                // 此时速度为负值
+                speed = -speed;
+            }
+
+            // 使用定时器来实现持续修改left值实现持续右移
+            timer = setInterval(() => {
+                // 获取#box1目前left值
+                let oldLeftVal = parseInt(getStyle(obj, "left"));
+                // 在旧值的基础上增加
+                let newLeftVal = oldLeftVal + speed;
+
+                // 当向右移的时候要判断newLeftVal是否大于target，左移的时候要判断newLeftVal是否小于target
+                if((speed > 0 && newLeftVal > target) || (speed < 0 && newLeftVal < target)){
+                    newLeftVal = target;
+                }
+
+                // 设置#box1 left样式
+                box1.style.left = newLeftVal + "px";
+
+                // 当移动到target时停止
+                if(newLeftVal === target){
+                    clearInterval(timer);
+                }
+
+            }, 30);
+        }
+
+        // 点击按钮之后使#box1向右移动，left值增大
+        btn01.onclick = function(){
+            move(box1, 800, 15);
+        };
+
+        // 点击按钮#box1向右移动，left值减小
+        btn02.onclick = function(){
+            move(box1, 0, 15);
+        };
+
+
+    </script>
+</body>
+</html>
