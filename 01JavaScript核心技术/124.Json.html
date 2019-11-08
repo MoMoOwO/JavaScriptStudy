@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            JSON
+                JS中的对象之后JS自己认识，其他的语言都不识别
+                JSON就是要给特殊格式的字符串，这个字符串可以被任意的语言所识别，并且可以转换为任意语言中的对象，
+                JSON在开发中主要用来数据的交互
+
+                JavaScript Object Notation JS对象表示法，
+                JSON和JS对象的格式一样，只不过JSON字符串的属性名必须加双引号，其他的和JS语法一致
+
+            JSON的分类：
+                1.对象{}
+                2.数组[]
+            
+            JSON中允许的值：
+                1.字符串
+                2.数值
+                3.布尔值
+                4.null
+                5.对象
+                6.数组
+        */
+        // 创建一个对象
+        var people = {
+            "name": "小明",
+            "age": 19,
+            "gender": "male"
+        };
+        console.log(people); 
+
+        // JSON对象
+        people = '{"name": "小明", "age": 19, "gender": "male"}';
+        console.log(typeof people);
+        // JSON数组
+        var arr = '[1, 2, 3, true, null, "小明"]';
+
+        var obj1 = '{"arr": [1, 2, 3]}';
+
+        var obj2 = '[{"name": "小明", "age": 19, "gender": "male"}, {"name": "小刚", "age": 18, "gender": "male"}]';
+
+        /*
+            将JSON字符串转换为JS中的对象
+            在JS中为我们提供了一个工具类，就叫JSON
+            它即可以帮助我们将一个JSON转换为JS对象，也可以将一个JS对象转化为JSON
+
+            JSON --> JS对象
+                JSON.parse()可以将一个JSON字符串转换为JS对象，需要一个JSON字符串作为参数，会将JSON字符串转化为JS对象并返回
+
+        */
+        console.log(JSON);
+        people = '{"name": "小明", "age": 19, "gender": "male"}';
+        var peopleObj = JSON.parse(people);
+        console.log(peopleObj);
+        console.log(peopleObj.name);
+
+        arr = '[1, 2, 3, true, null, "小明"]';
+        arr2 = JSON.parse(arr);
+        console.log(arr2);
+        console.log(arr2[4]);
+
+        /*
+            JS对象 --> JSON
+                JSON.stringify()可以将一个JS对象转化为JSON字符串，需要一个JS对象作为参数，会将转化JSON字符串返回
+        */
+        peopleObj = {"name": "小明", "age": 19, "gender": "male"};
+        console.log(typeof peopleObj);
+        var peopleJSON = JSON.stringify(peopleObj);
+        console.log(peopleJSON);
+        console.log(typeof peopleJSON);
+
+        arr = [1, 2, 3, true, null, "小明"];
+        console.log(typeof arr);
+        var arrJSON = JSON.stringify(arr);
+        console.log(arrJSON);
+        console.log(typeof arrJSON);
+
+        /*
+            JSON对象在IE7及以下的浏览器中不支持，所以在这些浏览器中会报错
+        */
+    </script>
+</body>
+</html>
