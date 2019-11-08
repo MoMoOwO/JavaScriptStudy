@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .b1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .b2{
+            width: 200px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- 点击按钮之后修改#box的样式 -->
+    <button id="btn01">修改样式</button>
+    <button id="btn02">删除b2样式</button>
+    <button id="btn03">切换(b1, b2)样式</button>
+    <br><br>
+    <div id="box" class="b1"></div>
+
+    <script>
+        var btn01 = document.querySelector("#btn01");
+        var btn02 = document.querySelector("#btn02");
+        var btn03 = document.querySelector("#btn03");
+        var box = document.querySelector("#box");
+
+        btn01.onclick = function(){
+            // 修改#box1的样式
+            /*
+                这种通过style属性来修改元素的样式，没修改一个样式，浏览器就需要重新渲染一次页面
+                这样执行的性能是比较差的，而且这中形式当我们要修改多个样式时，也不太方便
+            */
+            // box.style.width = "200px";
+            // box.style.height = "200px";
+            // box.style.backgroundColor = "yellow";
+
+            /*
+                我们希望执行一行代码就能够修改多个样式
+                我们可以通过修改元素的class属性来间接的修改样式，这样一来，我们只需要修改一次，即可同时修改多个样式，
+                而且浏览器只需要重新渲染页面一次，性能较好，并且这种方式，可以时表现(HTML)和行为(JS)进一步分离。
+            */
+            // 修改#box1的className属性
+            //box.className += " b2";
+            addClass(box, "b2");
+
+        };
+
+        btn02.onclick = function(){
+            // 删除b2样式
+            removeClass(box, "b2");
+        };
+
+        btn03.onclick = function(){
+            // 切换样式
+            toggleClass(box, "b2");
+        };
+
+        // 定义一个函数，用来向一个元素中添加指定的class属性值
+        // 参数：obj，要添加class属性的元素；cn，要添加的class类名
+        function addClass(obj, cn){
+            if(!hasClass(obj, cn)){
+                obj.className += " " + cn;
+            }
+        }
+
+        // 定义一个函数，用来从一个元素中删除指定的class属性值
+        // 参数：obj，要删除class属性值的元素；cn，要删除的class类名
+        function removeClass(obj, cn){
+            let reg = new RegExp("\\b" + cn + "\\b");
+            // 删除响应class及将其替换为""
+            obj.className = obj.className.replace(reg, "");
+        }
+
+        // 定义一个函数，判断一个元素中是否含有指定的class属性
+        // 参数：obj，要判断class属性的元素；cn，要判断的class类名
+        // 如果有的返回true，没有则返回false
+        function hasClass(obj, cn){
+            let reg = new RegExp("\\b" + cn + "\\b"); // \b匹配单词边界
+
+            return reg.test(obj.className);
+        }
+
+        // 切换class，如果元素中具有该类则删除，如果元素中没有该类则添加
+        // 
+        function toggleClass(obj, cn){
+            // 判断时候有
+            if(hasClass(obj, cn)){
+                // 有则删除
+                removeClass(obj, cn);
+            }else{
+                // 没有则添加
+                addClass(obj, cn);
+            }
+        }
+    </script>
+</body>
+</html>
