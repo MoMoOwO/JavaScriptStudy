@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1.什么是函数？
+                实现特定功能的n条语句的封装体，只有函数是可以执行的，其它类型的数据不能执行。
+            2.为什么要用函数？
+                提高代码复用，便于阅读交流
+            3.如何定义函数？
+                函数声明，表达式
+            4.如何调用(执行)函数？
+                直接调用test()，通过对象调用obj.test()，new调用new test()，
+                临时让test成为obj的方法进行调用test.call()/apply(obj)
+
+        */
+        
+        /*
+            编写程序实现以下功能需求，
+            1.根据年龄输出对应的信息
+                如果小于18，输出：未成年，再等等！
+                如果大于60，输出：算了吧！
+                其他，输出：符合条件！
+        */
+        function getResult(age){
+            if(age < 18){
+                console.log("未成年，再等等！");
+            }else if(age > 60){
+                console.log("太老，算了吧！");
+            }else{
+                console.log("年龄符合条件！");
+            }
+        }
+
+        getResult(16);
+        getResult(30);
+        getResult(70);
+
+        function fn1(){ // 函数声明
+            console.log("fn1()");
+        }
+
+        var fn2 = function(){ // 表达式
+            console.log("fn2()");
+        }
+
+        fn1();
+        fn2();
+
+        var obj = {};
+        function test(){
+            this.abc = "dfafda";
+        }
+        // obj.test(); // 不能直接调用，因为该方法不是obj对象的
+        test.call(obj); // 可以让一个函数称为指定任意对象的方法进行调用
+        console.log(obj.abc);
+    </script>
+</body>
+</html>
