@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1.什么是对象？
+                多个数据的封装体，用来保存多个数据的容器，一个对象代表现实中的一个事务
+            2.为什么要用对象？
+                统一管理多个数据
+            3.对象的组成是什么？
+                属性：属性名(字符串)和属性值(任意类型)组成，方法：一种特殊的属性(属性值是函数)
+            4.如何访问对象内部数据？
+                对象.属性名：编码简单，有时不能用  对象['属性名']：编码麻烦，能通用
+        */
+
+        var p = {
+            "name": "Tom",
+            age: 14,
+            setName: function(name){
+                this.name = name;
+            },
+            setAge: function(age){
+                this.age = age;
+            }
+        };
+        console.log(p.name, p.setName); // Tom function...
+        p.setName("Bob");
+        console.log(p.name); // Bob
+        p['setAge'](15);
+        console.log(p["age"]);
+        console.log("---------------");
+
+        /*
+            问题：什么使用获取都西昂中的属性值必须使用对象["属性名"]的形式？
+                1.属性名包含特殊字符串：-、空格等
+                2.属性名不确定，属性名保存在其他变量中
+        */
+        var p = {};
+        // 1.给对象p添加一个属性：context-type: text/json
+        // p.context-type = "text/json";
+        p["context-type"] = "text/json";
+        console.log(p["context-type"]);
+
+        // 2.变量名不确定
+        var propName = "age";
+        var value = 18;
+        // p.propName = value;
+        p[propName] = value;
+        console.log(p[propName]);
+
+    </script>
+</body>
+</html>
