@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            问题1：var a = xxx; a内存中到底保存的是什么？
+                xxx是基本数据类型，保存的就是这个数据
+                xxx是对象，保存的是对象的地址值
+                xxx是一个变量，保存的是xxx的内存内容(可能是基本数据，也可能是地址值)
+        */
+        var a = 123;
+
+        a = function(){};
+
+        var b = 'abc';
+        a = b;
+        b = {};
+        a = b;
+        console.log("------------");
+
+
+        /*
+            问题2：关于引用变量赋值问题
+                两个(n个)引用变量指向同一个对象，通过一个变量修改对象内部数据，另一个(其他所有)变量可以看到的是修改之后的数据
+                两个引用变量指向同一个对象，让其中一个引用变量指向另一个对象，另一个引用变量依然指向之前的对象。
+        */
+        var obj1 = {name: "Tom"};
+        var obj2 = obj1; // 拷贝obj1中的内容(地址)
+
+        obj1.name = "Jack";
+        console.log(obj2.name); // jack
+
+        obj2.age = 12;
+        console.log(obj1.age); // 12
+
+        function fn(obj){
+            obj.name = "Bob";
+        }
+
+        fn(obj1);
+        console.log(obj2.name); // Bob
+
+        var a = {age: 13};
+        var b = a;
+        a = {name: "Bob", age: 14};
+        console.log(b.age, a.name, a.age); // 13 Bob 14
+        b.age = 15;
+        console.log(b.age, a.age); // 15 14
+
+        function fn2(obj){
+            obj = {age: 16}; // 局部，垃圾对象
+        }
+        fn2(a);
+        console.log(a.age); // 14
+        console.log("------------");
+
+
+        /*
+            问题3：在js调用函数传递变量参数时，是值传递还是引用传递
+                理解1：都是值传递(传递的变量的值)，只是这个值可能是基本只也可能是地址值
+                理解2：可能是值传递，也可能是引用传递(传递地址值)
+        */
+        var num = 3;
+        function fun(num){
+            num = num + 1;
+        }
+        fun(3);
+        console.log(num); // 3
+
+        function fun2(obj){
+            console.log(obj.name);
+        }
+        var people = {name: "Tom"};
+        fun2(people);
+        console.log("------------");
+
+
+        /*
+            问题4：JS引擎如何管理内存？
+            1.内存生命周期：分配所需内存空间，得到使用权->存储数据，可以反复进行操作->释放当前内存空间
+            2.释放内存：局部变量在使用完毕后自动释放，对象则在成为垃圾对象之后由垃圾回收器回收
+        */
+        var cc = 321;
+        var obj123 = {}; // 对象占用内存空间比基本数据类型占用大
+
+        obj123 = null; // 之前的对象占用的内存空间还未释放，只是没有变量指向这个对象了
+
+        function fun3(){
+            var bc = {};
+        }
+        fun3(); // 执行完fun3()之后，bc是自动释放的，bc所指向的对象是在后面的某个时刻由垃圾回收器回收的
+
+    </script>
+</body>
+</html>
