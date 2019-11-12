@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1.原型链
+            访问一个对象的属性时，先在自身属性中查找，找到则返回，
+            如果没找到再沿着__proto__这条链向上查找，找到则返回，如果最终没找到则返回undefined
+
+            别名：隐式原型链
+            作用：查找对象的属性(方法)
+
+            2.构造函数/原型/实体对象的关系(图解)
+            3.构造函数/原型/实体对象的关系2(图解)
+
+            4.原型继承：构造函数的实例对象自动拥有构造函数的原型对象的属性(方法)，利用的就是原型链
+            5.
+        */
+        console.log(Object.prototype.__proto__); // null
+
+        function Fn(){
+            this.test1 = function(){
+                console.log("test1()");
+            };
+        }
+
+        Fn.prototype.test2 = function(){
+            console.log("test2()");
+        }
+
+        var fn = new Fn();
+        fn.test1();
+        fn.test2();
+        console.log(fn.toString());
+        console.log(fn.test3);
+        //fn.test3();
+
+        /*
+            原型链补充：
+            1.函数的显示原型指向的对象，默认是空Object的实例对象(但是Object不满足)
+            2.所有函数都是Function的实例，包括它本身
+            3.Object的原型对象是原型链尽头
+        */
+        console.log(Fn.prototype instanceof Object); // true
+        console.log(Object.prototype  instanceof Object); // false
+        console.log(Function.prototype instanceof Object); // true
+
+        console.log(Function.__proto__ === Function.prototype); // true
+
+        console.log(Object.prototype.__proto__);
+    </script>
+</body>
+</html>
