@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 测试1
+        var A = function(){
+
+        };
+        A.prototype.n = 1;
+
+        var b = new A();
+
+        A.prototype = {
+            n: 2,
+            m: 3
+        };
+
+        var c = new A();
+
+        console.log(b.n, b.m, c.n, c.m); // 1 undefined 2 3
+
+        // 测试2
+        var F = function(){
+            Object.prototype.a = function(){
+                console.log("a()");
+            };
+            Function.prototype.b = function(){
+                console.log("b()");
+            };
+        }
+        var f = new F();
+        f.a(); // a()
+        // f.b(); // 报错：f.b is not a function
+        F.a(); // a()
+        F.b(); // b()
+
+        console.log(f);
+        console.log(Object.prototype);
+        console.log(F);
+        console.log(Function.prototype);
+
+    </script>
+</body>
+</html>
