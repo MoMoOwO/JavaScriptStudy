@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1.依次输出什么？
+                global begin：undefined
+                foo() begin：1
+                foo() begin：2
+                foo() begin：3
+                foo() end：3
+                foo() end：2
+                foo() end：1
+                global end：1
+            2.整个过程中产生了几个执行上下文？5个
+        */
+        console.log("global begin：" + i);
+        var i = 1;
+        foo(1);
+        function foo(i){
+            if(i == 4){
+                return;
+            }
+            console.log("foo() begin：" + i);
+            foo(i + 1);  // 递归调用，在函数内部调用自己
+            console.log("foo() end：" + i);
+        }
+        console.log("global end：" + i);
+
+
+        console.log("------------------");
+
+
+        /* 面试题 */
+        // 题1：先执行变量提升，再执行函数提升
+        function a(){
+
+        }
+        var a;
+        console.log(typeof a); // "function"
+
+        // 题2：
+        if(!(b in window)){
+            var b = 1;
+        }
+        console.log(b); // undefined
+
+        // 题3：
+        var c = 1; // 重点在此处，上下文先把声明完成，在赋值
+        function c(c){
+            console.log(c);
+        }
+        // c = 1; 相当于在此时赋值，c为Number
+        c(2); // 报错 c is not a function
+    </script>
+</body>
+</html>
