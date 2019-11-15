@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>测试1</button>
+    <button>测试2</button>
+    <button>测试3</button>
+
+    <script>
+        /*
+            需求：点击某个按钮，提示“点击的是第n个按钮”
+        */
+        var btns = document.getElementsByTagName("button");
+        // 遍历添加事件监听
+        // btns不是一个真正的数组，是一个伪数组，length属性需要计算；
+        // 每次遍历的时候都需要计算length，若要提升效率，可以在外面或者在语句1中计算
+        // 方法一
+        /* for(var i = 0, length = btns.length; i < btns.length; i++){   
+            var btnObj = btns[i];
+            // 将btn所对应的小标保存在btn上
+            btnObj.index = i + 1;
+            btnObj.onclick = function(){
+                console.log("第" + this.index + "个");
+            }
+        } */
+
+        // 方法二---利用闭包
+        for(var i = 0, length = btns.length; i < btns.length; i++){   
+            (function(i){
+                var btnObj = btns[i];
+                btnObj.onclick = function(){
+                    console.log("第" + (i + 1) + "个");
+                }
+            })(i);
+        }
+    </script>
+</body>
+</html>
