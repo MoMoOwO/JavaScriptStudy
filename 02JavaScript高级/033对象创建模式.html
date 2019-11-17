@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            对象创建模式：
+
+            
+            方式一：Object构造函数模式
+            套路：先创建空Object对象，再动态添加属性/方法
+            适用场景：起始时不确定对象内部数据的情况下
+            问题：语句太多
+        */
+        // 一个人：name: "Tom", age: 12
+        var p1 = new Object();
+        p1.name = "Tom";
+        p1.age = 12;
+        p1.setName = function(name){
+            this.name = name;
+        };
+
+        p1.setName("Jack");
+        console.log(p1.name, p1.age);
+
+        console.log("--------------");
+
+
+        /*
+            方式二：对象字面量模式
+            套路：使用{}创建都西昂，同时指定属性/方法
+            适用场景：起始时对象内部数据是确定的
+            问题：如果创建多个对象，重复代码
+        */
+        var p2_1 = {
+            name: "Sam",
+            age: 13,
+            setName: function(name){
+                this.name = name;
+            }
+        };
+        p2_1.setName("Amy");
+        console.log(p2_1.name, p2_1.age);
+
+        var p2_2 = {
+            name: "Daming",
+            age: 14,
+            setName: function(name){
+                this.name = name;
+            }
+        };
+
+        console.log("--------------");
+
+
+        /*
+            方式三：工厂模式
+            套路：通过工厂函数动态创建对象并返回
+            适用场景：需要创建多个对象
+            问题：对象没有一个具体的类型，都是Object类型
+        */
+        function createPerson(name, age){  // 返回一个对象的函数u都可以称为工厂函数
+            var obj = {
+                name: name,
+                age: age,
+                setName: function(name){
+                    this.name = name;
+                }
+            };
+            
+            return obj;
+        }
+        // 创建两个人
+        var p3_1 = createPerson("Tom", 15);
+        var p3_2 = createPerson("Mash", 14);
+        console.log(p3_1);
+
+        function createStudent(name, grade){
+            var obj = {
+                name: name,
+                grade: grade
+            };
+            return obj;
+        }
+        var s3 = createStudent("Daming", 2);
+
+        console.log("--------------");
+
+
+        /*
+            方式四：自定义构造函数模式
+            套路：自定义构造函数，通过new创建对象
+            适用场景：需要创建多个类型确定的对象
+            问题：每个对象都有相同的数据，浪费内存
+        */
+        // 定义类型
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.setName = function(name){
+                this.name = name;
+            };
+        }
+        // new一个实例对象
+        var p4_1 = new Person("Tom", 17);
+        p4_1.setName("Jack");
+        console.log(p4_1.name, p4_1.age);
+        console.log(p4_1 instanceof Person);
+        var p4_2 = new Person("Amy", 14);
+        console.log(p4_1, p4_2);
+
+        function Student(name, grade){
+            this.name = name;
+            this.grade = grade;
+        }
+        var s4 = new Student("Sam", 3);
+        console.log(s4 instanceof Student);
+
+        console.log("--------------");
+
+
+        /*
+            方式五：构造函数+原型组合模式
+            套路：自定义构造函数，属性在函数中初始化，方法添加到原型上
+            适用场景：需要创建多个类型确定的对象
+        */
+        function PersonX(name, age){ // 在构造函数中值初始化一般属性
+            this.name = name;
+            this.age = age;
+        }
+        PersonX.prototype.setName = function(name){ // 方法添加到原型上
+            this.name = name;
+        }
+        var p5_1 = new PersonX("Tom", 15);
+        var p5_2 = new PersonX("Amy", 14);
+        console.log(p5_1, p5_2);
+    </script>
+</body>
+</html>
