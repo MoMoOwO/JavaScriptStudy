@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            继承模式：
+
+            方式1：原型链继承
+            1.过程：
+                定义父类型构造函数->
+                给父类型的原型添加方法->
+                定义子类型的构造函数->
+                创建父类型的对象赋值给子类型的原型->
+                将子类型原型的构造函数属性设置为子类型->
+                给子类型原型添加方法->
+                创建子类型的对象：可以调用父类型的方法
+            2.关键：子类型的原型为父类型的一个实例对象
+
+
+        */ 
+        function Super(){ // 定义父类型构造函数
+            this.supProp = "Super property";
+        }
+        Super.prototype.showSupperProp = function(){ // 给父类型的原型添加方法
+            console.log(this.supProp);
+        }
+        function Sub(){ // 定义子类型的构造函数
+            this.subProp = "Sub property";
+        }
+        Sub.prototype = new Super(); // 创建父类型的对象赋值给子类型的原型
+        Sub.prototype.constructor = Sub; // 将子类型原型的构造函数属性设置为子类型
+        Sub.prototype.showSubProp = function(){ // 给子类型原型添加方法
+            console.log(this.subProp);
+        }
+        
+        var sub = new Sub();
+        sub.showSupperProp(); // 继承了父类型的方法
+        sub.showSubProp();
+
+        console.log("--------------");
+
+
+        /*
+            方式2：借用构造函数继承(假的继承)
+            1.方式：
+                定义父类型构造函数->
+                定义子类型构造函数->
+                在子类型构造函数中调用父类型构造
+            2.关键：在子类型构造函数中通过super()调用父类型构造函数
+        */
+        function Person(name, age){ // 定义父类型构造函数
+            this.name = name;
+            this.age = age;
+        }
+        function Student(name, age, grade){ // 定义子类型构造函数b
+            Person.call(this, name, age); // 在子类型构造函数中调用父类型构造(通过call方法) 相当于：this.Person(name, age);
+            this.grade = grade;
+        }
+
+        var s = new Student("Tom", 15, 3);
+        console.log(s.name, s.age, s.grade);
+
+        console.log("--------------");
+
+
+        /*
+            方式3：原型链+借用构造函数的组合继承
+            1.利用原型链实现对父类型对象的方法继承
+            2.利用super()借用父类型构造函数初始化相同属性
+        */
+        function Animal(age, weight){
+            this.age = age;
+            this.weight = weight;
+        }
+        Animal.prototype.setAge = function(age){
+            this.age = age;
+        };
+        Animal.prototype.setWeight = function(weight){
+            this.weight = weight;
+        };
+
+        function Dog(name, age, weight){
+            this.name = name;
+            Animal.call(this, age, weight);  // 利用super()借用父类型构造函数初始化相同属性(假的继承，实际上是简化代码)
+        }
+        Dog.prototype = new Animal();   // 利用原型链实现对父类型对象的方法继承(真继承)
+        Dog.prototype.constructor = Dog;
+        Dog.prototype.setName = function(name){
+            this.name = name;
+        };
+        var d = new Dog("Tom", 13, "60kg");
+        d.setName("Jack");
+        d.setAge(16);
+        d.setWeight("65kg");
+        console.log(d.name, d.age, d.weight);
+    </script>
+</body>
+</html>
