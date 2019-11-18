@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="请输入数值">
+    <button>计算</button>
+
+    <script>
+        var input = document.getElementsByTagName("input")[0];
+        var btn = document.getElementsByTagName("button")[0];
+
+        btn.onclick = function(){
+            var n = input.value;
+            // 创建一个Worker对象，并向他传递将在新线程中执行的脚本的URL
+            var worker = new Worker("./js/workers.js");
+
+            // 向分线程发送消息
+            worker.postMessage(n);
+            console.log("主线程向分线程发送的数据：" + n);
+
+            // 绑定接受消息的监听，可以放在上一句的前面，因为是异步
+            worker.onmessage = function(event){
+                console.log("主线程接收分享成返回的数据：" + event.data);
+            }
+
+            //console.log(result);
+        }
+
+    </script>
+</body>
+</html>
