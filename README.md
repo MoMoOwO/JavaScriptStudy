@@ -917,5 +917,5 @@
     (1) 介绍：Web Workers使HTML5提供的一个JavaScript多线程解决方案，我们可以将一些大计算量得代码交由Web Worker运行而不冻结用户界面，但是子线程完全受主线程控制，且不得操作DOM。所以这个新标准并没有改变JavaScript单线程的本质。  
     (2) 使用：创建在分线程执行的js文件，在主线程的js中发消息并设置回调。  
     相关API：Worker：构造函数，加载分线程执行的js文件；Worker.prototype.onmessage：用于接收另一个线程的回调函数；Worker.prototype.postMessage：向另一个线程发送消息。
-    ![Web Workers工作流程](https://i.loli.net/2019/11/18/SFpxVBq7gQe9Ecv.png)   
-    (4) 不足：慢，Worker内代码不能操作DOM(更新UI)，不能跨域加载JS，不是每个浏览器都支持这个新特性。 
+    ![Web Workers工作流程](https://i.loli.net/2019/11/18/SFpxVBq7gQe9Ecv.png)  
+    (4) 不足：慢，Worker内代码不能操作DOM(更新UI)，不能跨域加载JS，不是每个浏览器都支持这个新特性。
