@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES5 严格模式：
+            1.理解：
+                除了正常运行模式(混杂模式)，ES5添加了第二种运行模式：“严格模式”(strict mode)。
+                顾名思义，这种模式使得JavaScript在更严格的语法条件下运行。
+            2.目的/作用：
+                消除JavaScript语法的一些不合理、不严谨之处，减少一些怪异行为；
+                消除代码运行的一些不安全之处，为代码安全运行保驾护航；
+                为未来新版本的JavaScript做好铺垫。
+            3.使用：
+                在全局或函数的第一条语句定义为：'use strict';
+                如果浏览器不支持，只解析为一条简单的语句，没有任何副作用。
+            4.语法和行为改变
+                必须用var关键字声明变量，禁止自定义的函数中的this指向window，创建eval作用域，对象不能有重名的属性。
+        */
+        
+        //'use strict';
+        // 1.必须用var关键字声明变量
+        //username = "kobe"
+        var username = "kobe";
+        console.log(username);
+
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        // 2.禁止自定义的函数中的this指向window
+        // 自调用相当于window.Person 此时构造函数中的this指向window
+        //Person("kobe", 39);
+        new Person("kobe", 39); // 使用new 关键字，则this指向当前创建的实例
+
+        var str = "NBA";
+        // 在不使用严格模式时，eval没有自己的作用域，eval中的语句上升到全局作用域，可能会污染全局变量，也存在安全隐患
+        // 3.严格模式下创建了eval作用域
+        eval("var str = 'CBA'; alert(str);");
+        alert(str);
+
+        // 4.对象不能有重名的属性
+        var obj = {
+            username: "Tom",
+            //username: "Jack"
+        }
+    </script>
+</body>
+</html>
