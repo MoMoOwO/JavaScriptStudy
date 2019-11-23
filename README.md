@@ -993,4 +993,75 @@
     + count关键字：
       (1) 作用：定义一个常量。
       (2) 特点：不能修改，其他特点同let关键字声明的变量。
-      (3) 应用：保存不用改变的数据。
+      (3) 应用：保存不用改变的数据。  
+    + 模板字符串：用来简化字符串的拼接，模板字符串必须使用``来包括，变化的部分使用${xxx}来定义。  
+
+    ``` JavaScript
+      let obj = {
+          username: "kobe",
+          age: 39
+      };
+      // 模板字符串
+      let str = `我的名字是：${obj.username}，我的年龄：${obj.age}。`;
+      console.log(str);
+    ```
+
+    + 简化的对象写法：属性名与属性值同名时可以省略属性值，只写一个属性名；方法可以直接声明，省去function关键字。  
+
+    ``` JavaScript
+      let username = "kobe";
+      let age = 39;
+
+      let obj = {
+          username, // 属性名与属性值同名可以省略属性值
+          age,
+          getName(){  // 方法直接声明，省去function关键字
+              console.log(this.username);
+          }
+      }
+      console.log(obj);
+    ```
+
+    + 箭头函数  
+      (1) 作用：用来定义匿名函数。  
+      (2) 基本语法：  
+        没有参数：() => console.log("xxx");  
+        一个参数：i => i + 2;  
+        大于一个参数：(i, j) => i + j;  
+        函数体只有一条语句或表达式时，大括号可以省略，且省略后默认返回语句执行的结果或者是表达式的结果；函数体如果有多条语句需要使用{}包括函数体，如有需要返回的内容，需要手动返回。  
+      (3) 适用场景：多用来定义回调函数。  
+      (4) 箭头函数的特点：简洁；箭头函数没有自己的this，箭头函数的this不是调用的时候决定的，而是在定义的时候所处的对象就是它的this。扩展理解：箭头函数的this看外层是否有函数，如果有则外层函数的this就是内部箭头函数的this；如果没有则this就是window。
+    + 三点运算符(点点点运算符)：  
+      用途：  
+      rest(可变)参数，用来取代arguments，但比arguments灵活，只能是最后部分形参参数  
+
+      ``` JavaScript
+        function foo(a, ...value){
+            console.log(value);
+            value.forEach((item, index) => {
+                console.log(item, index);
+            })
+        }
+        foo(1, 2, 3);
+      ```
+
+      扩展运算符
+
+      ``` JavaScript
+        let arr = [1, 6];
+        let arr1 = [2, 3, 4, 5];
+        arr = [1, ...arr1, 6]; // 合并数组
+        console.log(arr);
+        console.log(...arr); // 整体输出数组中的每一项 1 2 3 4 5 6
+      ```
+
+    + 形参默认值：当不传入函数(方法)参数的时候默认使用形参的默认值。形参默认值的定义，在定义函数(方法)的时候在参数列表中为形参赋以默认值。  
+
+    ``` JavaScript
+      function Point(x = 0, y = 0){  // 在形参列表中为形参指定默认值
+          this.x = x;
+          this.y = y;
+      }
+      let point = new Point();
+      console.log(point);
+    ```
