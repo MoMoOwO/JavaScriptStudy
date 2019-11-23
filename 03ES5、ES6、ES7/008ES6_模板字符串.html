@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES6模板字符串
+            用来简化字符串的拼接，模板字符串必须使用``来包括，变化的部分使用${xxx}来定义。
+        */
+        let obj = {
+            username: "kobe",
+            age: 39
+        };
+        // 常规字符串拼串
+        let str = "我的名字是：" + obj.username + "，我的年龄：" + obj.age + "。";
+        console.log(str);
+
+        // 模板字符串
+        str = `我的名字是：${obj.username}，我的年龄：${obj.age}。`;
+        console.log(str);
+    </script>
+</body>
+</html>
