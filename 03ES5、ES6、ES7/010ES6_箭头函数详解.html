@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">测试按钮1</button>
+    <br><br>
+    <button id="btn2">测试按钮2</button>
+    <script>
+        /*
+            ES6箭头函数
+            
+            作用：用来定义匿名函数
+            基本语法：
+                没有参数：() => console.log("xxx");
+                一个参数：i => i + 2;
+                大于一个参数：(i, j) => i + j;
+                函数体只有一条语句或表达式时，大括号可以省略，且省略后默认返回语句执行的结果或者是表达式的结果；
+                函数体如果有多条语句需要使用{}包括函数体，如有需要返回的内容，需要手动返回。
+            适用场景：多用来定义回调函数
+            箭头函数的特点：
+                1.简洁
+                2.箭头函数没有自己的this，箭头函数的this不是调用的时候决定的，而是在定义的时候所处的对象就是它的this
+                3.扩展理解：箭头函数的this看外层是否有函数，如果有则外层函数的this就是内部箭头函数的this；如果没有则this就是window
+        */
+        // 常规
+        // let fun = function(){
+
+        // }
+
+        // 形参的情况
+        // 1.没有形参的时候，形参列表必须有小括号
+        let fun1 = () => console.log("我是一个箭头函数");
+        fun1();
+
+        // 2.只有一个形参的时候，形参列表小括号可以省去
+        let fun2 = a => console.log(a);
+        fun2("aaa");
+
+        // 3.两个及两个以上的形参的时候
+        let fun3 = (a, b) => console.log(a, b);
+        fun3("aaa", "bbb");
+
+        console.log("--------");
+
+        // 函数体的情况
+        // 1.函数体只有一条语句或者是表达式时，大括号可以省略；大括号省略后回自动返回语句执行的结果或者是表达式的结果
+        let fun4 = (x, y) => x + y;
+        console.log(fun4(12, 13));
+
+        // 2.函数体不止一条语句或者表达式的情况
+        let fun5 = (x, y) => {
+            console.log(x, y);
+            return x + y;
+        };
+        console.log(fun5(21, 23));
+
+
+        // 箭头函数的this
+        // 箭头函数没有自己的this，箭头函数的this不是调用的时候决定的，而是在定义的时候所处的对象就是它的this
+        // 扩展理解：箭头函数的this看外层是否有函数，如果有则外层函数的this就是内部箭头函数的this；如果没有则this就是window
+        let btn1 = document.querySelector("#btn1");
+        let btn2 = document.querySelector("#btn2");
+
+        btn1.onclick = function(){
+            console.log(this);
+        };
+
+        btn2.onclick = () => {
+            console.log(this);
+        }
+
+        let obj1 = {
+            name: "箭头函数",
+            getName: function(){
+                btn2.onclick = () => {
+                    console.log(this);
+                }
+            }
+        };
+        //obj1.getName();
+        let obj2 = {
+            name: "箭头函数",
+            getName: () => {
+                btn2.onclick = () => {
+                    console.log(this);
+                }
+            }
+        };
+        //obj2.getName();
+    </script>
+</body>
+</html>
