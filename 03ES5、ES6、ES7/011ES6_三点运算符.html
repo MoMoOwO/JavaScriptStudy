@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES6三点运算符(点点点运算符)
+                用途：
+                    1.rest(可变)参数，用来取代arguments，但比arguments灵活，只能是最后部分形参参数
+                    2.扩展运算符
+        */
+        function foo(a, b){
+            console.log(arguments);
+            //arguments.callee(); // 指向函数本身
+            /* arguments.forEach((item, index) => {  // arguments是一个伪数组，没有forEach方法，但是有一个length属性，可以通过普通循环来遍历
+                console.log(item, index);
+            }); */
+        }
+        foo(12, 34);
+
+        // 三点运算符
+        function foo1(a, ...value){
+            console.log(value);
+            value.forEach((item, index) => {
+                console.log(item, index);
+            })
+        }
+        foo1(1, 2, 3);
+
+
+        // 扩展运算符
+        let arr = [1, 6];
+        let arr1 = [2, 3, 4, 5];
+        arr = [1, ...arr1, 6]; // 合并数组
+        console.log(arr);
+        console.log(...arr); // 整体输出数组中的每一项
+    </script>
+</body>
+</html>
