@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES6 简化的对象写法：
+                属性名与属性值同名可以省略属性值；
+                方法直接声明，省去function关键字
+        */
+        let username = "kobe";
+        let age = 39;
+        // 常规的对象写法
+        let obj = {
+            username: username,
+            age: age,
+            getName: function(){
+                console.log(this.username);
+            }
+        };
+        console.log(obj);
+
+        let obj1 = {
+            username, // 属性名与属性值同名可以省略属性值
+            age,
+            getName(){  // 方法直接声明，省去function关键字
+                console.log(this.username);
+            }
+        }
+        console.log(obj1);
+    </script>
+</body>
+</html>
