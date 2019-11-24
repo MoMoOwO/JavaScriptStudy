@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES6 iterator
+            概念：iterator是一种接口机制，为各种不同的数据结构提供统一的访问机制
+            作用：
+                1.为各种数据结构，提供统一的、渐变的访问接口；
+                2.使得数据结构的成员能够按某种次序排列；
+                3.ES6创造了一种新的遍历命令for...of循环，Iterator接口主要提供for...of
+            工作原理：
+                *创建一个指针对象(遍历器对象)，指向数据结构的起始位置；
+                *第一次调用next方法，指针自动指向数据结构的第一个成员；
+                *接下来不断调用next方法，指针会一直往后移动，知道指向最后一个成员；
+                *没调用next方法返回的是一个包含value和done的对象：{ value: 当前的成员的值, done: 布尔值}
+                    value表示当前成员的值，done对应的布尔值表示当前的数据的结构是否遍历结束，
+                    当遍历结束时返回的value值时undefined，done值为true。
+            原生具备iterator结构的数据(可用for of遍历)
+
+            扩展理解：
+                1.当数据结构上部署了Symbol.iterator接口，该数据就是可以用for of遍历
+                2.当使用for of去遍历目标数据的时候，该数据会自动去找Symbol.iterator属性
+                Symbol.iterator属性指向对象的默认遍历器方法。
+                ES6已经将iterator接口部署到指定的数据类型上：Array、String、arguments、set容器、map容器
+            
+            使用三点运算符、结构赋值默认去调用iterator接口
+        */
+
+        // 模拟一个指针对象(遍历器对象)
+        function myIterator(arr){ // iterator接口
+            let nextIndex = 0; // 记录指针的位置
+            return {
+                next: function(){
+                    return nextIndex < arr.length ? { value: arr[nextIndex++], done: false } : { value: undefined, done: true };
+                }
+            };
+        }
+
+        let arr = [1, "b", 2, "c", null];
+        let iteratorObj = myIterator(arr);
+        console.log(iteratorObj.next());
+        console.log(iteratorObj.next());
+        console.log(iteratorObj.next());
+        console.log(iteratorObj.next());
+        console.log(iteratorObj.next());
+        console.log(iteratorObj.next());
+
+        console.log("--------------");
+
+        // ES6已经将iterator接口部署到指定的数据类型上，则数据类型可以使用for of去循环遍历
+        // 数组，字符串，arguments，set容器，map容器
+        for(let i of arr){
+            console.log(i);
+        }
+
+        let str = "abcd";
+        for(let i of str){
+            console.log(i);
+        }
+
+        function fun(){
+            for(let i of arguments){
+                console.log(i);
+            }
+        }
+        fun(1, 2, "zc");
+
+        // 对象默认没有部署iterator接口
+        let obj = { username: "kobe", age: 38, gender: "男" };
+        /* for(let i of obj){
+            console.log(i);  // 报错obj is not iterable
+        } */
+
+        console.log("----------------");
+
+        // 如下等同于在指定的数据内部结构上部署了iterator结构
+        // 使用for of去便利某一个数据结构的时候，首先去找Symbol.iterator，找到了就去便利，没有找到的花不能遍历对象
+        // 报错xxx is not iterable
+        let targetData = {
+            [Symbol.iterator]: function(){
+                let nextIndex = 0; // 记录指针的位置
+                return {
+                    next: function(){
+                        return nextIndex < this.length ? { value: this[nextIndex++], done: false } : { value: undefined, done: true };
+                    }
+                };
+            }
+        }
+
+        // 使用三点运算符、结构赋值默认去调用iterator接口
+        let arr2 = [1, 6];
+        let arr3 = [2, 3, 4, 5];
+        arr2 = [1, ...arr3, 6];
+        console.log(arr2);
+        let [a, b] = arr2;
+        console.log(a, b);
+
+    </script>
+</body>
+</html>
