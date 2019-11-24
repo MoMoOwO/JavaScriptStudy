@@ -996,31 +996,31 @@
       (3) 应用：保存不用改变的数据。  
     + 模板字符串：用来简化字符串的拼接，模板字符串必须使用``来包括，变化的部分使用${xxx}来定义。  
 
-    ``` JavaScript
-      let obj = {
-          username: "kobe",
-          age: 39
-      };
-      // 模板字符串
-      let str = `我的名字是：${obj.username}，我的年龄：${obj.age}。`;
-      console.log(str);
-    ```
+      ``` JavaScript
+        let obj = {
+            username: "kobe",
+            age: 39
+        };
+        // 模板字符串
+        let str = `我的名字是：${obj.username}，我的年龄：${obj.age}。`;
+        console.log(str);
+      ```
 
     + 简化的对象写法：属性名与属性值同名时可以省略属性值，只写一个属性名；方法可以直接声明，省去function关键字。  
 
-    ``` JavaScript
-      let username = "kobe";
-      let age = 39;
+      ``` JavaScript
+        let username = "kobe";
+        let age = 39;
 
-      let obj = {
-          username, // 属性名与属性值同名可以省略属性值
-          age,
-          getName(){  // 方法直接声明，省去function关键字
-              console.log(this.username);
-          }
-      }
-      console.log(obj);
-    ```
+        let obj = {
+            username, // 属性名与属性值同名可以省略属性值
+            age,
+            getName(){  // 方法直接声明，省去function关键字
+                console.log(this.username);
+            }
+        }
+        console.log(obj);
+      ```
 
     + 箭头函数  
       (1) 作用：用来定义匿名函数。  
@@ -1057,11 +1057,85 @@
 
     + 形参默认值：当不传入函数(方法)参数的时候默认使用形参的默认值。形参默认值的定义，在定义函数(方法)的时候在参数列表中为形参赋以默认值。  
 
-    ``` JavaScript
-      function Point(x = 0, y = 0){  // 在形参列表中为形参指定默认值
-          this.x = x;
-          this.y = y;
-      }
-      let point = new Point();
-      console.log(point);
-    ```
+      ``` JavaScript
+        function Point(x = 0, y = 0){  // 在形参列表中为形参指定默认值
+            this.x = x;
+            this.y = y;
+        }
+        let point = new Point();
+        console.log(point);
+      ```
+
+    + Promise对象
+      (1) 理解：Promise对象代表了未来某个将要发生的事件(通常是异步操作)；有了Promise对象，可以将异步操作以同步的流程表达出来，避免了层层嵌套的回调函数(俗称“回调地狱”)；ES6的Promise是一个构造函数，用来生成Promise实例。  
+      (2) 使用Promise基本步骤(两步)：  
+        创建promise对象：  
+
+        ``` JavaScript
+          let promise = new Promise((resolve, reject) => {
+            // 初始化Promise对象的状态为pending
+            // 执行异步操作
+            if(异步操作成功){
+              resolve(value); // 修改Promise对象的状态为fullfilled
+            }else{
+              reject(errMes); // 修改Promise对象的状态为rejected
+            }
+          });
+        ```
+
+        调用promise的then()：
+
+        ``` JavaScript
+          promise.then((result) => { // 异步操作成功的回调
+            console.log(result);
+          }, (errMsg) => {  // 异步操作失败的回调
+            alert(errMsg);
+          });
+        ```
+
+      (3) Promise对象的三个状态：pending初始化状态，fullfilled成功状态，rejected失败状态。  
+      (4) 应用：使用Promise实现超时处理，使用Promise封装处理ajax请求。
+    + Symbol：  
+      (1) ES5种对象的属性名都是字符串，容易造成重名，污染环境，所以在ES6中出现了Symbol。  
+      (2) 概念：ES6中添加了一种原始数据类型symbol(已有的原始数据类型：String、Number、Boolean、Null、Undefined，对象)  
+      (3) 特点：  
+        Symbol属性值对应的值是唯一的，解决命名冲突问题；  
+        Symbol值不能与其他数据进行计算，包括同字符串拼串；  
+        for in、for of遍历时不会遍历symbol属性。  
+      (4) 使用：  
+        调用Symbol函数得到symbol值
+
+        ``` JavaScript
+          let symbol = Symbol();
+          let obj = {};
+          obj[symbol] = 'hello';
+        ```
+
+        传参标识
+
+        ``` JavaScript
+          let symbol = Symbol("one");
+          let symbol2 = Symbol("two");
+          console.log(symbol); // Symbol("one")
+          console.log(symbol2); // Symbol("two")
+        ```
+
+        内置Symbol值：除了定义自己使用的symbol值以外，ES6还提供了11个内置的Symbol值，指向语言内部使用的方法。  
+        Symbol.iterator，对象的Symbol.iterator属性指向对象的默认遍历器方法。
+    + iterator  
+      (1) 概念：iterator是一种接口机制，为各种不同的数据结构提供统一的访问机制。  
+      (2) 作用：  
+        为各种数据结构，提供统一的、渐变的访问接口；  
+        使得数据结构的成员能够按某种次序排列；  
+        ES6创造了一种新的遍历命令for...of循环，Iterator接口主要提供for...of。
+      (3) 工作原理：  
+        创建一个指针对象(遍历器对象)，指向数据结构的起始位置；  
+        第一次调用next方法，指针自动指向数据结构的第一个成员；  
+        接下来不断调用next方法，指针会一直往后移动，知道指向最后一个成员；  
+        没调用next方法返回的是一个包含value和done的对象：{ value: 当前的成员的值, done: 布尔值}，value表示当前成员的值，done对应的布尔值表示当前的数据的结构是否遍历结束，当遍历结束时返回的value值时undefined，done值为true。
+      (4) 扩展理解：  
+        当数据结构上部署了Symbol.iterator接口，该数据就是可以用for of遍历；  
+        当使用for of去遍历目标数据的时候，该数据会自动去找Symbol.iterator属性；  
+        Symbol.iterator属性指向对象的默认遍历器方法。  
+        ES6已经将iterator接口部署到指定的数据类型上：Array、String、arguments、set容器、map容器。  
+      (5) 原生具备iterator结构的数据(可用for of遍历)；使用三点运算符、结构赋值默认去调用iterator接口。
