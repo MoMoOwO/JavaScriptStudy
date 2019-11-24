@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <script>
+        /*
+            server端使用，在server目录下运行命令行npm i安装依赖，运行命令node bin/www 启动服务器
+        */
+        
+        // 定义获取新闻的构造函数
+        function getNews(url){
+            let promise = new Promise((resolve, reject) => {
+                // 状态：初始化
+                // 执行异步任务
+                // 创建xmlHttp实例对象
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function(){
+                    // 绑定监听 readyState   - onreadystatechange一开始的时候readState为0，成功会从0向4改变
+                    if(xmlHttp.readyState === 4){
+                        if(xmlHttp.status === 200){  // 请求成功
+                            //console.log(xmlHttp.responseText);
+                            // 修改状态
+                            resolve(xmlHttp.responseText); // 修改promise状态为成功状态
+                        }else{ // 请求失败
+                            reject('暂时没有新闻内容！'); // 修改promise状态为失败状态
+                        }
+                    }   
+                }
+                // open 设置请求的方式以及url
+                xmlHttp.open('GET', url);
+                // 发送
+                xmlHttp.send();
+            });
+
+            return promise;
+        }
+
+        getNews("http://localhost:3000/news?id=2")
+            .then((result) => { // 请求成功的回调
+                console.log(result);
+                // 发送请求获取评论内容准备url
+                let commentsUrl = JSON.parse(result).commentsUrl;
+                let url = `http://localhost:3000${commentsUrl}`;
+                // 成功请求后，发起新的请求
+                return getNews(url); // 将新的promise返回，之后可以链式.then
+            }, (error) => {  // 请求失败的回调
+                console.log(error);
+            })
+            .then((result) => {
+                console.log(result);
+            }, (error) => {
+                console.log(error);
+            });
+    </script>
+</body>
+</html>
