@@ -1139,3 +1139,38 @@
         Symbol.iterator属性指向对象的默认遍历器方法。  
         ES6已经将iterator接口部署到指定的数据类型上：Array、String、arguments、set容器、map容器。  
       (5) 原生具备iterator结构的数据(可用for of遍历)；使用三点运算符、结构赋值默认去调用iterator接口。
+    + Generator函数  
+      (1) 概念：ES6提供得解决异步编程的方案之一；Generator函数是一个状态机，内部封装了不同状态的数据；用来生成遍历器对象；可暂停函数(惰性求值函数)，yield可暂停，next方法可启动。每次返回的是yield后的表达式结果。  
+      (2) 特点：  
+        function与函数名之间有一个星号；  
+        内部用yield表达式来定义不同的状态；  
+        generator函数返回的是指针对象(接iterator知识点)，而不会执行函数内部逻辑；  
+        调用next方法函数内部逻辑开始执行，遇到yield表达式停止，返回{value: yield后的表达式结果/undefined, done: boolean}；  
+        再次调用next方法会从上一次停止时得yield处开始，直到最后；  
+        yield语句返回结果通常为undefined，当调用next方法时传参内容会作为启动时yield语句的返回值
+      (3) 语法：  
+
+        ``` JavaScript
+          function* generatorExample(){
+              let result = yield 'hello'; // 状态为'hello'
+              yield 'generator'; // 状态值为generator
+          }
+        ```
+
+    + async函数(源自ES2017/ES8)  
+      (1) 概念：真正意义上解决异步毁掉的问题，同步流程表达异步操作。  
+      (2) 本质：Generator的语法糖。  
+      (3) 语法：  
+
+        ``` JavaScript
+          async function foo(){
+              await 异步操作;
+              await 异步操作;
+          }
+        ```
+
+      (4) 特点：
+        不需要像Generator去调用next方法，遇到await等待，当前的异步操作完成就往下执行；
+        返回的总是Promise对象，可以用then方法进行下一步操作；
+        async取代Generator函数的星号*，await取代Generator的yield；
+        语义上更为明确，使用简单，经临床验证暂时没有任何副作用及不良反应。
