@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <script>
+        /*
+            ES6 Generator函数
+                概念：
+                    1.ES6提供得解决异步编程的方案之一；
+                    2.Generator函数是一个状态机，内部封装了不同状态的数据；
+                    3.用来生成遍历器对象；
+                    4.可暂停函数(惰性求值函数)，yield可暂停，next方法可启动。每次返回的是yield后的表达式结果
+                特点：
+                    1.function与函数名之间有一个星号
+                    2.内部用yield表达式来定义不同的状态
+                        function* generatorExample(){
+                            let result = yield 'hello'; // 状态为'hello'
+                            yield 'generator'; // 状态值为generator
+                        }
+                    3.generator函数返回的是只针对想(接iterator)，而不会执行函数内部逻辑
+                    4.调用next方法函数内部逻辑开始执行，遇到yield表达式停止，返回{value: yield后的表达式结果/undefined, done: boolean}
+                    5.再次调用next方法会从上一次停止时得yield处开始，直到最后
+                    6.yield语句返回结果通常为undefined，当调用next方法时传参内容会作为启动时yield语句的返回值
+                
+        */
+
+        // 小试牛刀
+        function* myGenerator(){
+            console.log("开始执行！");
+            let result = yield 'hello!'; // yield语句默认返回值默认是undefined，但是可以通过next函数传参给yield设置返回值
+            console.log(result);
+            console.log("暂停后，再次执行！");
+            yield 'generator';
+            console.log("遍历完毕...");
+        }
+        let MG = myGenerator(); // 返回的是只针对想
+        console.log(MG.next()); // 执行  {value: "hello", done: false}
+        //console.log(MG.next()); // 再次执行  {value: "generator", done: false}
+        console.log(MG.next("aaaa")); // 再次执行 传参设置yield语句得返回值
+        console.log(MG.next()); // {value: undefined, done: false}
+
+        console.log("--------------");
+
+
+        // 对象得symbol.iterator属性，指向遍历器对象
+        let obj = { username: "kobe", age: 39 };
+        /* for(let i of obj){ // 对象默认没有iterator接口
+            console.log(i);
+        } */ 
+        obj[Symbol.iterator] = function* myTest(){ // 相当于人为部署一个iterator接口
+            yield 1;
+            yield 2;
+            yield 3;
+        }
+        for(let i of obj){
+            console.log(i);
+        }
+
+        console.log("--------------");
+
+        // 案例练习：
+        /*
+            需求：
+            1.发送ajax请求获取新闻内容
+            2.新闻内容获取成功后再次发送请求，获取对应的新闻评论内容
+            3.新闻内容获取失败则不需要再次发送请求
+        */
+        function getNews(url){
+            $.get(url, function(data){
+                // 成功的回调
+                console.log(data);
+                let url = "http://localhost:3000" + data.commentsUrl;
+                SX.next(url); // 第二次请求，保证在成功回调的时候执行
+            });
+        }
+
+        function* sendXml(){
+            let url = yield getNews("http://localhost:3000/news?id=3"); // 获取新闻
+            yield getNews(url); // 获取评论信息
+        }
+
+        // 获取遍历器对象
+        let SX = sendXml();
+        SX.next(); // 第一次请求
+    </script>
+</body>
+</html>
