@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES6 class
+                1.通过class定义类，实现类的继承
+                2.在类中通过constructor定义构造方法
+                3.通过new来创建类的实例
+                4.通过extends来实现类的继承
+                5.通过super来调用父类的构造函数
+                6.重写从父类中继承的一般方法
+        */
+
+        // 定义一个类
+        class Person{
+            // 类的构造方法
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+            // 类的一般方法
+            showName(){
+                console.log(this.name);
+            }
+            showInfo(){
+                console.log(this.name, this.age);
+            }
+        }
+        // 实例化一个Person对象实例
+        let per = new Person("kobe", 39);
+        console.log(per);
+        per.showName();
+        per.showInfo();
+
+        console.log("---------");
+
+        // 定义一个Student类继承自Person类
+        class Student extends Person{
+            constructor(name, age, grade){
+                super(name, age); // 调用父类的构造方法，初始化继承的属性
+
+                // 自己特有的属性需要自己来初始化
+                this.grade = grade;
+            }
+            // 重写从父类继承过来的一般方法
+            showInfo(){
+                console.log(this.name, this.age, this.grade);
+            }
+        }
+        // 实例化一个Student对象实例
+        let stu = new Student("Tom", 19, "高二");
+        console.log(stu);
+        // 子类继承了父类的一般方法
+        stu.showName();
+        stu.showInfo();
+    </script>
+</body>
+</html>
