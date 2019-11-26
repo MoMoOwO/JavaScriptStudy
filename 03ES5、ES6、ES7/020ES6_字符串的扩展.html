@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES6 字符串的扩展
+                1.includes(str)：判断是否包含指定的字符串
+                2.startsWith(str)：判断是否以指定字符串开头
+                3.endsWith(str)：判断是否以指定字符串结尾
+                4.repeat(count)：重复指定次数
+        */
+        let str = "abcdefghijklmnopqrstuvwxyz";
+        console.log(str);
+        console.log(str.includes("def")); // true
+        console.log(str.includes("xxx")); // false
+        console.log("----------");
+
+        console.log(str.startsWith("abc")); // true
+        console.log(str.startsWith("acc")); // false
+        console.log("----------");
+
+        console.log(str.endsWith("xyz")); // true
+        console.log(str.endsWith("zzz")); // false
+        console.log("----------");
+
+        str = "abc";
+        console.log(str);
+        console.log(str.repeat(5)); // abcabcabcabcabc
+    </script>
+</body>
+</html>
