@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES6 深度克隆
+                1. 拷贝数据：
+                    基本数据类型：拷贝后会生成一份新的数据，修改拷贝以后的数据不会影响原数据。
+                    对象/数组：拷贝后不会生成新的数据，而拷贝的是引用，修改拷贝以后的数据会影响原来的数据。
+
+                2.常用的拷贝技术
+                    直接复制给一个变量  浅拷贝
+                    Object.assign()  浅拷贝
+                    arr.concat()：数组浅拷贝   Array.prototype.concat()
+                    arr.slice()：数组浅拷贝
+                    JSON.parse(JSON.stringify(arr/obj))：数组或对象的深拷贝，但不能处理函数数据
+                    浅拷贝包含函数数据的对象/数组，拷贝的是引用，修改拷贝以后的数据会影响原数据
+                    深拷贝包含函数数据的对象/数组，拷贝的时候生成新数据，修改拷贝后的数据不会影响原数据
+        */
+        let str = 'abcd';
+        let str2 = str;
+        console.log(str2); // abcd
+        str2 = ""; // 不会影响原数据
+        console.log(str); // abcd
+        console.log("--------------");
+
+        let bool1 = true;
+        let bool2 = bool1;
+        console.log(bool2); // true
+        bool2 = false; // 不会影响原数据
+        console.log(bool1); // true
+        console.log("--------------");
+
+        let obj = { username: "kobe", age: 39 };
+        let obj1 = obj;
+        console.log(obj1); // { username: "kobe", age: 39 }
+        obj.username = 'wade'; // 会影响原数据
+        console.log(obj); // { username: "wade", age: 39 }
+        console.log("--------------");
+
+        // 拷贝数组/对象时，没有生辰新的数据而是复制了一份引用
+        let arr = [1, 2, { username: "kobe", age: 39 }];
+        let arr2 = arr;
+        arr2[0] = "abcd";
+        console.log(arr, arr2);
+        console.log("--------------");
+
+        let obj2 = { username: "kobe", age: 39 };
+        let obj3 = Object.assign(obj2);
+        obj3.username = "wade";
+        console.log(obj2);
+        console.log("--------------");
+
+        let arr3 = [1, 2, { username: "kobe", age: 39 }];
+        let arr4 = arr3.concat();
+        arr4[1] = 'a';
+        arr4[2].username = 'wade';
+        console.log(arr3);
+        console.log("--------------");
+
+        let arr5 = arr3.slice();
+        arr5[1] = 'cc';
+        arr5[2].username = 'james';
+        console.log(arr3);
+        console.log("--------------");
+
+        let arr6 = JSON.parse(JSON.stringify(arr3));
+        arr6[2] = 12;
+        arr6[2].username = 'pike';
+        console.log(arr3);
+
+    </script>
+</body>
+</html> 
