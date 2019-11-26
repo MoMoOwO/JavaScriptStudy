@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button>测试1</button>
+    <br><br>
+    <button>测试2</button>
+    <br><br>
+    <button>测试3</button>
+    <script>
+        /*
+            ES6 数组的扩展
+                1.Array.from(v)：将伪数组对象或可遍历对象转换为真数组
+                2.Array.of(v1, v2,v3)：将一系列值转换成数组
+                3.arr.find(function(value, index){ return 查询条件; })：找出数组arr中第一个满足条件返回true的元素
+                4.arr.findIndex(function(value, index){ return 查询条件; })：找出数组arr中第一个满足条件返回true的元素的下表
+        */
+        let btns = document.getElementsByTagName("button"); // btns为一个伪数组
+        Array.from(btns).forEach((item, index) => {
+            console.log(item);
+        });
+        console.log("----------");
+
+        let arr = Array.of(1, 2, "abc", false);
+        console.log(arr);
+        console.log("----------");
+
+        let arr2 = [2, 3, 4, 2, 5, 7, 3, 6, 5];
+        let result = arr2.find((item, index) => {
+            return item > 4;
+        });
+        console.log(result);
+        console.log("----------");
+
+        result = arr2.findIndex((item, index) => {
+            return item > 4;
+        })
+        console.log(result);
+
+    </script>
+</body>
+</html>
