@@ -1230,4 +1230,84 @@
       | Object.is(v1, v2) | 判断两个数据是否完全相等 |
       | Object.assign(target, source1, source2,...) | 将源对象的属性赋值到目标对象上 |
       | obj1.__proto__ = obj2; | 直接操作__proto__属性 |
-    + 浅拷贝与深拷贝
+    + 浅拷贝与深拷贝  
+      (1) 拷贝数据：  
+        基本数据类型：拷贝后会生成一份新的数据，修改拷贝以后的数据不会影响原数据。  
+        对象/数组：拷贝后不会生成新的数据，而拷贝的是引用，修改拷贝以后的数据会影响原来的数据。  
+      (2) 常用的拷贝技术：  
+        直接复制给一个变量-浅拷贝  
+        Object.assign()-浅拷贝  
+        arr.concat()-数组浅拷贝  
+        arr.slice()-数组浅拷贝  
+        JSON.parse(JSON.stringify(arr/obj))-数组或对象的深拷贝，但不能处理函数数据
+        浅拷贝包含函数数据的对象/数组，拷贝的是引用，修改拷贝以后的数据会影响原数据
+        深拷贝包含函数数据的对象/数组，拷贝的时候生成新数据，修改拷贝后的数据不会影响原数据  
+      (3) 实现深拷贝  
+        思考：如何实现深度拷贝(克隆)？  
+        当拷贝的数据里面有对象/数组时拷贝对象就会出现浅拷贝，要想实现深拷贝，则拷贝的数据中不能含有对象或数组；想要实现对像/数组的深度拷贝，就可以在遇到对象或数组的时候进一步对它进行遍历，直到遍历到的是基本数据类型，此时再去拷贝就是深度拷贝了。  
+        知识点储备：  
+        如何判断数据类型：arr-->Array，null-->Null...；typeof返回的数据类型：String、Number、Boolean、Undefined、Object、Function，不能满足上述要求；使用Object.prototype.toString.call(obj)可以请确获取是数据类型。  
+        for in 语句实现循环遍历的知识
+
+        ``` JavaScript
+          // 定义一个检测数据类型的功能函数
+          function checkedType(target){
+              return Object.prototype.toString.call(target).slice(8, -1);
+          }
+          // 实现深度克隆 --> 更多针对的是数组、对象
+          function clone(target){
+              // result目标数据，targetType：原数据的数据类型
+              let result, targeType = checkedType(target);
+              if(targeType === 'Object'){
+                  result = {};  // 如果原数组是一个对象，则目标数据也是一个对象
+              }else if(targeType === 'Array'){
+                  result = []; // 如果原数组是一个数组，则目标数据也是一个数组
+              }else{
+                  return target; // 否则就是单一的可以直接拷贝的数据类型，直接返回
+              }
+              // 遍历对象/数组内所有项
+              for(i in target){
+                  // 获取遍历数据结构的每一项
+                  let value = target[i];
+                  // 判断目标结构里的每一项是否为对象或数组
+                  if(checkedType(value) === 'Object' || checkedType(value) === 'Array'){
+                      result[i] = clone(value); // 若子项还是对象或数组，递归克隆子项
+                  }else{
+                      result[i] = value; // 否则直接返回可以拷贝的对象
+                  }
+              }
+              return result; // 返回深度克隆的数据
+          }
+        ```
+
+    + Set容器、Map容器  
+      (1) Set容器：无序且不可重复的多个value的集合体。  
+        | 方法或属性 | 说明 |
+        | :-- | :-- |
+        | Set() | 构造函数 |
+        | Set(array) | 使用构造函数对一个数组内元素进行唯一化 |
+        | add(value) | 往set容器中添加value值 |
+        | delete(value) | 从set容器中给删除value值 |
+        | has(value) | 判断一个set容器中时候含有value值 |
+        | clear() | 清空set容器 |
+        | size | 获取set容器的大小，类似数组的length属性 |
+      (2) Map容器：无序的key不重复的多个key-value的集合体。  
+        | 方法或属性 | 说明 |
+        | :-- | :-- |
+        | Map() | 构造函数 |
+        | Map(array) | 将一个二维数组转换为Map对象实例 |
+        | set(key, value) | 往map容器中添加key-value值 |
+        | get(key) | 获取map容器中key对应的value值 |
+        | delete(key) | 删除map容器中key对应的key-value记录 |
+        | has(key) | 判断一个map容器中是否含有key对应的key-value记录 |
+        | clear() | 清空map容器 |
+        | size | 获取map容器大小 |
+    + for of 循环遍历  
+      (1) 语法：`for(let value of target){}`  
+      (2) for of可以遍历数组、Set、Map、字符串、伪数组。
+
+4. ES7
+    + 指数运算符(幂)：**
+    + Array.prototype.includes(value)：判断数组中是否包含指定的value。
+
+## JS模块化
