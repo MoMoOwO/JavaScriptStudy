@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            ES6 Set、Map容器
+            1.Set容器：无序且不可重复的多个value的集合体
+                Set()：构造函数
+                Set(array)：使用构造函数对一个数组内元素进行唯一化
+                add(value)：往set容器中添加value值
+                delete(value)：从set容器中给删除value值
+                has(value)：判断一个set容器中时候含有value值
+                clear()：清空set容器
+                size：获取set容器的大小，类似数组的length属性
+            2.Map容器：无序的key不重复的多个key-value的集合体，
+                Map()：构造函数
+                Map(array)：将一个二维数组转换为Map对象实例
+                set(key, value)：往map容器中添加key-value值
+                get(key)：获取map容器中key对应的value值
+                delete(key)：删除map容器中key对应的key-value记录
+                has(key)：判断一个map容器中是否含有key对应的key-value记录
+                clear()：清空map容器
+                size：获取map容器大小
+        */
+        // Set(array)：使用构造函数对一个数组内元素进行唯一化
+        let set = new Set([1, 2, 4, 2, 3, 3, 5]);
+        console.log(set);
+        // size：类似数组的length属性，set容器的大小
+        console.log(set.size);
+        // add(value)：往set容器中添加value值
+        set.add(6);
+        console.log(set, set.size);
+        // delete(value)：从set容器中给删除value值
+        set.delete(6);
+        console.log(set);
+        // has(value)：判断一个set容器中时候含有value值
+        console.log(set.has(1), set.has(8));
+        // clear()：清空set容器
+        set.clear();
+        console.log(set);
+        console.log("-------------");
+
+        // Map(array)：将一个二维数组转换为Map对象实例
+        let map = new Map([['username', 'kobe', 25], [39, 'age']]);
+        console.log(Map);
+        // size：获取map容器大小
+        console.log(map.size);
+        // set(key, value)：往map容器中添加key-value值
+        map.set('gender', '男');
+        console.log(map);
+        // get(key)：获取map容器中key对应的value值
+        console.log(map.get('username'));
+        // delete(key)：删除map容器中key对应的key-value记录
+        map.delete(39);
+        console.log(map);
+        // has(key)：判断一个map容器中是否含有key对应的key-value记录
+        console.log(map.has('username'), map.has(39));
+        // clear()：清空map容器
+        map.clear();
+        console.log(map);
+    </script>
+</body>
+</html>
