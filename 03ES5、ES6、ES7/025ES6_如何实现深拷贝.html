@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            思考：如何实现深度拷贝(克隆)
+                当拷贝的数据里面有对象/数组时拷贝对象就会出现浅拷贝
+                要想实现深拷贝，则拷贝的数据中不能含有对象或数组
+                想要实现对像/数组的深度拷贝，就可以在遇到对象或数组的时候进一步对它进行遍历，
+                直到遍历到的是基本数据类型，此时再去拷贝就是深度拷贝了。
+
+            知识点储备：
+                如何判断数据类型：arr --> Array，null --> Null
+                    typeof返回的数据类型：String、Number、Boolean、Undefined、Object、Function 不能满足上述要求
+                    Object.prototype.toString.call(obj)
+
+                for in 循环
+        */
+        // Object.prototype.toString().call(obj)
+        let result = null;
+        console.log(Object.prototype.toString.call(result));
+        console.log(Object.prototype.toString.call(result).slice(8, -1));
+        console.log("------------");
+
+        // for in 枚举
+        let obj = { username: "kobe", age: 39};
+        // 枚举对象的时候得到的是对象的属性名
+        for(let i in obj){
+            console.log(i);
+        }
+        let arr = [1, 'abc', true];
+        // 枚举数组的时候得到的是数组的索引
+        for(let i in arr){
+            console.log(i);
+        }
+        console.log("------------");
+
+        // 定义一个检测数据类型的功能函数
+        function checkedType(target){
+            return Object.prototype.toString.call(target).slice(8, -1);
+        }
+        // 实现深度克隆 --> 更多针对的是数组、对象
+        function clone(target){
+            // result目标数据，targetType：原数据的数据类型
+            let result, targeType = checkedType(target);
+            if(targeType === 'Object'){
+                result = {};  // 如果原数组是一个对象，则目标数据也是一个对象
+            }else if(targeType === 'Array'){
+                result = []; // 如果原数组是一个数组，则目标数据也是一个数组
+            }else{
+                return target; // 否则就是单一的可以直接拷贝的数据类型，直接返回
+            }
+
+            // 遍历对象/数组内所有项
+            for(i in target){
+                // 获取遍历数据结构的每一项
+                let value = target[i];
+                // 判断目标结构里的每一项是否为对象或数组
+                if(checkedType(value) === 'Object' || checkedType(value) === 'Array'){
+                    result[i] = clone(value); // 若子项还是对象或数组，递归克隆子项
+                }else{
+                    result[i] = value; // 否则直接返回可以拷贝的对象
+                }
+            }
+
+            return result; // 返回深度克隆的数据
+        }
+
+        let arr1 = [1, 'abc', { username: 'kobe', age: 39 }, true];
+        let arr2 = clone(arr1);
+        console.log(arr2);
+        arr2[2].username = 'wade';
+        console.log(arr1, arr2);
+
+        let obj1 = { username: 'kobe', age: 39 };
+        let obj2 = clone(obj1);
+        console.log(obj2);
+        obj2.username = 'wade';
+        console.log(obj1, obj2);
+    </script>
+</body>
+</html>
