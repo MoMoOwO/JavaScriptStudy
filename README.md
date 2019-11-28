@@ -1343,8 +1343,10 @@
       (3) 实现：  
         服务器端实现：Node.js；浏览器端实现：Browserify，也成为CommonJS的浏览器端的打包工具。
 
-    + AMD
-    + CMD
+    + AMD  
+
+    + CMD  
+
     + ES6
 
 3. 扩展阅读
