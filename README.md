@@ -1371,40 +1371,40 @@
       (3) 实现：Require.js
 
     + CMD  
-    (1) 说明：专门用于浏览器端的，模块的加载是异步的；模块使用时才回加载好。  
-    (2) 基本语法：  
-      定义暴漏模块：  
+      (1) 说明：专门用于浏览器端的，模块的加载是异步的；模块使用时才回加载好。  
+      (2) 基本语法：  
+        定义暴漏模块：  
 
-      ``` JavaScript
-        // 定义没有以来的模块
-        define(function(require, exports, module) {
-          exports.xxx = value;
-          module.exports = value;
-        });
-
-        // 定义有依赖项的模块
-        define(function(require, exports, module) {
-          // 引入依赖模块(同步)
-          var module2 = require('./module2');
-          // 引入依赖模块(异步)
-          require.async('./module3', function(m3) {
-
+        ``` JavaScript
+          // 定义没有以来的模块
+          define(function(require, exports, module) {
+            exports.xxx = value;
+            module.exports = value;
           });
-          // 暴漏模块
-          exports.xxx = value;
-        });
-      ```
 
-      引入模块：  
+          // 定义有依赖项的模块
+          define(function(require, exports, module) {
+            // 引入依赖模块(同步)
+            var module2 = require('./module2');
+            // 引入依赖模块(异步)
+            require.async('./module3', function(m3) {
 
-      ``` JavaScript
-        define(function(require) {
-          var m1 = require('./module1');
-          var m2 = require('./module2');
-          m1.show();
-          m2.show();
-        });
-      ```
+            });
+            // 暴漏模块
+            exports.xxx = value;
+          });
+        ```
+
+        引入模块：  
+
+        ``` JavaScript
+          define(function(require) {
+            var m1 = require('./module1');
+            var m2 = require('./module2');
+            m1.show();
+            m2.show();
+          });
+        ```
 
       (3) 实现：Sea.js
 
