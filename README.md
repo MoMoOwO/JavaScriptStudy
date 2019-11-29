@@ -1344,9 +1344,71 @@
         服务器端实现：Node.js；浏览器端实现：Browserify，也成为CommonJS的浏览器端的打包工具。
 
     + AMD  
+      (1) 说明：专门用于浏览器端的，模块的加载是异步的。  
+      (2) 基本语法：  
+        定义暴漏模块：  
+
+        ``` JavaScript
+          // 定义没有依赖的模块
+          define(function() {
+            return 模块;
+          });
+
+          // 定义有依赖的模块
+          define(['module1', 'module2'], function(m1, m2) {
+            return 模块;
+          });
+        ```
+
+        引入模块：
+
+        ``` JavaScript
+          require(['module1', 'module2'], function(m1, m2) {  // require关键字也可以使用requirejs
+            使用模块m1、m2;
+          });
+        ```
+
+      (3) 实现：Require.js
 
     + CMD  
+    (1) 说明：专门用于浏览器端的，模块的加载是异步的；模块使用时才回加载好。  
+    (2) 基本语法：  
+      定义暴漏模块：  
 
-    + ES6
+      ``` JavaScript
+        // 定义没有以来的模块
+        define(function(require, exports, module) {
+          exports.xxx = value;
+          module.exports = value;
+        });
 
-3. 扩展阅读
+        // 定义有依赖项的模块
+        define(function(require, exports, module) {
+          // 引入依赖模块(同步)
+          var module2 = require('./module2');
+          // 引入依赖模块(异步)
+          require.async('./module3', function(m3) {
+
+          });
+          // 暴漏模块
+          exports.xxx = value;
+        });
+      ```
+
+      引入模块：  
+
+      ``` JavaScript
+        define(function(require) {
+          var m1 = require('./module1');
+          var m2 = require('./module2');
+          m1.show();
+          m2.show();
+        });
+      ```
+
+    (3) 实现：Sea.js
+
+    + ES6  
+      (1) 说明：依赖模块需要编译大包处理。  
+      (2) 导出模块：export；导入模块：import。  
+      (3) 实现：使用Babel将ES6编译为ES5代码，使用Browserify编译打包js。
