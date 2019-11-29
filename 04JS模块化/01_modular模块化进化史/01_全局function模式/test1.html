@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="module1.js"></script>
+    <script>
+        foo();
+        bar();
+        msg = "哈哈！";  // 全局function模式，污染了全局变量名，容易引起命名冲突
+        foo();
+        bar();
+    </script>
+</body>
+</html>
