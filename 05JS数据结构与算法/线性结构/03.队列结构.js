@@ -62,3 +62,5 @@ console.log(queue.front());
 console.log(queue.isEmpty());
 
 console.log(queue.size());
+
+module.exports = Queue;
