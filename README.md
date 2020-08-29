@@ -1556,7 +1556,7 @@
       | `insert(position, element)` | 向列表的特定位置插入一个新的项                                                                       |
       | `get(position)`             | 获取对应位置的元素                                                                                   |
       | `indexOf(element)`          | 返回元素在链表中的索引，如果链表中那个没有该元素则返回 -1                                            |
-      | `update(position)`          | 修改某个位置的元素                                                                                   |
+      | `update(position, element)` | 修改某个位置的元素                                                                                   |
       | `removeAt(position)`        | 从链表的特定位置移除一项                                                                             |
       | `remove(position)`          | 从链表中移除一项                                                                                     |
       | `isEmpty()`                 | 如果链表中不包含任何元素返回 `true`，否则返回 `false`                                                |
