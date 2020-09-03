@@ -116,6 +116,149 @@ function DoublyLinkedList() {
     this.length += 1;
     return true;
   }
+
+  // 4. get 方法 获取对应位置节点
+  DoublyLinkedList.prototype.get = function (position) {
+    // 4.1 越界判断
+    if (position < 0 || position >= this.length) return null;
+
+    // 2. 获取元素
+    let current = null;
+    let index = 0;
+
+    if (position < this.length / 2) {
+      current = this.head;
+      while (index++ < position) {
+        current = current.next;
+      }
+    } else {
+      current = this.tail;
+      while (index++ < this.length - position - 1) {
+        current = current.prev;
+      }
+    }
+
+    return current.data;
+  }
+
+  // 5. indexOf 方法，获取对应元素在链表中的位置
+  DoublyLinkedList.prototype.indexOf = function (data) {
+    let index = 0;
+    let current = this.head;
+
+    while (current) {
+      if (current.data !== data) {
+        current = current.next;
+        index += 1;
+      } else {
+        return index;
+      }
+    }
+
+    return -1;
+  }
+
+  // 6. update 方法，更新对应位置的列表项
+  DoublyLinkedList.prototype.update = function (position, newData) {
+    // 6.1 越界判断
+    if (position < 0 || position >= this.length) return false;
+
+    // 6.2. 群钊节点
+    let current = null;
+    let index = 0;
+
+    if (position < this.length / 2) {
+      current = this.head;
+      while (index++ < position) {
+        current = current.next;
+      }
+    } else {
+      current = this.tail;
+      while (index++ < this.length - position - 1) {
+        current = current.prev;
+      }
+    }
+
+    current.data = newData;
+
+    return true;
+  }
+
+  // 7. removeAt 删除对应位置
+  DoublyLinkedList.prototype.removeAt = function (position) {
+    // 7.1 越界判断
+    if (position < 0 || position >= this.length) return null;
+
+    // 7.2 寻找元素并删除
+    let removedData = null;
+    if (this.length === 1) { // 长度为 1 ，删除仅有的一个元素
+      removedData = this.head.data;
+      this.head = null;
+      this.tail = null;
+    } else {
+      if (position === 0) { // 删除第一个节点
+        removedData = this.head.data;
+        this.head.next.prev = null;
+        this.head = this.head.next;
+      } else if (position === this.length - 1) { // 删除最后一个节点
+        removedData = this.tail.data;
+        this.tail.prev.next = null;
+        this.tail = this.tail.prev;
+      } else { // 删除中间任意节点
+        let index = 0;
+        let current = null;
+
+        if (position < this.length / 2) {
+          current = this.head;
+          while (index++ < position) {
+            current = current.next;
+          }
+        } else {
+          current = this.tail;
+          while (index++ < this.length - position - 1) {
+            current = current.prev;
+          }
+        }
+
+        removedData = current.data;
+        current.prev.next = current.next;
+        current.next.prev = current.prev;
+      }
+    }
+
+    // 7.3 长度 -1
+    this.length -= 1;
+    return removedData;
+  }
+
+  // 8. remove 删除对应节点
+  DoublyLinkedList.prototype.remove = function (data) {
+    // 8.1 获取位置
+    let index = this.indexOf(data);
+
+    // 8.2 删除节点
+    this.removeAt(index);
+  }
+
+  // 9. isEmpty 方法
+  DoublyLinkedList.prototype.isEmpty = function () {
+    return this.length === 0;
+  }
+
+  // 10. size
+  DoublyLinkedList.prototype.size = function () {
+    return this.length;
+  }
+
+  // getHead
+  DoublyLinkedList.prototype.getHead = function () {
+    return this.head.data;
+  }
+
+  // getTail
+  DoublyLinkedList.prototype.getTail = function () {
+    return this.tail.data;
+  }
 }
 
 // 测试代码
@@ -126,11 +269,41 @@ list.append('cba');
 list.append('cab');
 list.append('bac');
 list.append('bca');
+console.log('------');
 
 console.log(list.toString());
 console.log(list.forwardString());
+console.log('------');
 
 list.insert(2, 'ccc');
 console.log(list.toString());;
 list.insert(4, 'bbb');
 console.log(list.toString());
+console.log('------');
+
+console.log(list.get(0));
+console.log(list.get(2));
+console.log(list.get(5));
+console.log('------');
+
+console.log(list.indexOf('ccc'));
+console.log(list.indexOf('bca'));
+console.log('------');
+
+console.log(list.update(-2, '222'));
+console.log(list.update(2, 'bbb'));
+console.log(list.toString());
+console.log('------');
+
+console.log(list.removeAt(2));
+console.log(list.toString());
+console.log('------');
+
+list.remove('bbb');
+console.log(list.toString());
+console.log('------');
+
+console.log(list.isEmpty());
+console.log(list.size());
+console.log(list.getHead());
+console.log(list.getTail());
