@@ -40,6 +40,30 @@ function BinarySearchTree() {
       }
     }
   }
+
+  // 树结构的遍历
+  // 先序遍历
+  BinarySearchTree.prototype.preOrderTraversal = function (handler) {
+    if (this.root == null) {
+      console.log('空树');
+    } else {
+      this.preOrderTraversalNode(this.root, handler);
+    }
+  }
+  // 递归先序遍历
+  BinarySearchTree.prototype.preOrderTraversalNode = function (node, handler) {
+    // 非空则遍历
+    if (node != null) {
+      // 1. 处理当前节点数值
+      handler(node.value);
+
+      // 2. 遍历左子树
+      this.preOrderTraversalNode(node.left, handler);
+
+      // 3. 遍历右子树
+      this.preOrderTraversalNode(node.right, handler);
+    }
+  }
 }
 
 // 测试
@@ -59,3 +83,8 @@ bst.insert(14);
 bst.insert(20);
 bst.insert(18);
 bst.insert(25);
+bst.insert(6);
+
+let potStr = '';
+bst.preOrderTraversal(v => potStr += v + ' ');
+console.log(potStr);
