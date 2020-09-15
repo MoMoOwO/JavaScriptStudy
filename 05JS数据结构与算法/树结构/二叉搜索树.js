@@ -50,9 +50,10 @@ function BinarySearchTree() {
       this.preOrderTraversalNode(this.root, handler);
     }
   }
-  // 递归先序遍历
+
+  // 先序遍历节点规则
   BinarySearchTree.prototype.preOrderTraversalNode = function (node, handler) {
-    // 非空则遍历
+    // 非空则按照先序遍历规则遍历该节点和它的孩子节点
     if (node != null) {
       // 1. 处理当前节点数值
       handler(node.value);
@@ -62,6 +63,50 @@ function BinarySearchTree() {
 
       // 3. 遍历右子树
       this.preOrderTraversalNode(node.right, handler);
+    }
+  }
+
+  // 中序遍历
+  BinarySearchTree.prototype.midOrderTraversal = function (handler) {
+    if (this.root == null) {
+      console.log('空树');
+    } else {
+      this.midOrderTraversalNode(this.root, handler);
+    }
+  }
+
+  // 中序遍历节点规则
+  BinarySearchTree.prototype.midOrderTraversalNode = function (node, handler) {
+    // 非空则按照中序遍历规则遍历该节点和该节点的孩子节点
+    if (node != null) {
+      // 遍历该节点的左子树
+      this.midOrderTraversalNode(node.left, handler);
+      // 遍历该节点
+      handler(node.value);
+      // 遍历该节点的右子树
+      this.midOrderTraversalNode(node.right, handler);
+    }
+  }
+
+  // 后序遍历
+  BinarySearchTree.prototype.postOrderTraversal = function (handler) {
+    if (this.root == null) {
+      console.log('空树');
+    } else {
+      this.postOrderTraversalNode(this.root, handler);
+    }
+  }
+
+  // 后序遍历节点规则
+  BinarySearchTree.prototype.postOrderTraversalNode = function (node, handler) {
+    // 节点非空则按照后序遍历规则遍历该节点与该节点的孩子节点
+    if (node != null) {
+      // 后序遍历节点的左子树
+      this.postOrderTraversalNode(node.left, handler);
+      // 后序遍历节点的右子树
+      this.postOrderTraversalNode(node.right, handler);
+      // 遍历该节点
+      handler(node.value);
     }
   }
 }
@@ -88,3 +133,11 @@ bst.insert(6);
 let potStr = '';
 bst.preOrderTraversal(v => potStr += v + ' ');
 console.log(potStr);
+
+let motStr = '';
+bst.midOrderTraversal(v => motStr += v + ' ');
+console.log(motStr);
+
+let postStr = '';
+bst.postOrderTraversal(v => postStr += v + ' ');
+console.log(postStr);
