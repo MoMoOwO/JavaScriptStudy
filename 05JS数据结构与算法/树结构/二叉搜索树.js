@@ -109,6 +109,44 @@ function BinarySearchTree() {
       handler(node.value);
     }
   }
+
+  // 获取最大值
+  BinarySearchTree.prototype.max = function () {
+    let node = this.root;
+    let value = node.value;
+    while (node.right != null) {
+      node = node.right;
+      value = node.value;
+    }
+    return value;
+  }
+
+  // 获取最小值
+  BinarySearchTree.prototype.min = function () {
+    let node = this.root;
+    let value = node.value;
+    while (node.left != null) {
+      node = node.left;
+      value = node.value;
+    }
+    return value;
+  }
+
+  // 查找特定的 value 值
+  BinarySearchTree.prototype.search = function (value) {
+    let node = this.root;
+    while (node != null) {
+      if (value < node.value) { // 要查找的节点比当前节点大，则往左子树上去查找
+        node = node.left;
+      } else if (value > node.value) { // 要查找的节点比当前节点小，则往右子树上去查找
+        node = node.right;
+      } else {
+        // 否则则查找到了（相等）
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 // 测试
@@ -141,3 +179,10 @@ console.log(motStr);
 let postStr = '';
 bst.postOrderTraversal(v => postStr += v + ' ');
 console.log(postStr);
+
+console.log(bst.max());
+console.log(bst.min());
+
+console.log(bst.search(25));
+console.log(bst.search(24));
+console.log(bst.search(23));
