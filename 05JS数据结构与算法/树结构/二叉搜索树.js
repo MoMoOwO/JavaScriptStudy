@@ -147,6 +147,65 @@ function BinarySearchTree() {
     }
     return false;
   }
+
+  // 二叉搜索树的删除操作
+  BinarySearchTree.prototype.remove = function (value) {
+    // 1. 寻找要杀你出的节点
+    // 1.1 定义变量，保存一些信息
+    let current = this.root;
+    let parent = null;
+    let isLeftChild = true;
+
+    // 1.2 开始寻找要删除的系欸但
+    while (current.value != value) {
+      parent = current;
+      if (value < current.value) { // 查找左子树
+        isLeftChild = true;
+        current = current.left;
+      } else { // 查找右子树
+        isLeftChild = false;
+        current = current.right;
+      }
+
+      // 某种情况：已经找到了最后的节点，依然没有找到对应的 value
+      if (current == null) return false;
+    }
+
+    // 2. 根据对应的情况删除节点
+    // 2.1 删除的节点没有子节点，即叶子节点
+    if (current.left == null && current.right == null) {
+      if (current == this.root) {
+        this.root = null;
+      } else if (isLeftChild) {
+        parent.left = null;
+      } else {
+        parent.right = null;
+      }
+    }
+
+    // 2.2 删除的节点有一个子节点
+    else if (current.left == null) { // 只有右子树
+      if (current == this.root) {
+        this.root = current.left;
+      } else if (isLeftChild) {
+        parent.left = current.right;
+      } else {
+        parent.right = current.right;
+      }
+    } else if (current.right == null) { // 只有左子树
+      if (current == this.root) {
+        this.root = current.right;
+      } else if (isLeftChild) {
+        parent.left = current.left;
+      } else {
+        parent.right = current.left;
+      }
+    }
+
+    // 2.3 删除的节点有两个子节点
+  }
+
+  // 查找前驱或后继节点
 }
 
 // 测试
