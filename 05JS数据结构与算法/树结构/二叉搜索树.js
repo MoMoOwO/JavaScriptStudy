@@ -203,9 +203,47 @@ function BinarySearchTree() {
     }
 
     // 2.3 删除的节点有两个子节点
+    else {
+      // 1. 获取后继节点
+      let successor = this.getSuccessor(current);
+
+      // 2. 判断是否是根节点
+      if (this.root == null) {
+        rhis.root = successor;
+      } else if (isLeftChild) {
+        parent.left = successor;
+      } else {
+        parent.right = successor;
+      }
+
+      successor.left = current.left;
+    }
+
+    return true;
   }
 
-  // 查找前驱或后继节点
+  // 查找后继节点
+  BinarySearchTree.prototype.getSuccessor = function (delNode) {
+    // 1. 定义变量
+    let successorParent = delNode;
+    let successor = delNode;
+    let current = delNode.right;
+
+    // 2. 寻找节点
+    while (current != null) {
+      successorParent = successor;
+      successor = current;
+      current = current.left;
+    }
+
+    // 3. 如果后继结点不是删除的节点的右节点
+    if (successor != delNode.right) {
+      successorParent.left = successor.right;
+      successor.right = delNode.right;
+    }
+
+    return successor;
+  }
 }
 
 // 测试
@@ -245,3 +283,15 @@ console.log(bst.min());
 console.log(bst.search(25));
 console.log(bst.search(24));
 console.log(bst.search(23));
+
+if (bst.remove(8)) {
+  motStr = '';
+  bst.midOrderTraversal(v => motStr += v + ' ');
+  console.log(motStr);
+}
+
+if (bst.remove(7)) {
+  motStr = '';
+  bst.midOrderTraversal(v => motStr += v + ' ');
+  console.log(motStr);
+}
