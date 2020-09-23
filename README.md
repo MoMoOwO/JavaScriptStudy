@@ -1,4 +1,4 @@
-# JavaScript学习记录
+# JavaScript 学习记录
 
 ## 简介
 
@@ -16,62 +16,62 @@
 
 5. 代码按顺序学习，笔记记录也是按顺序，文件名称与笔记标题基本能完成对应。
 
-## JavaScript核心技术
+## JavaScript 核心技术
 
-1. [JS三种常用输出](https://www.w3school.com.cn/js/js_output.asp)
-    + 警告输出alert();
-    + 网页页面中输出document.write();
-    + 浏览器控制台输出console.log();
+1. [JS 三种常用输出](https://www.w3school.com.cn/js/js_output.asp)
+    + 警告输出 `alert();`
+    + 网页页面中输出 `document.write();`
+    + 浏览器控制台输出 `console.log();`
 
-2. JS代码编写位置
+2. JS 代码编写位置
     + 标签的事件响应属性中
-    + 超链接标签的href属性中
-    + script标签中
-    + 外部js文件，需要在页面中另外引入
+    + 超链接标签的 href 属性中
+    + script 标签中
+    + 外部 js 文件，需要在页面中另外引入
 
 3. [基本语法](https://www.w3school.com.cn/js/js_syntax.asp)
-    + [注释](https://www.w3school.com.cn/js/js_comments.asp)：多行注释`/* --- */`；单行注释：`//`
-    + JS中严格区分大小写
-    + JS中每一条语句以分号结尾，如果不写分号，浏览器会自动添加，但是消耗一些系统资源，也可能会加错分号
-    + JS中会忽略多个空格和换行，所以我们可以利用空格和换行来格式化代码
+    + [注释](https://www.w3school.com.cn/js/js_comments.asp)：多行注释 `/* --- */`；单行注释：`//`
+    + JS 中严格区分大小写
+    + JS 中每一条语句以分号结尾，如果不写分号，浏览器会自动添加，但是消耗一些系统资源，也可能会加错分号
+    + JS 中会忽略多个空格和换行，所以我们可以利用空格和换行来格式化代码
 
 4. 字面量与[变量](https://www.w3school.com.cn/js/js_variables.asp)
-    + 字面量都是一些不可改变的值，比如1，2，3，4，5；字面量都是可以直接使用的，但是我们一般都不会直接使用字面量
+    + 字面量都是一些不可改变的值，比如 1，2，3，4，5；字面量都是可以直接使用的，但是我们一般都不会直接使用字面量
     + 变量可以用来保存字面量，而且变量的值是可以任意改变的；变量更加方便我们使用，所以在开发中都是通过变量去保存字面量而不会直接使用字面量。
 
 5. 标识符
-    + 在JS中所有可以由我们自主命名的都可以称为是标识符，如变量名、函数名、属性名
+    + 在 JS 中所有可以由我们自主命名的都可以称为是标识符，如变量名、函数名、属性名
     + 命名规则：标识符中可以含有字母、数字、_、$；标识符不能以数字开头；标识符不能是ES中的关键字或保留字，[JS中保留字与关键字](https://www.jianshu.com/p/65134425040e)
     + 命名规范：标识符一般都采用驼峰命名法，首字母小写，之后每个单词首字母大写，其余字母小写。
-    + JS底层保存标识符时实际上是采用Unicode编码，所以理论上，所有的utf-8中含有的内容都可以作为标识符，甚至中文，但是不要使用...
+    + JS 底层保存标识符时实际上是采用 Unicode 编码，所以理论上，所有的 utf-8 中含有的内容都可以作为标识符，甚至中文，但是不要使用...
 
 6. [数据类型](https://www.w3school.com.cn/js/js_datatypes.asp)
     + 数据类型指的就是字面量类型
-    + 在JS中一共由六种数据类型：String字符串，Number数值，Boolean布尔值，Null空值，Undefined未定义，Object对象
-    其中String、Number、Boolean、Null、Undefined属于基本数据类型，而Object属于引用类型。
-    + 运算符typeof来检查一个变量的类型： `typeof a`;
-    + String字符串：
-      (1) 在JS中使用字符串需要使用引号引起来，使用双引号单引号都可以，但是不要混着用，同种类型的引号不能嵌套使用；
-      (2) 如果在字符串中需要输出引号等一些特殊符号，可以使用转义字符`\`，`\"`表示", `\'`表示'，`\n`表示换行，`\t`表示制表符，`双\\`表示\，打印斜杠的时候也需要转义。
-    + Number数值型：
-      (1) 在JS中所有的数值都是Number类型，包括整数和浮点数(小数)；
-      (2) JS中可以表示的数字的最大值：Number.MAX_VALUE 1.7976931348623157e+308，如果使用Number表示的数据超过了最大值，则会返回Infinity表示正无穷；Number.MIN_VALUE大于0的最小值；
-      (3) NaN是一个特殊的数值，表示Not a Number；在JS中整数运算基本可以保证精确，但是进行浮点数计算可能得到一个不精确的结果。
-    + Boolean布尔类型：只有两个值：true(真)、false(假)，用于逻辑判断。
-    + Null与Undefined：
-      (1) Null类型的值只有一个，就是null，Null这个值专门用来表示一个为空的对象，null是一个对象，表示一个空对象。
-      (2) Undefined类型的值只有一个，就是undefined，当声明一个变量，但并不给空对象赋值就使用是它的值就是undefined。
+    + 在 JS 中一共由六种数据类型：`String` 字符串，`Number` 数值，`Boolean` 布尔值，`Null` 空值，`Undefined` 未定义，`Object` 对象
+    其中 `String`、`Number`、`Boolean`、`Null`、`Undefined` 属于基本数据类型，而 `Object` 属于引用类型。
+    + 运算符 `typeof` 来检查一个变量的类型： `typeof a`;
+    + `String` 字符串：
+      (1) 在 JS 中使用字符串需要使用引号引起来，使用双引号单引号都可以，但是不要混着用，同种类型的引号不能嵌套使用；
+      (2) 如果在字符串中需要输出引号等一些特殊符号，可以使用转义字符 `\`，`\"` 表示 `"`, `\'` 表示 `'`，`\n` 表示换行，`\t` 表示制表符，`\\` 表示 `\`，打印斜杠的时候也需要转义。
+    + `Number` 数值型：
+      (1) 在 JS 中所有的数值都是 `Number` 类型，包括整数和浮点数(小数)；
+      (2) JS 中可以表示的数字的最大值：`Number.MAX_VALUE 1.7976931348623157e+308`，如果使用 Number 表示的数据超过了最大值，则会返回 `Infinity` 表示正无穷；`Number.MIN_VALUE` 大于 0 的最小值；
+      (3) `NaN` 是一个特殊的数值，表示 Not a Number；在 JS 中整数运算基本可以保证精确，但是进行浮点数计算可能得到一个不精确的结果。
+    + `Boolean` 布尔类型：只有两个值：`true` (真)、`false` (假)，用于逻辑判断。
+    + `Null` 与 `Undefined`：
+      (1) Null 类型的值只有一个，就是 `null`，Null 这个值专门用来表示一个为空的对象，`null` 是一个对象，表示一个空对象。
+      (2) Undefined 类型的值只有一个，就是 `undefined`，当声明一个变量，但并不给空对象赋值就使用时它的值就是 `undefined`。
 
-7. 强制[类型转换](https://www.w3school.com.cn/js/js_type_conversion.asp)，将其他数据类型转换为String、Number、Boolean类型。
-    + 将其他数据类型转换为String：
-      (1) 调用被转换数据类型的toString()方法，null与undefined没有toString()方法，如果调用则报错；
-      (2) 调用String()函数，并将被转换的数据作为参数传入，对于Number和Boolean实际上就是调用toString()方法，但是对于Null和undefined就不会调用toSring()，它会将null直接转换为"null"，将undefined直接转换为"undefined"。
-      (3) 使用`+''`的当时，即运算时强制转换类型，该方法可以转换Null和Undefined类型。
-    + 将其他数据类型转换为Number：
-      (1) 使用Number()函数，字符串->数值：将要转换的数据作为参数传入，如果是纯数字字符串则直接转换为数字，只要字符串中含有非数字就转为NaN，如果字符串是空串或者全是空格的字符串则转换为0; 布尔值->数值：true:1,false:0；Null->数字：0；Undefined->数值：NaN；
-      (2) parseInt()将字符串解析为整数、PaseFloat()将字符串解析为浮点数，此方法专门用于应对字符串转数值，如果对非String类型使用parseInt()或parseFloat()，它会先将其转换为String然后再操作；可以间接使用parseInt()来对小数进行取整。
-      (3) 使用`+`来进行转换，效果跟Number()函数一样。
-    + 将其他的数据类型转换为Boolean：使用Boolean()函数；数值型转布尔型，除了0和NaN是false，其余的都是true；字符串转布尔型，只有空串''是false，其余都是true；null和undefined转为布尔值，都转换为false；对象类型转Boolean也会转换为true。
+7. 强制[类型转换](https://www.w3school.com.cn/js/js_type_conversion.asp)，将其他数据类型转换为 `String`、`Number`、`Boolean` 类型。
+    + 将其他数据类型转换为 String：
+      (1) 调用被转换数据类型的 `toString()` 方法，`null` 与 `undefined` 没有 `toString()` 方法，如果调用则报错；
+      (2) 调用 `String()` 函数，并将被转换的数据作为参数传入，对于 Number 和 Boolean 实际上就是调用 `toString()` 方法，但是对于 Null 和 Undefined 就不会调用 toSring()，它会将 `null` 直接转换为`"null"`，将 `ndefined` 直接转换为`"undefined"`。
+      (3) 使用 `+''` 的当时，即运算时强制转换类型，该方法可以转换 Null 和 Undefined 类型。
+    + 将其他数据类型转换为 Number：
+      (1) 使用 `Number()` 函数，字符串->数值：将要转换的数据作为参数传入，如果是纯数字字符串则直接转换为数字，只要字符串中含有非数字就转为 `NaN`，如果字符串是空串或者全是空格的字符串则转换为 `0`; 布尔值->数值：`true`：1，`false`：0；Null->数字：0；Undefined->数值：`NaN`；
+      (2) `parseInt()` 将字符串解析为整数、`paseFloat()` 将字符串解析为浮点数，此方法专门用于应对字符串转数值，如果对非String 类型使用 `parseInt()` 或 `parseFloat()`，它会先将其转换为 String 然后再操作；可以间接使用 `parseInt()` 来对小数进行取整。
+      (3) 使用 `+` 来进行转换，效果跟 Number() 函数一样。
+    + 将其他的数据类型转换为 Boolean：使用 `Boolean()` 函数；数值型转布尔型，除了 `0` 和 `NaN` 是 `false`，其余的都是 `true`；字符串转布尔型，只有空串 `''` 是 `false`，其余都是 `true`；`null` 和 `undefined` 转为布尔值，都转换为 `false`；对象类型转 Boolean 也会转换为 `true`。
 
 8. 其他进制数字
     + 在JS中，如果需要表示十六进制的数字，则需要以`0x`开头；如果需要表示八进制的数字，则需要以`0o`开头；如果要表示二进制数字，则需要以`0b`开头，但不是所有的浏览器都支持。
