@@ -1,10 +1,11 @@
-const module = require('./dict');
+const dict = require('./dict');
+const queue = require('./queue');
 
 // 图结构的封装
 function Graph() {
   // 属性：顶点（数组）/边（字典）
   this.vertexes = []; // 顶点
-  this.edges = new module.Dictionary(); // 边
+  this.edges = new dict.Dictionary(); // 边
 
   // 方法
   // 添加顶点
@@ -38,6 +39,81 @@ function Graph() {
 
     return resultString;
   }
+
+  // 初始化状态颜色
+  Graph.prototype.initializeColor = function () {
+    let colors = {};
+    for (let vertex of this.vertexes) {
+      colors[vertex] = 'white';
+    }
+    return colors;
+  }
+
+  // 广度优先遍历
+  Graph.prototype.bfs = function (initV, handler) {
+    // 1. 初始化颜色
+    let colors = this.initializeColor();
+
+    // 2. 创建队列
+    let q = new queue.Queue();
+
+    // 3. 将定点加入到队列中
+    q.enqueue(initV);
+
+    // 4. 循环从队列中取出元素
+    while (!q.isEmpty()) {
+      // 4.1 从队列中取出一个元素
+      let v = q.dequeue();
+
+      // 4.2 获取和定点相连的另外顶点
+      let vList = this.edges.get(v);
+
+      // 4.3 将 v 的颜色设置为灰色
+      colors[v] = 'gray';
+
+      // 4.4 遍历所有的顶点，并且加入到队列中
+      for (let vertex of vList) {
+        if (colors[vertex] === 'white') {
+          colors[vertex] = 'gray';
+          q.enqueue(vertex);
+        }
+      }
+
+      // 4.5 访问节点
+      handler(v);
+
+      // 4.6 将点点设置为黑色
+      colors[v] = 'black';
+    }
+  }
+
+  Graph.prototype.dfs = function (initV, handler) {
+    // 1. 初始化颜色
+    let colors = this.initializeColor();
+
+    // 2. 从某个顶点开始一次递归访问
+    this.dfsVisit(initV, colors, handler);
+  }
+
+  // 递归深度优先访问顶点
+  Graph.prototype.dfsVisit = function (v, colors, handler) {
+    // 1. 将颜色设置为灰色
+    colors[v] = 'gray';
+
+    // 2. 访问顶点 v
+    handler(v);
+
+    // 3.访问与顶点 v 相邻的顶点
+    let vList = this.edges.get(v);
+    for (let vertex of vList) {
+      if (colors[vertex] === 'white') {
+        this.dfsVisit(vertex, colors, handler);
+      }
+    }
+
+    // 4. 将顶点 v 设置为黑色
+    colors[v] = 'black';
+  }
 }
 
 // 测试代码
@@ -63,3 +139,17 @@ graph.addEdge('B', 'F');
 graph.addEdge('E', 'I');
 
 console.log(graph.toString());
+
+// BFS
+let BFSResult = '';
+graph.bfs('A', v => {
+  BFSResult += v + ' ';
+});
+console.log(BFSResult);
+
+// DFS
+let DFSResult = '';
+graph.dfs('A', v => {
+  DFSResult += v + ' ';
+});
+console.log(DFSResult);
