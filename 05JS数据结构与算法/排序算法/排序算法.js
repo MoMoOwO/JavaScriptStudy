@@ -35,6 +35,20 @@ function ArrayList() {
   }
 
   // 选择排序
+  ArrayList.prototype.selectionSort = function () {
+    // 1. 获取数组长度
+    let len = this.array.length;
+
+    // 2. 外层循环，从 0 开始取数据
+    for (let i = 0; i < len - 1; i++) {
+      // 内层循环，从 i + 1 开始寻找第 n 小的数据
+      let min = i;
+      for (let j = min + 1; j < len; j++) {
+        if (this.array[j] < this.array[min]) min = j;
+      }
+      this.swap(min, i);
+    }
+  }
 
   // 插入排序
 
@@ -58,5 +72,9 @@ arr.insert(23);
 console.log(arr.toString());
 
 // 冒泡排序
-arr.bubbleSort();
+//arr.bubbleSort();
+//console.log(arr.toString());
+
+// 选择排序
+arr.selectionSort();
 console.log(arr.toString());
