@@ -51,6 +51,25 @@ function ArrayList() {
   }
 
   // 插入排序
+  ArrayList.prototype.insertionSort = function () {
+    // 1. 获取数组长度
+    let len = this.array.length;
+
+    // 2. 外层循环：从第一个位置开始获取元素，向前面局部数据有序插入
+    for (let i = 1; i < len; i++) {
+      // 3. 内层循环：获取第 i 个未知元素，和前面的数据依次进行比较
+      let temp = this.array[i];
+
+      let j = i;
+      while (this.array[j - 1] > temp && j > 0) {
+        this.array[j] = this.array[j - 1];
+        j--;
+      }
+
+      // 4. 将第 j 个位置的元素放置 temp
+      this.array[j] = temp;
+    }
+  }
 
   // 希尔排序
 
@@ -76,5 +95,9 @@ console.log(arr.toString());
 //console.log(arr.toString());
 
 // 选择排序
-arr.selectionSort();
+//arr.selectionSort();
+//console.log(arr.toString());
+
+// 插入排序
+arr.insertionSort();
 console.log(arr.toString());
