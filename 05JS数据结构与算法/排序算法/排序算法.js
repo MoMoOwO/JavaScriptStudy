@@ -72,6 +72,32 @@ function ArrayList() {
   }
 
   // 希尔排序
+  ArrayList.prototype.shellSort = function () {
+    // 1. 获取数组长度
+    let len = this.array.length;
+
+    // 2. 初始化增量
+    let gap = Math.floor(len / 2);
+
+    // 3. while 循环，gap 不断减小
+    while (gap >= 1) {
+      // 4. 以 gap 为间隔进行分组，并组内排序
+      for (let i = gap; i < len; i++) {
+        let temp = this.array[i];
+        let j = i;
+
+        while (this.array[j - gap] > temp && j > gap - 1) {
+          this.array[j] = this.array[j - gap];
+          j -= gap;
+        }
+        // 5. 将第 j 个位置的元素赋值 temp
+        this.array[j] = temp;
+      }
+
+      // 6. gap 减半
+      gap = Math.floor(gap / 2);
+    }
+  }
 
   // 快速排序
 
@@ -99,5 +125,9 @@ console.log(arr.toString());
 //console.log(arr.toString());
 
 // 插入排序
-arr.insertionSort();
+//arr.insertionSort();
+//console.log(arr.toString());
+
+// 希尔排序
+arr.shellSort();
 console.log(arr.toString());
