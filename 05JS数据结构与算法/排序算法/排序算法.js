@@ -100,7 +100,60 @@ function ArrayList() {
   }
 
   // 快速排序
+  // 1. 选择枢纽
+  ArrayList.prototype.median = function (left, right) {
+    // 1. 中间位置
+    let center = Math.floor((left + right) / 2);
 
+    // 2. 判断三者大小交换位置, left center right 为有序
+    if (this.array[left] > this.array[right]) {
+      this.swap(left, right);
+    }
+    if (this.array[center] > this.array[right]) {
+      this.swap(center, right);
+    }
+    if (this.array[left] > this.array[center]) {
+      this.swap(left, center);
+    }
+
+    // 4. 将 center 换到 right-1 位置
+    this.swap(center, right - 1);
+    return this.array[right - 1];
+  }
+
+  // 2. 快速排序实现
+  ArrayList.prototype.quickSort = function () {
+    this.quick(0, this.array.length - 1);
+  }
+
+  ArrayList.prototype.quick = function (left, right) {
+    // 1. 结束条件
+    if (left >= right) return;
+
+    // 2. 获取枢纽
+    let pivot = this.median(left, right);
+
+    // 3. 定义变量，用于记录左右比较位置
+    let i = left, j = right - 1;
+
+    // 4. 开始进行交换
+    while (i < j) {
+      while (this.array[++i] < pivot) { } // 左找大于枢纽的
+      while (this.array[--j] > pivot) { } // 右找小于枢纽的
+      if (i < j) {
+        this.swap(i, j); // 交换一对左边大的和右边小的
+      } else {
+        break;
+      }
+    }
+
+    // 5. 将枢纽放置到正确位置，即 i 的位置
+    this.swap(i, right - 1);
+
+    // 6. 递归 分而治之
+    this.quick(left, i - 1); // 递归排序左边
+    this.quick(i + 1, right); // 递归排序右边
+  }
 }
 
 // 测试
@@ -129,5 +182,9 @@ console.log(arr.toString());
 //console.log(arr.toString());
 
 // 希尔排序
-arr.shellSort();
+//arr.shellSort();
+//console.log(arr.toString());
+
+// 快速排序
+arr.quickSort();
 console.log(arr.toString());
